@@ -18,7 +18,7 @@ const config: Config = {
     "!<rootDir>/.next/**",
     "!<rootDir>/*.config.js",
     "!<rootDir>/coverage/**",
-    "!<rootDir>/**/story.{ts,js,tsx}",
+    "!<rootDir>/**/stor{y,ies}.{ts,js,tsx}",
   ],
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
