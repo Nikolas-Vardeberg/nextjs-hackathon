@@ -9,6 +9,7 @@
     "lint": "next lint && eslint . && npx stylelint \"./app/**/*.css\"",
     "prepare": "husky",
     "test": "jest",
+    "snapshots": "jest -u",
     "test:ci": "jest --ci --reporters=default --reporters=github-actions",
     "test:coverage": "jest --coverage",
     "test:coverage:ci": "jest --coverage --ci --reporters=github-actions",
