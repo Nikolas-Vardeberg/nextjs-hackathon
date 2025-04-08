@@ -9,9 +9,9 @@
     "lint": "next lint",
     "prepare": "husky",
     "test": "jest",
-    "test:ci": "jest --ci --reporters=default --reporters=jest-junit --reporters=github-actions",
+    "test:ci": "jest --ci --reporters=default --reporters=github-actions",
     "test:coverage": "jest --coverage",
-    "test:coverage:ci": "jest --coverage --ci --reporters=default --reporters=jest-junit --reporters=github-actions",
+    "test:coverage:ci": "jest --coverage --ci --reporters=github-actions",
     "test:watch": "jest --watch"
   },
   "dependencies": {
@@ -48,7 +48,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "jest-junit": "^16.0.0",
     "lint-staged": "^15.5.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
