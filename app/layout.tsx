@@ -42,10 +42,10 @@ export default async function RootLayout({
           {children}
         </ThemeProvider>
         {SITE_CONFIG.isProd && (
-          <Script 
+          <Script
             id="CookieConsent"
             src="https://policy.app.cookieinformation.com/uc.js"
-            data-culture="EN" 
+            data-culture="EN"
             data-gcm-version="2.0"
             type="text/javascript"
           />

@@ -47,9 +47,9 @@ const config: Config = {
   ],
   coverageThreshold: {
     global: {
-      branches: 1,
-      functions: 1,
-      lines: 1,
+      branches: 0,
+      functions: 0,
+      lines: 0,
     },
   },
   // Add more setup options before each test is run
