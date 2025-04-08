@@ -3,7 +3,7 @@
     "eslint:recommended",
     "prettier",
     "next/core-web-vitals",
-    "plugin:storybook/recommended"
+    "next/typescript"
   ],
   "plugins": ["prettier"],
   "rules": {
@@ -11,7 +11,7 @@
       "error",
       {
         "semi": true,
-        "singleQuote": true
+        "singleQuote": false
       }
     ]
   },
