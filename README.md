@@ -35,8 +35,93 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-## Notes
+## Storybook
 
-Test - Jest
-Lint - next eslint prettier stylelint
-Git hooks - husky
+Learn more about how the component library works with [storybook](https://storybook.js.org/docs/react/writing-stories/introduction).
+
+- Components in the `app/_components` directory contain `story.ts` file that is used for component documentation.
+- Start storybook by running `npm run storybook`
+
+Example story.ts file
+
+```ts
+import type { Meta, StoryObj } from "@storybook/react";
+
+import Title from ".";
+
+// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
+const meta = {
+  title: "Text/Title",
+  component: Title,
+  parameters: {
+    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
+    className: "",
+    title: "Title goes here",
+  },
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
+  tags: ["autodocs"],
+  // More on argTypes: https://storybook.js.org/docs/api/argtypes
+  argTypes: {},
+  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+  args: {},
+} satisfies Meta<typeof Title>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const Primary: Story = {
+  args: {
+    title: "Title",
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    title: "Title className",
+    className: "xxl",
+  },
+};
+```
+
+## Testing
+
+Testing is provided through (Jest)[https://jestjs.io/docs/getting-started] by creating a test.tsx or test.ts file.
+
+- To generate a coverage report run `npm run test:coverage`
+- To run tests while coding run `npm run test:watch`
+
+There are a number of utilities available through these libraries:
+
+- (@testing-library/react)[https://www.npmjs.com/package/@testing-library/react]
+- (@testing-library/jest-dom)[https://www.npmjs.com/package/@testing-library/jest-dom]
+
+Example test.tsx file
+
+```tsx
+import Test from "./index";
+import { render } from "@testing-library/react";
+
+describe("Title", () => {
+  it("renders the title with custom class", () => {
+    const { getByText } = render(<Test className="xl" title="Test Title" />);
+    expect(getByText("Test Title").className).toBe("text-title xl");
+  });
+});
+```
+
+## Linting
+
+(ESLint)[https://eslint.org/]: Ensures your JavaScript/TypeScript code is clean and follows best practices.
+
+Stylelint[https://stylelint.io/]: Enforces consistent styles in your CSS/SCSS.
+
+Run: `npm run lint`
+
+## Husky
+
+Git pre-checks are enabled. To skip the pre-checks add `--no-verify` to the end of your git command.
+
+(Read husky docs here.)[https://typicode.github.io/husky/]
+
+These checks are ran again in the github actions, so skipping them will be visible in the build.
