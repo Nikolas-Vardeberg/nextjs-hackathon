@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint && eslint . && stylelint .",
+    "lint": "next lint && eslint . && npx stylelint \"./app/**/*.css\"",
     "prepare": "husky",
     "test": "jest",
     "test:ci": "jest --ci --reporters=default --reporters=github-actions",
@@ -32,7 +32,8 @@
     ]
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.24.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -56,6 +57,7 @@
     "prettier": "^3.5.3",
     "stylelint": "^16.18.0",
     "stylelint-config-standard": "^38.0.0",
+    "stylelint-config-tailwindcss": "^1.0.0",
     "stylelint-prettier": "^5.0.3",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",

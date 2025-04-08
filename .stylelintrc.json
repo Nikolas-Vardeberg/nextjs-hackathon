@@ -1,5 +1,5 @@
 {
-  "extends": ["stylelint-config-standard"],
+  "extends": ["stylelint-config-standard", "stylelint-config-tailwindcss"],
   "plugins": ["stylelint-prettier"],
   "rules": {
     "prettier/prettier": true,
@@ -12,11 +12,11 @@
           "responsive",
           "screen",
           "tailwind",
-          "variants"
+          "variants",
+          "theme"
         ]
       }
     ],
-    "declaration-block-trailing-semicolon": null,
     "no-descending-specificity": null
   }
 }
