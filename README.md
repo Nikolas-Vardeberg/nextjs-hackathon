@@ -86,15 +86,15 @@ export const Secondary: Story = {
 
 ## Testing
 
-Testing is provided through (Jest)[https://jestjs.io/docs/getting-started] by creating a test.tsx or test.ts file.
+Testing is provided through [Jest](https://jestjs.io/docs/getting-started) by creating a test.tsx or test.ts file.
 
 - To generate a coverage report run `npm run test:coverage`
 - To run tests while coding run `npm run test:watch`
 
 There are a number of utilities available through these libraries:
 
-- (@testing-library/react)[https://www.npmjs.com/package/@testing-library/react]
-- (@testing-library/jest-dom)[https://www.npmjs.com/package/@testing-library/jest-dom]
+- [@testing-library/react](https://www.npmjs.com/package/@testing-library/react)
+- [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
 
 Example test.tsx file
 
@@ -112,9 +112,9 @@ describe("Title", () => {
 
 ## Linting
 
-(ESLint)[https://eslint.org/]: Ensures your JavaScript/TypeScript code is clean and follows best practices.
+[ESLint](https://eslint.org/): Ensures your JavaScript/TypeScript code is clean and follows best practices.
 
-Stylelint[https://stylelint.io/]: Enforces consistent styles in your CSS/SCSS.
+[Stylelint](https://stylelint.io/): Enforces consistent styles in your CSS/SCSS.
 
 Run: `npm run lint`
 
@@ -122,6 +122,6 @@ Run: `npm run lint`
 
 Git pre-checks are enabled. To skip the pre-checks add `--no-verify` to the end of your git command.
 
-(Read husky docs here.)[https://typicode.github.io/husky/]
+[Read husky docs here.](https://typicode.github.io/husky/)
 
 These checks are ran again in the github actions, so skipping them will be visible in the build.
