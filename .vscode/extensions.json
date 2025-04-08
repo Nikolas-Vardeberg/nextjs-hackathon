@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "orta.vscode-jest",
+    "github.copilot",
+    "github.copilot-chat",
+    "stylelint.vscode-stylelint",
+    "ryanluker.vscode-coverage-gutters"
+  ]
+}

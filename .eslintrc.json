@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "next/core-web-vitals",
+    "plugin:storybook/recommended"
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": true,
+        "singleQuote": true
+      }
+    ]
+  },
+  "ignorePatterns": ["public/*.loader.js"],
+  "overrides": [
+    {
+      "files": ["app/**/test.tsx"],
+      "plugins": ["jest"],
+      "rules": {},
+      "env": {
+        "jest/globals": true
+      }
+    }
+  ]
+}
