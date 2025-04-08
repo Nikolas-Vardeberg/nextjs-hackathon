@@ -125,3 +125,8 @@ Git pre-checks are enabled. To skip the pre-checks add `--no-verify` to the end 
 [Read husky docs here.](https://typicode.github.io/husky/)
 
 These checks are ran again in the github actions, so skipping them will be visible in the build.
+
+## ENV setup
+
+Copy `.example.local` and rename it to `.env.local`
+Update the file with the values. The same values must be in the Vercel app
