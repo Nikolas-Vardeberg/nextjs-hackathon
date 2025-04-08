@@ -1,7 +1,14 @@
-import { useTranslations } from "next-intl";
+"use client"
+
+import { useTheme } from "next-themes";
 
 export default function Page() {
-  const t = useTranslations();
+  const { setTheme } = useTheme();
 
-  return <div>{t("hello")}</div>;
+  return(
+    <div className="flex flex-col">
+      <button onClick={() => setTheme("light")}>Light Mode</button>
+      <button onClick={() => setTheme("dark")}>Dark Mode</button>
+    </div>
+  )
 }
