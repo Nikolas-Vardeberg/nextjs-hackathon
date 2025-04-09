@@ -1,1 +1,13 @@
+/* @import "tailwindcss/preflight"; */
 @import "tailwindcss";
+
+@theme {
+  --font-family-montserrat: var(--font-montserrat), sans-serif;
+
+  /* Custom colors */
+  --color-skywater: #8ecae6;
+  --color-tealwave: #219ebc;
+  --color-nightocean: #023047;
+  --color-sunburst: #ffb703;
+  --color-ember: #fb8500;
+}
