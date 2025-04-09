@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import styles from "style.module.css";
+import styles from "./style.module.css";
 
 const Title: React.FC<{ title: string; className?: string }> = ({
   title,
