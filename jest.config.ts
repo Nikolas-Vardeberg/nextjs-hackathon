@@ -20,6 +20,7 @@ const config: Config = {
     "!<rootDir>/*.config.js",
     "!<rootDir>/coverage/**",
     "!<rootDir>/**/stor{y,ies}.{ts,js,tsx}",
+    "!<rootDir>/**/types.ts",
   ],
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)

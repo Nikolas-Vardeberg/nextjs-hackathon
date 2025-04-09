@@ -9,6 +9,7 @@ function Button({ loading, className, variant, ...props }: ButtonProps) {
 
   return (
     <Component
+      data-testid="button"
       className={clsx(buttonVariants({ variant }), className)}
       {...props}
     >

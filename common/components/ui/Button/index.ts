@@ -4,3 +4,4 @@ import type { ButtonProps } from "./types";
 
 export { Button, buttonVariants };
 export type { ButtonProps };
+export default Button;
