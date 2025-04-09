@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint && npx stylelint \"./app/**/*.css\"",
+    "lint": "next lint && npx stylelint \"./app/**/*.css\" && npx stylelint \"./common/**/*.css\"",
     "prepare": "husky",
     "test": "jest",
     "snapshots": "jest -u",

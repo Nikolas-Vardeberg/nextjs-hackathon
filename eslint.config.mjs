@@ -24,7 +24,7 @@ export default defineConfig([
     ),
 
     plugins: {
-      prettier
+      prettier,
     },
 
     rules: {
@@ -38,7 +38,7 @@ export default defineConfig([
     },
   },
   {
-    files: ["app/**/test.tsx"],
+    files: ["app/**/test.tsx", "common/**/test.tsx"],
 
     plugins: {
       jest,

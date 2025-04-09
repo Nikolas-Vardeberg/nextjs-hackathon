@@ -12,6 +12,7 @@ const config: Config = {
   testEnvironment: "jsdom",
   collectCoverageFrom: [
     "<rootDir>/app/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/common/**/*.{js,jsx,ts,tsx}",
     "!**/*.d.ts",
     "!**/node_modules/**",
     "!<rootDir>/out/**",
