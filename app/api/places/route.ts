@@ -40,7 +40,6 @@ export async function GET(req: Request) {
       .then((data) => {
         return { success: true, data };
       });
-    console.log("Response from Google Places API:", response);
     return Response.json(response, { status: 200 });
   } catch (e: unknown) {
     console.error("Error:", e);
