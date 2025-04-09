@@ -21,19 +21,26 @@ export async function GET(req: Request) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.GOOGLE_API_KEY}`,
+          "X-Goog-Api-Key": `${process.env.GOOGLE_API_KEY}`, // Replace with your actual API key
+          "X-Goog-FieldMask":
+            "places.displayName,places.formattedAddress,places.priceLevel",
         },
         body: JSON.stringify({
           textQuery: input,
         }),
       },
-    ).then((response) => {
-      if (!response.ok) {
-        console.error("Network response was not ok:", response.statusText);
-        throw new Error("Network response was not ok");
-      }
-      return { success: true, data: response.json() };
-    });
+    )
+      .then((response) => {
+        if (!response.ok) {
+          console.error("Network response was not ok:", response.statusText);
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        return { success: true, data };
+      });
+    console.log("Response from Google Places API:", response);
     return Response.json(response, { status: 200 });
   } catch (e: unknown) {
     console.error("Error:", e);
