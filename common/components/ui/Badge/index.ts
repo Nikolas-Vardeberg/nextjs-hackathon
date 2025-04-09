@@ -3,3 +3,4 @@ import type { BagdeProps } from "./types";
 
 export { Badge };
 export type { BagdeProps };
+export default Badge;

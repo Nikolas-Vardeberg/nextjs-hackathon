@@ -3,3 +3,4 @@ import { InputProps } from "./types";
 
 export { Input };
 export type { InputProps };
+export default Input;
