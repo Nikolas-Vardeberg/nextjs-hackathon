@@ -8,6 +8,6 @@ describe("Title", () => {
   });
   it("renders the title with custom class", () => {
     const { getByText } = render(<Test className="xl" title="Test Title" />);
-    expect(getByText("Test Title").className).toBe("text-title xl");
+    expect(getByText("Test Title").className).toBe("text xl");
   });
 });
