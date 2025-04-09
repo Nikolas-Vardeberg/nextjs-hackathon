@@ -126,6 +126,15 @@ Git pre-checks are enabled. To skip the pre-checks add `--no-verify` to the end 
 
 These checks are ran again in the github actions, so skipping them will be visible in the build.
 
+If the formatter doesnt work with vscode usually the secret is to restart vscode. You also need to make sure you have `esbenp.prettier-vscode` and `dbaeumer.vscode-eslint` extensions installed.
+
+**If you are not familiar with git commands these are standard commands you can use:**
+
+`git add .` - adds all the changes to the next commit
+`git commit -m "my commit message goes here"` - commits the changes with lint and tests passing  
+`git commit -m "my commit message goes here" --no-verify` - commits the changes but without lint and testing
+`git push` - pushes up your changes
+
 ## ENV setup
 
 Copy `.example.local` and rename it to `.env.local`
