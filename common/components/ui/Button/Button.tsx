@@ -27,10 +27,10 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-black text-white hover:bg-black/80",
+        default: "bg-black text-white hover:bg-black/80 dark:bg-white dark:text-black hover:bg-white/80",
         destructive: "bg-red-500 text-black",
-        outline: "text-black border border-black",
-        link: "underline",
+        outline: "text-black border border-black dark:border-white dark:text-white",
+        link: "underline text-black dark:text-white",
       },
       size: {
         default: "h-9 px-4 py-2",

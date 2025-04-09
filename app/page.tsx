@@ -1,5 +1,6 @@
 "use client";
 
+import { Grid } from "@/common/components/atoms/layouts/Grid";
 import { Button } from "@/common/components/ui/Button/Button";
 import { useTheme } from "next-themes";
 
@@ -7,6 +8,20 @@ export default function Page() {
   const { setTheme } = useTheme();
 
   return (
+    <>
+    <div className="px-8 container mx-auto">
+      <Grid columns={{ sm: 1, md: 2, lg: 3 }} container className="w-full">
+        <div className="w-full bg-red-500">
+          1
+        </div>
+        <div className="w-full bg-red-500">
+          1
+        </div>
+        <div className="w-full bg-red-500">
+          1
+        </div>
+      </Grid>
+    </div>
     <div className="flex flex-col gap-8 max-w-[200px]">
       <button onClick={() => setTheme("light")}>Light Mode</button>
       <button onClick={() => setTheme("dark")}>Dark Mode</button>
@@ -35,5 +50,6 @@ export default function Page() {
         </div>
       </div>
     </div>
+    </>
   );
 }
