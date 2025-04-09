@@ -21,14 +21,13 @@ interface GridItemProps {
 	card?: boolean;
 }
 
-const defaultSizeProps: SizeProps = { sm: 4, lg: 12 }; // Default for columns and colSpan
-const defaultGap: SizeProps = { sm: 16, lg: 28 }; // Default for gap
+const defaultSizeProps: SizeProps = { sm: 4, lg: 12 }; 
+const defaultGap: SizeProps = { sm: 16, lg: 28 }; 
 
-const containerPaddings: SizeProps = { sm: 16, lg: 38 }; // Default for container padding
+const containerPaddings: SizeProps = { sm: 16, lg: 38 }; 
 
-// Enhanced function to generate grid-template-columns with default values
 const generateGridTemplateColumns = (columns: SizeProps = defaultSizeProps) => {
-const col = { ...defaultSizeProps, ...columns }; // Merge with defaults
+const col = { ...defaultSizeProps, ...columns }; 
 	return css`
     grid-template-columns: repeat(${col.sm}, 1fr);
     
@@ -74,7 +73,6 @@ export const Grid = styled.div
 `;
 
 const generateGridColumn = (colSpan?: SizeProps, colStart?: SizeProps) => {
-	// Default span to cover all 12 columns if no specific colSpan is provided
 	const defaultSpan = { sm: 4, lg: 12 };
 	const span = {
 		...defaultSpan,
@@ -101,9 +99,4 @@ export const GridItem = styled.div.withConfig({
 	shouldForwardProp: (prop) => !['colSpan', 'colStart', 'card'].includes(prop),
 })<GridItemProps>`
   ${(props) => generateGridColumn(props.colSpan, props.colStart)}
-  ${({ card }) =>
-		card &&
-		css`
-    
-  `}
 `;
