@@ -128,6 +128,14 @@ These checks are ran again in the github actions, so skipping them will be visib
 
 If the formatter doesnt work with vscode usually the secret is to restart vscode. You also need to make sure you have `esbenp.prettier-vscode` and `dbaeumer.vscode-eslint` extensions installed.
 
+Once the extensions are installed you have to make sure eslint is your default formatter in VSCode.
+
+- on the file you are editing, press command + P
+- type `format document with` and select the option
+- select eslint
+
+Eslint uses pretttier under the hood. If you use prettier and not eslint it gets wonky on the rules. So feed everything through eslint.
+
 **If you are not familiar with git commands these are standard commands you can use:**
 
 `git add .` - adds all the changes to the next commit
