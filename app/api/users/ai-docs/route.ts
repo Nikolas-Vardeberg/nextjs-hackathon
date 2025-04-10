@@ -71,7 +71,7 @@ export async function GET(req: Request) {
  * Request Body:
  * - `openAIID` (string, required): The ID related to the OpenAI document.
  * - `openAIDataCache` (string, required): Cached data from OpenAI.
- * - `userDoc` (string, required): The ID of the associated user document.
+ * - `userDocID` (string, required): The ID of the associated user document.
  * - `customValue_1` (string, optional): Custom field 1. Defaults to an empty string if not provided.
  * - `customValue_2` (string, optional): Custom field 2. Defaults to an empty string if not provided.
  * - `customValue_3` (string, optional): Custom field 3. Defaults to an empty string if not provided.
@@ -85,7 +85,7 @@ export async function POST(req: Request) {
     const openAPIDocument = new OpenAIDocument({
       openAIID: data.openAIID,
       openAIDataCache: data.openAIDataCache,
-      userDoc: data.userDoc,
+      userDocID: data.userDocID,
       customValue_1: data.customValue_1 || "",
       customValue_2: data.customValue_2 || "",
       customValue_3: data.customValue_3 || "",

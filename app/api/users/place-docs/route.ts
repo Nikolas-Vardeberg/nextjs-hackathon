@@ -1,5 +1,5 @@
 import { connectDB } from "@/lib/mongoose";
-import PlaceDocument from "@/lib/mongoose/models/open-ai";
+import PlaceDocument from "@/lib/mongoose/models/place";
 
 /**
  * Handles a GET request to retrieve documents associated with a specific user from the database.
@@ -70,9 +70,9 @@ export async function GET(req: Request) {
  *                              and the saved document.
  *
  * Request Body:
- * - `openAIID` (string, required): The ID related to the OpenAI document.
- * - `openAIDataCache` (string, required): Cached data from OpenAI.
- * - `userDoc` (string, required): The ID of the associated user document.
+ * - `googlePlaceID` (string, required): The ID related to the OpenAI document.
+ * - `googlePlaceDataCache` (string, required): Cached data from OpenAI.
+ * - `userDocID` (string, required): The ID of the associated user document.
  * - `customValue_1` (string, optional): Custom field 1. Defaults to an empty string if not provided.
  * - `customValue_2` (string, optional): Custom field 2. Defaults to an empty string if not provided.
  * - `customValue_3` (string, optional): Custom field 3. Defaults to an empty string if not provided.
@@ -84,9 +84,10 @@ export async function POST(req: Request) {
     const data = await req.json();
     await connectDB();
     const openAPIDocument = new PlaceDocument({
-      openAIID: data.openAIID,
-      openAIDataCache: data.openAIDataCache,
-      userDoc: data.userDoc,
+      googlePlaceID: data.googlePlaceID,
+      googlePlaceDataCache: data.googlePlaceDataCache,
+      userDocID: data.userDocID,
+      favorite: data.favorite,
       customValue_1: data.customValue_1 || "",
       customValue_2: data.customValue_2 || "",
       customValue_3: data.customValue_3 || "",
