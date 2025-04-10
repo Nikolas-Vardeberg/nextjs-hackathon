@@ -11,6 +11,9 @@ importers:
       '@clerk/nextjs':
         specifier: ^6.14.2
         version: 6.14.2(next@15.2.4(@babel/core@7.26.10)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@hookform/resolvers':
+        specifier: ^5.0.1
+        version: 5.0.1(react-hook-form@7.55.0(react@19.1.0))
       '@prisma/client':
         specifier: 6.6.0
         version: 6.6.0(prisma@6.6.0(typescript@5.8.3))(typescript@5.8.3)
@@ -676,6 +679,11 @@ packages:
   '@formatjs/intl-localematcher@0.6.1':
     resolution: {integrity: sha512-ePEgLgVCqi2BBFnTMWPfIghu6FkbZnnBVhO2sSxvLfrdFw7wCHAHiDoM2h4NRgjbaY7+B7HgOLZGkK187pZTZg==}
 
+  '@hookform/resolvers@5.0.1':
+    resolution: {integrity: sha512-u/+Jp83luQNx9AdyW2fIPGY6Y7NG68eN2ZW8FOJYL+M0i4s49+refdJdOp/A9n9HFQtQs3HIDHQvX3ZET2o7YA==}
+    peerDependencies:
+      react-hook-form: ^7.55.0
+
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
     engines: {node: '>=18.18.0'}
@@ -1182,6 +1190,9 @@ packages:
 
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
+
+  '@standard-schema/utils@0.3.0':
+    resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
 
   '@storybook/addon-actions@8.6.12':
     resolution: {integrity: sha512-B5kfiRvi35oJ0NIo53CGH66H471A3XTzrfaa6SxXEJsgxxSeKScG5YeXcCvLiZfvANRQ7QDsmzPUgg0o3hdMXw==}
@@ -5336,6 +5347,11 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
+  '@hookform/resolvers@5.0.1(react-hook-form@7.55.0(react@19.1.0))':
+    dependencies:
+      '@standard-schema/utils': 0.3.0
+      react-hook-form: 7.55.0(react@19.1.0)
+
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.6':
@@ -5839,6 +5855,8 @@ snapshots:
   '@sinonjs/fake-timers@10.3.0':
     dependencies:
       '@sinonjs/commons': 3.0.1
+
+  '@standard-schema/utils@0.3.0': {}
 
   '@storybook/addon-actions@8.6.12(storybook@8.6.12(prettier@3.5.3))':
     dependencies:
