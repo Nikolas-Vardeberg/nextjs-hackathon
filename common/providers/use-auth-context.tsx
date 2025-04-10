@@ -1,38 +1,40 @@
-"use client"
+"use client";
 
 import React from "react";
 
 type InitialValuesProps = {
-    currentStep: number;
-    setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-}
+  currentStep: number;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+};
 
 const InitialValues: InitialValuesProps = {
-    currentStep: 1,
-    setCurrentStep: () => undefined,
-}
+  currentStep: 1,
+  setCurrentStep: () => undefined,
+};
 
 const authContext = React.createContext(InitialValues);
 
 const { Provider } = authContext;
 
 export const AuthContextProvider = ({
-    children
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) => {
-    const [currentStep, setCurrentStep] = React.useState<number>(InitialValues.currentStep);
+  const [currentStep, setCurrentStep] = React.useState<number>(
+    InitialValues.currentStep,
+  );
 
-    const values = {
-        currentStep,
-        setCurrentStep
-    }
+  const values = {
+    currentStep,
+    setCurrentStep,
+  };
 
-    return <Provider value={values}>{children}</Provider>
-}
+  return <Provider value={values}>{children}</Provider>;
+};
 
 export const useAuthContextHook = () => {
-    const state = React.useContext(authContext);
+  const state = React.useContext(authContext);
 
-    return state;
-}
+  return state;
+};
