@@ -20,7 +20,7 @@ const OpenAISchema = new Schema<OpenAIDocument>(
       ref: "User", // Reference the User model
     },
     openAIID: {
-      type: Number,
+      type: String,
       required: [true, "An open ai ID is required"],
     },
     openAIDataCache: {
