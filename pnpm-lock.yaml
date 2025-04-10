@@ -11,6 +11,9 @@ importers:
       '@clerk/nextjs':
         specifier: ^6.14.2
         version: 6.14.2(next@15.2.4(@babel/core@7.26.10)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@hookform/error-message':
+        specifier: ^2.0.1
+        version: 2.0.1(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.55.0(react@19.1.0))(react@19.1.0)
       '@hookform/resolvers':
         specifier: ^5.0.1
         version: 5.0.1(react-hook-form@7.55.0(react@19.1.0))
@@ -678,6 +681,13 @@ packages:
 
   '@formatjs/intl-localematcher@0.6.1':
     resolution: {integrity: sha512-ePEgLgVCqi2BBFnTMWPfIghu6FkbZnnBVhO2sSxvLfrdFw7wCHAHiDoM2h4NRgjbaY7+B7HgOLZGkK187pZTZg==}
+
+  '@hookform/error-message@2.0.1':
+    resolution: {integrity: sha512-U410sAr92xgxT1idlu9WWOVjndxLdgPUHEB8Schr27C9eh7/xUnITWpCMF93s+lGiG++D4JnbSnrb5A21AdSNg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      react-hook-form: ^7.0.0
 
   '@hookform/resolvers@5.0.1':
     resolution: {integrity: sha512-u/+Jp83luQNx9AdyW2fIPGY6Y7NG68eN2ZW8FOJYL+M0i4s49+refdJdOp/A9n9HFQtQs3HIDHQvX3ZET2o7YA==}
@@ -5346,6 +5356,12 @@ snapshots:
   '@formatjs/intl-localematcher@0.6.1':
     dependencies:
       tslib: 2.8.1
+
+  '@hookform/error-message@2.0.1(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.55.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-hook-form: 7.55.0(react@19.1.0)
 
   '@hookform/resolvers@5.0.1(react-hook-form@7.55.0(react@19.1.0))':
     dependencies:
