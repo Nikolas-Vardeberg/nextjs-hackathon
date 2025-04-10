@@ -3,6 +3,7 @@
 import Container from "@/common/components/atoms/layouts/Container";
 import { Grid } from "@/common/components/atoms/layouts/Grid";
 import { Button } from "@/common/components/ui/Button/Button";
+import Clerk from "@/common/components/ui/Clerk";
 import { useTheme } from "next-themes";
 
 export default function Page() {
@@ -11,6 +12,7 @@ export default function Page() {
   return (
     <>
       <Container>
+        <Clerk />
         <Grid columns={{ sm: 1, md: 2, lg: 3 }} container className="w-full">
           <div className="w-full bg-red-500">1</div>
           <div className="w-full bg-red-500">1</div>
