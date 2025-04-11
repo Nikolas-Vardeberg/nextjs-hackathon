@@ -1,6 +1,7 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-tailwindcss"],
   "plugins": ["stylelint-prettier"],
+  "ignoreFiles": [".next/**/*"],
   "rules": {
     "prettier/prettier": true,
     "at-rule-no-unknown": [

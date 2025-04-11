@@ -1,9 +1,9 @@
-import { HtmlHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes } from "react";
+import type { VariantProps } from "class-variance-authority";
+import { buttonVariants } from "./Button";
 
-export type ButtonProps = HtmlHTMLAttributes<HTMLButtonElement> & {
-  size?: "icon" | "default";
-  variant?: "default" | "outline" | "link";
-  loading?: boolean;
-  className?: string;
-  asChild?: boolean;
-};
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants> & {
+    loading?: boolean;
+    asChild?: boolean;
+  };

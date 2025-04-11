@@ -1,5 +1,5 @@
-import { HTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
 
-export type InputProps = HTMLAttributes<HTMLInputElement> & {
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   className?: string;
 };
