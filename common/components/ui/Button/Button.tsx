@@ -28,7 +28,7 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-black text-white hover:bg-black/80 dark:bg-white dark:text-black hover:bg-white/80",
+          "bg-black text-white hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/80",
         destructive: "bg-red-500 text-black",
         outline:
           "text-black border border-black dark:border-white dark:text-white",
