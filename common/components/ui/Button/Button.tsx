@@ -33,6 +33,7 @@ export const buttonVariants = cva(
         outline:
           "text-black border border-black dark:border-white dark:text-white",
         link: "underline text-black dark:text-white",
+        tealwave: "bg-tealwave text-white hover:bg-tealwave/80",
       },
       size: {
         default: "h-9 px-4 py-2",
