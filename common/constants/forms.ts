@@ -45,3 +45,20 @@ export const USER_REGISTRATION_FORM: UserRegistrationProps[] = [
     type: "password",
   },
 ];
+
+export const USER_LOGIN_FORM: UserRegistrationProps[] = [
+  {
+    id: "1",
+    inputType: "input",
+    placeholder: "Email",
+    name: "email",
+    type: "email",
+  },
+  {
+    id: "2",
+    inputType: "input",
+    placeholder: "Password",
+    name: "password",
+    type: "password",
+  }
+];
