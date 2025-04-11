@@ -23,7 +23,7 @@ export function Hero({
   return (
     <section
       className={cn(
-        "relative min-h-[80vh] flex flex-col justify-center py-10",
+        "relative min-h-[80vh] flex flex-col justify-center py-28",
         fallbackBackgroundColor,
         className,
       )}
