@@ -33,7 +33,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <main>{children}</main>
           </ThemeProvider>
           {SITE_CONFIG.isProd && (
             <Script
