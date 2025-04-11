@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/lib/cn";
 
 type ContainerProps = {
   children: React.ReactNode;
@@ -10,7 +10,9 @@ const Container: React.FC<ContainerProps> = ({
   className,
 }: ContainerProps) => {
   return (
-    <div className={clsx("container mx-auto px-8", className)}>{children}</div>
+    <div className={cn("container mx-auto px-4 sm:px-6 md:px-8", className)}>
+      {children}
+    </div>
   );
 };
 
