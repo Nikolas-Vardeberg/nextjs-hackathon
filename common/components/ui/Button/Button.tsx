@@ -1,16 +1,16 @@
-import clsx from "clsx";
 import { ButtonProps } from "./types";
 import { Slottable } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
+import { cn } from "@/lib/cn";
 
-function Button({ loading, className, variant, ...props }: ButtonProps) {
+function Button({ loading, className, size, variant, ...props }: ButtonProps) {
   const Component = "button";
 
   return (
     <Component
       data-testid="button"
-      className={clsx(buttonVariants({ variant }), className)}
+      className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     >
       {loading ? (
