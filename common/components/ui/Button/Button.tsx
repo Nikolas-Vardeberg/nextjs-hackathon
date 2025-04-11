@@ -1,11 +1,19 @@
 import { ButtonProps } from "./types";
-import { Slottable } from "@radix-ui/react-slot";
+import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
-function Button({ loading, className, size, variant, ...props }: ButtonProps) {
-  const Component = "button";
+function Button({
+  loading,
+  className,
+  size,
+  variant,
+  asChild = false,
+  children,
+  ...props
+}: ButtonProps) {
+  const Component = asChild ? Slot : "button";
 
   return (
     <Component
@@ -13,11 +21,7 @@ function Button({ loading, className, size, variant, ...props }: ButtonProps) {
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
-      {loading ? (
-        <Loader2 className="animate-spin h-4 w-4" />
-      ) : (
-        <Slottable>{props.children}</Slottable>
-      )}
+      {loading ? <Loader2 className="animate-spin size-4" /> : children}
     </Component>
   );
 }
