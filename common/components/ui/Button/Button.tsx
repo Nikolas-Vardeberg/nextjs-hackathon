@@ -10,7 +10,7 @@ function Button({ loading, className, size, variant, ...props }: ButtonProps) {
   return (
     <Component
       data-testid="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
       {loading ? (
