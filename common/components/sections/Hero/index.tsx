@@ -28,7 +28,7 @@ export function Hero({
         className,
       )}
     >
-      <Container className={`px-4 sm:px-6 ${className || ""}`}>
+      <Container className="px-4 sm:px-6">
         <HeroContent {...contentProps}>
           {searchProps && <HeroSearch {...searchProps} />}
         </HeroContent>
