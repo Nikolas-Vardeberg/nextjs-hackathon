@@ -6,6 +6,8 @@ import { SignUpFormProvider } from "@/common/providers/form-provider";
 const Page = () => {
   return (
     <div className="flex items-center h-screen justify-center">
+      <div id="clerk-captcha" />
+
       <SignUpFormProvider>
         <div className="flex flex-col gap-3">
           <RegistrationStep />

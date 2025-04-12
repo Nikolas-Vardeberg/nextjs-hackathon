@@ -12,7 +12,7 @@ export type HeroProps = {
   className?: string;
 };
 
-export function Hero({
+export default function Hero({
   contentProps,
   searchProps,
   backgroundImage,

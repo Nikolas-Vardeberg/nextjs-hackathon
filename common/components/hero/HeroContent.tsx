@@ -1,11 +1,9 @@
 import { ReactNode } from "react";
 
-export type HeroAlignment = "left" | "center";
-
 export type HeroContentProps = {
   title: string | ReactNode;
   description: string | ReactNode;
-  alignment?: HeroAlignment;
+  alignment?: "left" | "center";
   children?: ReactNode;
 };
 
