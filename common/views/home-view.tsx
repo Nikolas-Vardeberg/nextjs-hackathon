@@ -2,30 +2,11 @@
 
 import Container from "@/common/components/atoms/layouts/Container";
 import { Grid } from "@/common/components/atoms/layouts/Grid";
-import Hero from "@/common/components/hero/Hero";
-import heroBg from "@/assets/images/hero/background.webp";
-import { HeroContent } from "../components/hero/HeroContent";
-import { HeroSearch } from "../components/hero/HeroSearch";
-import useSearch from "../hooks/use-search";
-
+import Hero from "@/app/home/_components/Hero";
 export default function HomeView() {
-  const { handleSearch, searchPlaceholder, buttonTextState } = useSearch();
   return (
     <>
-      <Hero backgroundImage={heroBg.src}>
-        <HeroContent
-          title="Your Vacation Starts Here"
-          description="Tell us what inspires you, and our AI will craft the perfect journey tailored just for you"
-          alignment="left"
-        >
-          <HeroSearch
-            placeholder={searchPlaceholder}
-            buttonText={buttonTextState}
-            onSearch={handleSearch}
-          />
-        </HeroContent>
-      </Hero>
-
+      <Hero />
       <Container as="section" className="py-20 flex flex-col gap-10">
         <Grid columns={{ sm: 1, md: 2, lg: 3 }} className="w-full">
           <div className="w-full bg-red-500 h-52"></div>

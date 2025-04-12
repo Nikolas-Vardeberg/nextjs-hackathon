@@ -7,6 +7,7 @@ import { SITE_CONFIG } from "@/config";
 import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/common/components/nav/Navbar";
+import { UserDocumentProvider } from "@/common/providers/user-document-context";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -27,29 +28,31 @@ export default async function RootLayout({
 
   return (
     <ClerkProvider>
-      <html lang={locale} suppressHydrationWarning>
-        <body className={`${montserrat.variable} antialiased`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            forcedTheme="light"
-            disableTransitionOnChange
-          >
-            <Navbar />
-            <main>{children}</main>
-          </ThemeProvider>
-          {SITE_CONFIG.isProd && (
-            <Script
-              id="CookieConsent"
-              src="https://policy.app.cookieinformation.com/uc.js"
-              data-culture="EN"
-              data-gcm-version="2.0"
-              type="text/javascript"
-            />
-          )}
-        </body>
-      </html>
+      <UserDocumentProvider>
+        <html lang={locale} suppressHydrationWarning>
+          <body className={`${montserrat.variable} antialiased`}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              forcedTheme="light"
+              disableTransitionOnChange
+            >
+              <Navbar />
+              <main>{children}</main>
+            </ThemeProvider>
+            {SITE_CONFIG.isProd && (
+              <Script
+                id="CookieConsent"
+                src="https://policy.app.cookieinformation.com/uc.js"
+                data-culture="EN"
+                data-gcm-version="2.0"
+                type="text/javascript"
+              />
+            )}
+          </body>
+        </html>
+      </UserDocumentProvider>
     </ClerkProvider>
   );
 }
