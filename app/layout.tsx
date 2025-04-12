@@ -33,6 +33,7 @@ export default async function RootLayout({
             attribute="class"
             defaultTheme="system"
             enableSystem
+            forcedTheme="light"
             disableTransitionOnChange
           >
             <Navbar />
