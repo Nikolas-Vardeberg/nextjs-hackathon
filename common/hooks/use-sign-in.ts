@@ -39,7 +39,7 @@ export const useSignInForm = () => {
             },
             body: JSON.stringify({
               authToken: authenticated.createdSessionId,
-              clerkUserID: authenticated.id,
+              clerkUserID: authenticated.identifier,
               authExpiry: twoHoursFromNow,
             }),
           });
