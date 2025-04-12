@@ -42,7 +42,7 @@ export default function MobileNav({ links, onClose }: MobileNavProps) {
           ))}
         </ul>
         <div className="flex gap-2 flex-col">
-          <NavActions />
+          <NavActions onClose={onClose} />
         </div>
       </div>
     </div>
