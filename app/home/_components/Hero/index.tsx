@@ -4,8 +4,11 @@ import { HeroSearch } from "@/common/components/hero/HeroSearch";
 import useSearch from "@/common/hooks/use-search";
 import heroBg from "@/assets/images/hero/background.webp";
 
-const HeroComponent: React.FC = () => {
-  const { handleSearch, searchPlaceholder, buttonTextState } = useSearch();
+const HeroComponent: React.FC<{ onSearch: (answers: string[]) => void }> = ({
+  onSearch, //TODO: move to context
+}) => {
+  const { handleSearch, searchPlaceholder, buttonTextState } =
+    useSearch(onSearch);
 
   return (
     <Hero backgroundImage={heroBg.src}>

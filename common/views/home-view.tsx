@@ -3,10 +3,25 @@
 import Container from "@/common/components/atoms/layouts/Container";
 import { Grid } from "@/common/components/atoms/layouts/Grid";
 import Hero from "@/app/home/_components/Hero";
+import { getSearchRecommendations } from "@/lib/actions/recommendations";
+import { useState } from "react";
+
 export default function HomeView() {
+  //TODO: move to context
+  const [recommendations, setRecommendations] = useState<string | null>(null);
+  const handleSearch = async (answers: string[]) => {
+    try {
+      const result = await getSearchRecommendations(answers);
+      setRecommendations(result);
+    } catch (e) {
+      console.error("Failed to fetch recommendations:", e);
+    }
+  };
+
+  console.log(recommendations);
   return (
     <>
-      <Hero />
+      <Hero onSearch={handleSearch} />
       <Container as="section" className="py-20 flex flex-col gap-10">
         <Grid columns={{ sm: 1, md: 2, lg: 3 }} className="w-full">
           <div className="w-full bg-red-500 h-52"></div>
