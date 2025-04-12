@@ -21,6 +21,7 @@ function AccountDetailsForm({ errors, register }: Props) {
           name={field.name}
         />
       ))}
+      <div id="clerk-captcha" />
     </>
   );
 }
