@@ -1,17 +1,14 @@
 "use client";
 
-import { useSignIn, useClerk } from "@clerk/nextjs";
+import { useSignIn } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { UserLoginProps, UserLoginSchema } from "@/lib/schemas/auth";
 
 export const useSignInForm = () => {
   const { isLoaded, setActive, signIn } = useSignIn();
-  const { signOut } = useClerk();
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
   const methods = useForm<UserLoginProps>({
     resolver: zodResolver(UserLoginSchema),
     mode: "onChange",
@@ -20,11 +17,10 @@ export const useSignInForm = () => {
   const onHandleSubmit = methods.handleSubmit(
     async (values: UserLoginProps) => {
       if (!isLoaded) return;
-      await signOut();
+
+      setLoading(true);
 
       try {
-        setLoading(true);
-
         const authenticated = await signIn.create({
           identifier: values.email,
           password: values.password,
@@ -33,20 +29,23 @@ export const useSignInForm = () => {
         if (authenticated.status === "complete") {
           const now = new Date();
           const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000);
-
+          console.log(authenticated);
           await fetch("/api/users/user-docs", {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
             },
+
             body: JSON.stringify({
               authToken: authenticated.createdSessionId,
               clerkUserID: authenticated.identifier,
               authExpiry: twoHoursFromNow,
             }),
           });
-          await setActive({ session: authenticated.createdSessionId });
-          router.push("/dashboard");
+          await setActive({
+            session: authenticated.createdSessionId,
+            redirectUrl: "/dashboard",
+          });
         }
       } catch (error: unknown) {
         setLoading(false);

@@ -2,7 +2,7 @@ import { z, ZodType } from "zod";
 
 export type UserRegistrationProps = {
   type: string;
-  fullname: string;
+  fullName: string;
   email: string;
   confirmEmail: string;
   password: string;
@@ -13,9 +13,9 @@ export type UserRegistrationProps = {
 export const UserRegistrationSchema: ZodType<UserRegistrationProps> = z
   .object({
     type: z.string().min(1),
-    fullname: z
+    fullName: z
       .string()
-      .min(4, { message: "Fullname must be at least 4 characters long" }),
+      .min(4, { message: "Full name must be at least 4 characters long" }),
     email: z.string().email({ message: "Invalid email address" }),
     confirmEmail: z.string().email(),
     password: z

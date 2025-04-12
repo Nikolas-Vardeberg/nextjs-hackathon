@@ -1,7 +1,6 @@
 "use client";
 
 import { useSignUp } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
@@ -13,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 export const useSignUpForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { signUp, isLoaded, setActive } = useSignUp();
-  const router = useRouter();
+
   const methods = useForm<UserRegistrationProps>({
     resolver: zodResolver(UserRegistrationSchema),
     defaultValues: {
@@ -68,9 +67,9 @@ export const useSignUpForm = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              fullName: values.fullname,
+              fullName: values.fullName,
               authToken: signUp.createdSessionId,
-              clerkUserID: signUp.createdUserId,
+              clerkUserID: signUp.emailAddress,
               authExpiry: twoHoursFromNow,
             }),
           });
@@ -78,10 +77,8 @@ export const useSignUpForm = () => {
           if (registered?.status == 200) {
             await setActive({
               session: completeSignUp.createdSessionId,
+              redirectUrl: "/dashboard",
             });
-
-            setLoading(true);
-            router.push("/dashboard");
           }
 
           if (registered?.status == 400) {
