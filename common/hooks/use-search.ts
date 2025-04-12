@@ -32,8 +32,11 @@ const useSearch = (onSearch: (answers: string[]) => void) => {
       console.log("search!");
       if (process.env.NEXT_PUBLIC_MOCK_AI_MODE === "true") {
         console.log("mock mode");
-        onSearch([...testsearch, query]);
-      } else onSearch([...answers, query]);
+        onSearch(testsearch);
+      } else {
+        alert("$$$$$$$$$ Real mode! set NEXT_PUBLIC_MOCK_AI_MODE to true");
+        onSearch([...answers, query]);
+      }
     }
   };
   console.log("answers", answers);
