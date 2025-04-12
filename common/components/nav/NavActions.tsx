@@ -7,8 +7,8 @@ import { useUser, useClerk } from "@clerk/nextjs";
 function UserActions({ onClose }: NavActionsProps) {
   const { signOut } = useClerk();
 
-  const handleSignOut = () => {
-    signOut();
+  const handleSignOut = async () => {
+    await signOut();
     onClose?.();
   };
 
