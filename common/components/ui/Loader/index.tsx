@@ -5,9 +5,9 @@ type LoadingProps = {
   children: React.ReactNode;
 };
 
-export default function Loading({ loading, children }: LoadingProps) {
+export default function Loader({ loading, children }: LoadingProps) {
   return loading ? (
-    <Loader2 className="animate-spin h-5 w-5 text-black" />
+    <Loader2 data-testid="loader" className="animate-spin h-5 w-5 text-black" />
   ) : (
     children
   );
