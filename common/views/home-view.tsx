@@ -2,7 +2,7 @@
 
 import Container from "@/common/components/atoms/layouts/Container";
 import { Grid } from "@/common/components/atoms/layouts/Grid";
-import { Hero } from "@/common/components/sections/Hero";
+import { Hero } from "@/common/components/hero";
 import heroBg from "@/assets/images/hero/background.webp";
 
 export default function HomeView() {
