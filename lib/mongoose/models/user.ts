@@ -9,7 +9,7 @@ const UserSchema = new Schema<UserDocument>(
       trim: true,
       validate: {
         validator: function (v: string) {
-          return /^[a-zA-Z0-9]{32}$/.test(v);
+          return /^sess_[a-zA-Z0-9]{27}$/.test(v);
         },
         message: (props: { value: string }) =>
           `${props.value} is not a valid auth token!`,
@@ -29,7 +29,14 @@ const UserSchema = new Schema<UserDocument>(
     },
     authExpiry: {
       type: Date,
-      required: [true, "An auth expiry date is required"],
+    },
+    clerkUserID: {
+      type: String,
+      required: [true, "A clerk user id is required"],
+      unique: true,
+    },
+    fullName: {
+      type: String,
     },
   },
   {

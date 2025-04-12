@@ -7,9 +7,8 @@ import { useForm } from "react-hook-form";
 import {
   UserRegistrationProps,
   UserRegistrationSchema,
-} from "../schemas/auth.schema";
+} from "@/lib/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { onCompleteUserRegistration } from "../../actions/auth";
 
 export const useSignUpForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -60,14 +59,23 @@ export const useSignUpForm = () => {
 
         if (completeSignUp.status === "complete") {
           if (!signUp.createdUserId) return;
+          const now = new Date();
+          const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000); // https://clerk.com/docs/advanced-usage/clerk-idp#when-do-the-tokens-expire
 
-          const registred = await onCompleteUserRegistration(
-            values.fullname,
-            signUp.createdUserId,
-            values.type,
-          );
+          const registered = await fetch("/api/users/user-docs", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              fullName: values.fullname,
+              authToken: signUp.createdSessionId,
+              clerkUserID: signUp.createdUserId,
+              authExpiry: twoHoursFromNow,
+            }),
+          });
 
-          if (registred?.status == 200 && registred.user) {
+          if (registered?.status == 200) {
             await setActive({
               session: completeSignUp.createdSessionId,
             });
@@ -76,7 +84,7 @@ export const useSignUpForm = () => {
             router.push("/dashboard");
           }
 
-          if (registred?.status == 400) {
+          if (registered?.status == 400) {
             return { message: "Something went wrong" };
           }
         }
