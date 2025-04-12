@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { UserLoginProps, UserLoginSchema } from "../schemas/auth.schema";
+import { UserLoginProps, UserLoginSchema } from "@/lib/schemas/auth";
 
 export const useSignInForm = () => {
   const { isLoaded, setActive, signIn } = useSignIn();
@@ -29,6 +29,20 @@ export const useSignInForm = () => {
         });
 
         if (authenticated.status === "complete") {
+          const now = new Date();
+          const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000);
+
+          await fetch("/api/users/user-docs", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              authToken: authenticated.createdSessionId,
+              clerkUserID: authenticated.id,
+              authExpiry: twoHoursFromNow,
+            }),
+          });
           await setActive({ session: authenticated.createdSessionId });
           router.push("/dashboard");
         }

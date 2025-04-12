@@ -32,7 +32,9 @@ export interface UserDocument {
   createdAt: Date;
   updatedAt: Date;
   authToken: string;
-  authExpiry: Date;
+  clerkUserID: string; // the clerk user id
+  authExpiry?: Date;
+  fullName?: string;
   /* The custom values are here so you dont need to change the model - use these for whatever you want */
   customValue_1?: string;
   customValue_2?: string;
