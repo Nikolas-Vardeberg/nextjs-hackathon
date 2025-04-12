@@ -12,6 +12,9 @@ function UserActions() {
       <Button variant="inverted-tealwave" onClick={() => signOut()}>
         Sign Out
       </Button>
+      <Button variant="tealwave" asChild>
+        <Link href="/dashboard">Dashboard</Link>
+      </Button>
     </>
   );
 }
