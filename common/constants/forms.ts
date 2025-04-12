@@ -60,5 +60,5 @@ export const USER_LOGIN_FORM: UserRegistrationProps[] = [
     placeholder: "Password",
     name: "password",
     type: "password",
-  }
+  },
 ];
