@@ -1,5 +1,7 @@
-/* @import "tailwindcss/preflight"; */
 @import "tailwindcss";
+
+/* stylelint-disable-next-line at-rule-no-unknown */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-family-montserrat: var(--font-montserrat), sans-serif;
