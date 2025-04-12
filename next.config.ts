@@ -3,7 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   eslint: {
-    dirs: ["app", "common", "i18n", ".storybook"], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
+    dirs: ["app", "common", "i18n", ".storybook", "lib"], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
   },
 };
 

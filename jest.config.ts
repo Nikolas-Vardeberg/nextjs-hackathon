@@ -13,6 +13,7 @@ const config: Config = {
   collectCoverageFrom: [
     "<rootDir>/app/**/*.{js,jsx,ts,tsx}",
     "<rootDir>/common/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/lib/**/*.{js,jsx,ts,tsx}",
     "!**/*.d.ts",
     "!**/node_modules/**",
     "!<rootDir>/out/**",
