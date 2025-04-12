@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Input from "@/common/components/ui/Input";
 import { Button } from "@/common/components/ui/Button";
 
@@ -16,11 +15,13 @@ export function HeroSearch({
   buttonText = "Search",
   onSearch,
 }: HeroSearchProps) {
-  const [query, setQuery] = useState("");
-
-  const handleSearch = () => {
+  const handleSearch = (query?: string) => {
     if (!onSearch) {
       console.warn("HeroSearch: onSearch prop is not provided");
+      return;
+    }
+
+    if (!query || query.trim() === "") {
       return;
     }
 
@@ -28,20 +29,28 @@ export function HeroSearch({
   };
 
   return (
-    <div className="flex items-center bg-white rounded-full p-1 sm:p-1.5 focus-within:ring-2 focus-within:ring-[var(--color-tealwave)] max-w-full sm:max-w-lg shadow-lg">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const query = formData.get("query") as string;
+        handleSearch(query);
+        e.currentTarget.reset();
+      }}
+      className="flex items-center bg-white rounded-full p-1 sm:p-1.5 focus-within:ring-2 focus-within:ring-[var(--color-tealwave)] max-w-full sm:max-w-lg shadow-lg"
+    >
       <Input
         placeholder={placeholder}
+        name="query"
         className="w-full border-none shadow-none focus-visible:ring-0 text-black text-sm md:text-base"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
       />
       <Button
         variant="tealwave"
         className="rounded-full px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-2.5 text-sm md:text-base font-medium whitespace-nowrap"
-        onClick={handleSearch}
+        type="submit"
       >
         {buttonText}
       </Button>
-    </div>
+    </form>
   );
 }

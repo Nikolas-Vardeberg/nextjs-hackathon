@@ -8,7 +8,7 @@ const HERO_SEARCH_DEFAULTS = [
   "What was your favorite vacation or rental experience?",
   "When are you planning to travel?",
 ];
-
+const HERO_SEARCH_DEFAULTS_LAST_INDEX = HERO_SEARCH_DEFAULTS.length - 1;
 const SEARCH_BUTTON_TEXT = ["Next", "Search"];
 
 const useSearch = () => {
@@ -17,21 +17,23 @@ const useSearch = () => {
     HERO_SEARCH_DEFAULTS[searchIndex],
   );
   const [buttonTextState, setButtonTextState] = useState(
-    SEARCH_BUTTON_TEXT[searchIndex === HERO_SEARCH_DEFAULTS.length - 1 ? 1 : 0],
+    SEARCH_BUTTON_TEXT[searchIndex === HERO_SEARCH_DEFAULTS_LAST_INDEX ? 1 : 0],
   );
+  const [answers, setAnswers] = useState<string[]>([]);
 
   const handleSearch = (query: string) => {
-    if (searchIndex < HERO_SEARCH_DEFAULTS.length - 1) {
+    if (searchIndex < HERO_SEARCH_DEFAULTS_LAST_INDEX) {
       setSearchIndex((prevIndex) => prevIndex + 1);
       setSearchPlaceholder(HERO_SEARCH_DEFAULTS[searchIndex + 1]);
-      setButtonTextState(SEARCH_BUTTON_TEXT[0]);
-    } else {
-      setSearchIndex(0);
-      setSearchPlaceholder(HERO_SEARCH_DEFAULTS[0]);
-      setButtonTextState(SEARCH_BUTTON_TEXT[1]);
+      setButtonTextState(
+        SEARCH_BUTTON_TEXT[
+          searchIndex + 1 === HERO_SEARCH_DEFAULTS_LAST_INDEX ? 1 : 0
+        ],
+      );
+      setAnswers((prevAnswers) => [...prevAnswers, query]);
     }
-    return query;
   };
+  console.log("answers", answers);
   return {
     handleSearch,
     searchPlaceholder,
