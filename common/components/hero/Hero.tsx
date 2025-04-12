@@ -1,22 +1,18 @@
 "use client";
 
 import Container from "@/common/components/atoms/layouts/Container";
-import { HeroSearch, type HeroSearchProps } from "./HeroSearch";
-import { HeroContent, type HeroContentProps } from "./HeroContent";
 import { cn } from "@/lib/cn";
 
 export type HeroProps = {
-  contentProps: Omit<HeroContentProps, "children">;
-  searchProps?: HeroSearchProps;
   backgroundImage?: string;
   className?: string;
+  children: React.ReactNode;
 };
 
 export default function Hero({
-  contentProps,
-  searchProps,
   backgroundImage,
   className,
+  children,
 }: HeroProps) {
   const fallbackBackgroundColor = backgroundImage ? undefined : "bg-black";
 
@@ -28,11 +24,7 @@ export default function Hero({
         className,
       )}
     >
-      <Container className="px-4 sm:px-6">
-        <HeroContent {...contentProps}>
-          {searchProps && <HeroSearch {...searchProps} />}
-        </HeroContent>
-      </Container>
+      <Container className="px-4 sm:px-6">{children}</Container>
 
       {backgroundImage && (
         <div

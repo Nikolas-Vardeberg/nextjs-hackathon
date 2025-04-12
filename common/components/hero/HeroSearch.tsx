@@ -24,10 +24,6 @@ export function HeroSearch({
       return;
     }
 
-    if (query.trim() === "") {
-      return;
-    }
-
     onSearch(query);
   };
 
