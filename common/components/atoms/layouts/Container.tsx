@@ -3,7 +3,15 @@ import { cn } from "@/lib/cn";
 type ContainerProps = {
   children: React.ReactNode;
   className?: string;
-  as?: "div" | "section" | "article" | "main" | "aside" | "header" | "footer";
+  as?:
+    | "div"
+    | "section"
+    | "article"
+    | "main"
+    | "aside"
+    | "header"
+    | "footer"
+    | "nav";
 };
 
 const Container: React.FC<ContainerProps> = ({
