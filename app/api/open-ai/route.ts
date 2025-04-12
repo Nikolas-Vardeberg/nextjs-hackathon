@@ -1,4 +1,5 @@
-const { OPEN_API_KEY_0 } = process.env;
+import { fetchOpenAIRecommendations } from "@/lib/actions/recommendations/engine";
+
 /**
  * Handles a GET request to interact with the OpenAI API for vacation planning recommendations.
  *
@@ -14,44 +15,14 @@ const { OPEN_API_KEY_0 } = process.env;
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const input = searchParams.get("input");
+  if (!input) {
+    return Response.json(
+      { success: false, message: "Input parameter is required" },
+      { status: 400 },
+    );
+  }
   try {
-    const openAIResponse = await fetch(
-      "https://api.openai.com/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${OPEN_API_KEY_0}`,
-        },
-        body: JSON.stringify({
-          model: "gpt-4o-mini",
-          store: true,
-          messages: [
-            {
-              role: "developer",
-              content:
-                "You are a vacation planner. Your job is to help me plan a vacation and provide recommendations based on my previous vacations. When providing recommendations provide a list of contries seperated by city and state and the top hotel recommendation name and address.",
-            },
-            {
-              role: "user",
-              content: input,
-            },
-          ],
-        }),
-      },
-    )
-      .then((response) => {
-        if (!response.ok) {
-          console.error("Network response was not ok:", response.statusText);
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .catch((error) => {
-        console.error("Error fetching data from OpenAI API:", error);
-        // Handle the error as needed
-        throw new Error("Error fetching data from OpenAI API");
-      });
+    const openAIResponse = await fetchOpenAIRecommendations([input]);
     return Response.json(
       {
         success: true,
