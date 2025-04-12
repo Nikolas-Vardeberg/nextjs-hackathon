@@ -2,7 +2,7 @@
 
 import { FormProvider } from "react-hook-form";
 import { useSignUpForm } from "../hooks/use-sign-up";
-import Loader from "../components/loader";
+import Loader from "../components/ui/Loader";
 import { AuthContextProvider } from "./use-auth-context";
 import { useSignInForm } from "../hooks/use-sign-in";
 
