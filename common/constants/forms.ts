@@ -13,7 +13,7 @@ export const USER_REGISTRATION_FORM: UserRegistrationProps[] = [
     id: "1",
     inputType: "input",
     placeholder: "Full name",
-    name: "fullname",
+    name: "fullName",
     type: "text",
   },
   {

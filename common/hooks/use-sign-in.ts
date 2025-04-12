@@ -2,7 +2,6 @@
 
 import { useSignIn } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { UserLoginProps, UserLoginSchema } from "@/lib/schemas/auth";
@@ -10,7 +9,6 @@ import { UserLoginProps, UserLoginSchema } from "@/lib/schemas/auth";
 export const useSignInForm = () => {
   const { isLoaded, setActive, signIn } = useSignIn();
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
   const methods = useForm<UserLoginProps>({
     resolver: zodResolver(UserLoginSchema),
     mode: "onChange",
@@ -20,9 +18,9 @@ export const useSignInForm = () => {
     async (values: UserLoginProps) => {
       if (!isLoaded) return;
 
-      try {
-        setLoading(true);
+      setLoading(true);
 
+      try {
         const authenticated = await signIn.create({
           identifier: values.email,
           password: values.password,
@@ -37,14 +35,17 @@ export const useSignInForm = () => {
             headers: {
               "Content-Type": "application/json",
             },
+
             body: JSON.stringify({
               authToken: authenticated.createdSessionId,
               clerkUserID: authenticated.identifier,
               authExpiry: twoHoursFromNow,
             }),
           });
-          await setActive({ session: authenticated.createdSessionId });
-          router.push("/dashboard");
+          await setActive({
+            session: authenticated.createdSessionId,
+            redirectUrl: "/dashboard",
+          });
         }
       } catch (error: unknown) {
         setLoading(false);

@@ -11,7 +11,7 @@ const ButtonHandler = () => {
   const { formState, getFieldState, getValues } = useFormContext();
   const { onGenerateOTP } = useSignUpForm();
 
-  const { isDirty: isName } = getFieldState("fullname", formState);
+  const { isDirty: isName } = getFieldState("fullName", formState);
   const { isDirty: isEmail } = getFieldState("email", formState);
   const { isDirty: isPassword } = getFieldState("password", formState);
 
