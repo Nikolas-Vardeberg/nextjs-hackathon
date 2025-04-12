@@ -29,7 +29,7 @@ export const useSignInForm = () => {
         if (authenticated.status === "complete") {
           const now = new Date();
           const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000);
-          console.log(authenticated);
+
           await fetch("/api/users/user-docs", {
             method: "PUT",
             headers: {
