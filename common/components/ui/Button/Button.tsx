@@ -35,7 +35,7 @@ export const buttonVariants = cva(
           "bg-black text-white hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/80",
         destructive: "bg-red-500 text-black",
         outline:
-          "text-black border border-black dark:border-white dark:text-white",
+          "text-black border border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black",
         link: "underline text-black dark:text-white",
         tealwave:
           "bg-tealwave text-white hover:bg-tealwave/80 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-tealwave",
