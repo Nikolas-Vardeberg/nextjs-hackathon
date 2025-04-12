@@ -41,7 +41,7 @@ export function HeroSearch({
       />
       <Button
         variant="tealwave"
-        className="rounded-full px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-2.5 text-sm md:text-base font-medium whitespace-nowrap focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-tealwave"
+        className="rounded-full px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-2.5 text-sm md:text-base font-medium whitespace-nowrap"
         onClick={handleSearch}
       >
         {buttonText}
