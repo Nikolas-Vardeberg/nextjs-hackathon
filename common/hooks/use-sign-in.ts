@@ -1,6 +1,6 @@
 "use client";
 
-import { useSignIn } from "@clerk/nextjs";
+import { useSignIn, useClerk } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,6 +9,7 @@ import { UserLoginProps, UserLoginSchema } from "@/lib/schemas/auth";
 
 export const useSignInForm = () => {
   const { isLoaded, setActive, signIn } = useSignIn();
+  const { signOut } = useClerk();
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const methods = useForm<UserLoginProps>({
@@ -19,6 +20,7 @@ export const useSignInForm = () => {
   const onHandleSubmit = methods.handleSubmit(
     async (values: UserLoginProps) => {
       if (!isLoaded) return;
+      await signOut();
 
       try {
         setLoading(true);
