@@ -1,3 +1,5 @@
+"use client";
+
 import { USER_LOGIN_FORM } from "@/common/constants/forms";
 import FormGenerator from "../sign-up/form-generator";
 import { useFormContext } from "react-hook-form";
