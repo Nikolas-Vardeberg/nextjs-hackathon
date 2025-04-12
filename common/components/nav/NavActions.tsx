@@ -1,7 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import Button from "@/common/components/ui/Button";
+import { useUser, useClerk } from "@clerk/nextjs";
 
-export default function NavActions() {
+function UserActions() {
+  const { signOut } = useClerk();
+
+  return (
+    <>
+      <Button variant="inverted-tealwave" onClick={() => signOut()}>
+        Sign Out
+      </Button>
+    </>
+  );
+}
+
+function GuestActions() {
   return (
     <>
       <Button variant="inverted-tealwave" asChild>
@@ -12,4 +27,10 @@ export default function NavActions() {
       </Button>
     </>
   );
+}
+
+export default function NavActions() {
+  const { user } = useUser();
+
+  return user ? <UserActions /> : <GuestActions />;
 }
