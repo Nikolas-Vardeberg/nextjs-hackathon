@@ -23,7 +23,7 @@ const ButtonHandler = () => {
         </Button>
         <p>
           Already have an account?{" "}
-          <Link href="/sign-up" className="font-bold">
+          <Link href="/sign-in" className="font-bold">
             Sign In
           </Link>
         </p>
@@ -53,7 +53,7 @@ const ButtonHandler = () => {
         </Button>
         <p>
           Already have an account?{" "}
-          <Link href="/sign-up" className="font-bold">
+          <Link href="/sign-in" className="font-bold">
             Sign In
           </Link>
         </p>
@@ -72,7 +72,7 @@ const ButtonHandler = () => {
       </Button>
       <p>
         Already have an account?{" "}
-        <Link href="/sign-up" className="font-bold">
+        <Link href="/sign-in" className="font-bold">
           Sign In
         </Link>
       </p>
