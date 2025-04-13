@@ -10,8 +10,6 @@ type Props = {
 function AccountDetailsForm({ errors, register }: Props) {
   return (
     <>
-      <h2>Account Details</h2>
-      <p>Enter your email and password</p>
       {USER_REGISTRATION_FORM.map((field) => (
         <FormGenerator
           key={field.id}
