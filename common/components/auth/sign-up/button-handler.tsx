@@ -28,6 +28,7 @@ const ButtonHandler = () => {
       <div className="flex flex-row gap-3">
         <Button
           variant="inverted-tealwave"
+          type="button"
           className="w-full"
           onClick={() => setCurrentStep((prev: number) => prev - 1)}
         >
@@ -35,7 +36,7 @@ const ButtonHandler = () => {
         </Button>
         <Button
           variant="tealwave"
-          typeof="submit"
+          type="submit"
           className="w-full"
           {...(isName &&
             isEmail &&
@@ -58,7 +59,7 @@ const ButtonHandler = () => {
   return (
     <Button
       variant="tealwave"
-      typeof="submit"
+      type="submit"
       className="w-full"
       onClick={() => setCurrentStep((prev: number) => prev + 1)}
     >
