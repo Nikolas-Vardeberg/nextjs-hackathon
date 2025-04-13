@@ -23,6 +23,7 @@ const OTPForm = ({ onOTP, setOTP }: Props) => {
         <p>
           Didn&apos;t receive a code?{" "}
           <button
+            type="button"
             onClick={() => {
               alert("Not yet implemented");
             }}
