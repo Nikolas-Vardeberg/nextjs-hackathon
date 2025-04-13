@@ -1,12 +1,7 @@
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+import { requireAuth } from "@/lib/auth/requireAuth";
 
 export default async function DashboardPage() {
-  const { userId } = await auth();
-
-  if (!userId) {
-    redirect("/sign-in");
-  }
+  await requireAuth();
 
   return <div>Dashboard Page</div>;
 }

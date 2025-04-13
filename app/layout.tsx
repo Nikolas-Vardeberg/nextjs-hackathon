@@ -6,7 +6,6 @@ import { ThemeProvider } from "@/common/providers/theme-provider";
 import { SITE_CONFIG } from "@/config";
 import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
-import Navbar from "@/common/components/nav/Navbar";
 import { UserDocumentProvider } from "@/common/providers/user-document-context";
 
 const montserrat = Montserrat({
@@ -38,7 +37,6 @@ export default async function RootLayout({
               forcedTheme="light"
               disableTransitionOnChange
             >
-              <Navbar />
               <main>{children}</main>
             </ThemeProvider>
             {SITE_CONFIG.isProd && (
