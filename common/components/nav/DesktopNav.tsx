@@ -11,11 +11,14 @@ type DesktopNavProps = {
 export default function DesktopNav({ links }: DesktopNavProps) {
   return (
     <>
-      <div className="w-2/4 justify-center hidden md:flex">
+      <div className="hidden md:flex items-center ml-8">
         <ul className="flex items-center gap-6 text-neutral-800">
           {links.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className="hover:text-black font-medium">
+              <Link
+                href={link.href}
+                className="hover:text-tealwave font-medium"
+              >
                 {link.label}
               </Link>
             </li>
@@ -23,7 +26,7 @@ export default function DesktopNav({ links }: DesktopNavProps) {
         </ul>
       </div>
 
-      <div className="w-1/4 justify-end gap-4 flex-shrink-0 hidden md:flex">
+      <div className="ml-auto hidden md:flex items-center gap-4">
         <NavActions />
       </div>
     </>
