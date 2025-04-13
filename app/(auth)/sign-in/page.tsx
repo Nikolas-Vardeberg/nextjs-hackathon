@@ -7,7 +7,7 @@ export default function Page() {
     <AuthCard
       title="Sign in"
       description="Welcome back! Sign in to continue"
-      footerText="Dont have an account?"
+      footerText="Don't have an account?"
       footerLinkText="Create one"
       footerLinkHref="/sign-up"
     >
