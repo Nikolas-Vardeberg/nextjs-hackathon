@@ -17,7 +17,7 @@ const SignUpFormProvider = ({ children }: Props) => {
       <FormProvider {...methods}>
         <form
           onSubmit={onHandleSubmit}
-          className="w-full flex flex-col justify-between gap-3 h-full"
+          className="w-full flex flex-col justify-between gap-6 h-full"
         >
           {children}
         </form>
@@ -34,7 +34,7 @@ const SignInFormProvider = ({ children }: Props) => {
       <FormProvider {...methods}>
         <form
           onSubmit={onHandleSubmit}
-          className="w-full flex flex-col justify-between gap-3 h-full"
+          className="w-full flex flex-col justify-between gap-6 h-full"
         >
           {children}
         </form>
