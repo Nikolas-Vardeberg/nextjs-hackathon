@@ -4,7 +4,7 @@ import { useState } from "react";
 const HERO_SEARCH_DEFAULTS_LAST_INDEX = HERO_SEARCH_DEFAULTS.length - 1;
 const SEARCH_BUTTON_TEXT = ["Next", "Search"];
 
-const testsearch = [
+const TEST_SEARCH = [
   "Somewhere in mexico with a beach and beautiful sunsets. I dont want to pay much and I want to be able to bring my dog.",
   "Close bars and beaches. Free drinks and food.",
   "500 USD",
@@ -32,7 +32,7 @@ const useSearch = (onSearch: (answers: string[]) => void) => {
       console.log("search!");
       if (process.env.NEXT_PUBLIC_MOCK_AI_MODE === "true") {
         console.log("mock mode");
-        onSearch(testsearch);
+        onSearch(TEST_SEARCH);
       } else {
         alert("$$$$$$$$$ Real mode! set NEXT_PUBLIC_MOCK_AI_MODE to true");
         onSearch([...answers, query]);
