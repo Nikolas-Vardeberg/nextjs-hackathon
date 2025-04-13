@@ -27,8 +27,10 @@ const amenitiesValidation = z.string().min(1, "Please list some amenities");
 const budgetValidation = z
   .string()
   .regex(
-    /^\$\d+(-\$\d+)?$/,
-    "Please enter a valid budget amount or range (e.g. $500-$1000)"
+    /^(\$)?\d+(-(\$)?\d+)?$/,
+    "Please enter a valid budget amount or range (e.g. $500-$1000)",
+  );
+
 const locationValidation = z.string().min(1, "Please provide a location");
 
 const pastExperienceValidation = z
