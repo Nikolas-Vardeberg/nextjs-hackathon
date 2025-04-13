@@ -17,31 +17,40 @@ const ButtonHandler = () => {
   if (currentStep === 3) {
     return (
       <Button variant="tealwave" typeof="submit" className="w-full">
-        Create an account
+        Create account
       </Button>
     );
   }
 
   if (currentStep === 2) {
     return (
-      <Button
-        variant="tealwave"
-        typeof="submit"
-        className="w-full"
-        {...(isName &&
-          isEmail &&
-          isPassword && {
-            onClick: () => {
-              onGenerateOTP(
-                getValues("email"),
-                getValues("password"),
-                setCurrentStep,
-              );
-            },
-          })}
-      >
-        Continue
-      </Button>
+      <div className="flex flex-row gap-3">
+        <Button
+          variant="inverted-tealwave"
+          className="w-full"
+          onClick={() => setCurrentStep((prev: number) => prev - 1)}
+        >
+          Back
+        </Button>
+        <Button
+          variant="tealwave"
+          typeof="submit"
+          className="w-full"
+          {...(isName &&
+            isEmail &&
+            isPassword && {
+              onClick: () => {
+                onGenerateOTP(
+                  getValues("email"),
+                  getValues("password"),
+                  setCurrentStep,
+                );
+              },
+            })}
+        >
+          Continue
+        </Button>
+      </div>
     );
   }
 
