@@ -1,4 +1,6 @@
 import mock from "./mock.json";
+import googleMock from "./google-mock.json";
+import { Business, Recommendations } from "./types";
 export const HERO_SEARCH_DEFAULTS = [
   "What is your ideal vacation destination or rental?",
   "What amenities are most important to you?",
@@ -58,4 +60,66 @@ export async function fetchOpenAIRecommendations(answers: string[]) {
       throw new Error("Error fetching data from OpenAI API");
     });
   return openAIResponse;
+}
+
+export async function fetchGoogleDetails(messageContent: string) {
+  if (MOCK_AI_MODE) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Mocking Google API response: ", googleMock);
+        resolve(googleMock);
+      }, 2000);
+    });
+  }
+  const content: Recommendations = JSON.parse(messageContent);
+
+  const businesses = [
+    ...content.rentals.top_10_recommendations,
+    ...content.rentals.best_deals,
+    ...content.rentals.most_popular,
+    ...content.rentals.most_luxurious,
+    ...content.vacation_destinations.top_10_recommendations,
+    ...content.vacation_destinations.best_deals,
+    ...content.vacation_destinations.most_popular,
+    ...content.vacation_destinations.most_luxurious,
+  ];
+
+  const googleApiUrl = "https://places.googleapis.com/v1/places:searchText";
+
+  const fetchDetails = async (business: Business) => {
+    const query = `${business.business_name}, ${business.business_address}, ${business.business_city}, ${business.business_state}, ${business.business_country}`;
+    //console.log("Fetching Google API details for:", url);
+    try {
+      const response = await fetch(googleApiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Goog-Api-Key": `${process.env.GOOGLE_API_KEY}`, // Replace with your actual API key
+          "X-Goog-FieldMask":
+            "places.displayName,places.formattedAddress,places.priceLevel,places.photos", //,places.rating,places.userRatingsTotal,places.openingHours,places.website,places.phoneNumber,places.photo
+        },
+        body: JSON.stringify({
+          textQuery: query,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch details for ${business.business_name}`,
+        );
+      }
+      const data = await response.json();
+      return { business, details: data };
+    } catch (error) {
+      console.error(
+        `Error fetching details for ${business.business_name}:`,
+        error,
+      );
+      return { business, details: null };
+    }
+  };
+
+  const results = await Promise.all(businesses.map(fetchDetails));
+
+  console.log("Fetched Google API details:", results);
+  return results;
 }
