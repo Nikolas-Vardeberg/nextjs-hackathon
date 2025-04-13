@@ -31,7 +31,7 @@ const UserTypeCard = ({
         return isSelected
           ? "border-orange-500 bg-orange-100"
           : "border-orange-200 bg-orange-50 hover:border-gray-300";
-      case "travler":
+      case "traveler":
         return isSelected
           ? "border-sky-600 bg-sky-100"
           : "border-sky-200 bg-sky-50 hover:border-gray-300";
