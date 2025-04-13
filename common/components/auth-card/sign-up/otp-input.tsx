@@ -1,4 +1,4 @@
-import { InputOTP, InputOTPSlot } from "../ui/input-otp";
+import { InputOTP, InputOTPSlot } from "../../ui/input-otp";
 
 type Props = {
   otp: string;

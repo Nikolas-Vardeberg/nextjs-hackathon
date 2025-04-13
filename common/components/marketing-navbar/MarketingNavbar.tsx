@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { NAV_LINKS } from "@/common/constants/nav-links";
 import Container from "@/common/components/atoms/layouts/Container";
-import NavLogo from "./NavLogo";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
-
+import Logo from "@/common/components/logo";
 export default function MarketingNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -54,7 +53,7 @@ export default function MarketingNavbar() {
   return (
     <header className="w-full bg-white">
       <Container as="nav" className="py-4 flex items-center">
-        <NavLogo />
+        <Logo className="flex-shrink-0" />
         <DesktopNav links={NAV_LINKS} />
 
         <button

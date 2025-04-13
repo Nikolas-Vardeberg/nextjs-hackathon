@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { User } from "lucide-react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
-import { Card, CardContent, CardDescription } from "../ui/card";
+import { Card, CardContent, CardDescription } from "../../ui/card";
 
 type Props = {
   value: string;

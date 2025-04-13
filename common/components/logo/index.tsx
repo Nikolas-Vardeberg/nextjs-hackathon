@@ -1,8 +1,12 @@
 import Link from "next/link";
 
-export default function NavLogo() {
+type LogoProps = {
+  className?: string;
+};
+
+export default function Logo({ className }: LogoProps) {
   return (
-    <div className="flex-shrink-0">
+    <div className={className}>
       <Link href="/" className="text-xl font-bold text-black">
         Logo
       </Link>

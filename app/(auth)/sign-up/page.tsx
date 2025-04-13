@@ -1,11 +1,18 @@
-import ButtonHandler from "@/common/components/sign-up/button-handler";
-import HightlightBar from "@/common/components/sign-up/highlight-bar";
-import RegistrationStep from "@/common/components/sign-up/registration-step";
+import AuthCard from "@/common/components/auth-card";
+import ButtonHandler from "@/common/components/auth-card/sign-up/button-handler";
+import HightlightBar from "@/common/components/auth-card/sign-up/highlight-bar";
+import RegistrationStep from "@/common/components/auth-card/sign-up/registration-step";
 import { SignUpFormProvider } from "@/common/providers/form-provider";
 
-const Page = () => {
+export default function Page() {
   return (
-    <div className="flex items-center h-screen justify-center">
+    <AuthCard
+      title="Sign up"
+      description="Sign up to your account"
+      footerText="Already have an account?"
+      footerLinkText="Sign in"
+      footerLinkHref="/sign-in"
+    >
       <div id="clerk-captcha" />
 
       <SignUpFormProvider>
@@ -15,8 +22,6 @@ const Page = () => {
           <HightlightBar />
         </div>
       </SignUpFormProvider>
-    </div>
+    </AuthCard>
   );
-};
-
-export default Page;
+}
