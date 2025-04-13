@@ -4,9 +4,9 @@ import { USER_TYPE_FORM } from "@/common/constants/forms";
 
 type Props = {
   register: UseFormRegister<FieldValues>;
-  userType: "none" | "travler" | "explorer";
+  userType: "none" | "traveler" | "explorer";
   setUserType: React.Dispatch<
-    React.SetStateAction<"none" | "travler" | "explorer">
+    React.SetStateAction<"none" | "traveler" | "explorer">
   >;
 };
 

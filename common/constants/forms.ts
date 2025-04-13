@@ -79,7 +79,7 @@ export const USER_TYPE_FORM: UserRegistrationTypeProps[] = [
     icon: Plane,
   },
   {
-    value: "travler",
+    value: "traveler",
     title: "Regular Traveler",
     text: "I travel 3-5 times per year",
     icon: Car,

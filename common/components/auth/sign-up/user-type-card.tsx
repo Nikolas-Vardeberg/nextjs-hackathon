@@ -50,7 +50,7 @@ const UserTypeCard = ({
         return isSelected
           ? "bg-orange-500 text-white"
           : "bg-orange-200 text-orange-500";
-      case "travler":
+      case "traveler":
         return isSelected ? "bg-sky-600 text-white" : "bg-sky-200 text-sky-600";
       default:
         return isSelected
@@ -66,7 +66,7 @@ const UserTypeCard = ({
           title: "text-orange-800",
           description: "text-orange-700",
         };
-      case "travler":
+      case "traveler":
         return {
           title: "text-sky-800",
           description: "text-sky-700",
