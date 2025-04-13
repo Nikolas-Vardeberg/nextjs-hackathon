@@ -43,8 +43,6 @@ export const useSignInForm = () => {
             }),
           });
 
-          setLoading(false);
-
           await setActive({
             session: authenticated.createdSessionId,
             redirectUrl: "/dashboard",

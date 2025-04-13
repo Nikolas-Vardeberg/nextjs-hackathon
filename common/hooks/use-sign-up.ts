@@ -36,7 +36,6 @@ export const useSignUpForm = () => {
       });
 
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
-      setLoading(false);
 
       onNext((prev) => prev + 1);
     } catch (e) {
@@ -83,7 +82,6 @@ export const useSignUpForm = () => {
           console.log("registered status", registered?.status);
 
           if (registered?.status == 200) {
-            setLoading(false);
             await setActive({
               session: completeSignUp.createdSessionId,
               redirectUrl: "/dashboard",
@@ -91,7 +89,6 @@ export const useSignUpForm = () => {
           }
 
           if (registered?.status == 400) {
-            setLoading(false);
             return { message: "Something went wrong" };
           }
         }
