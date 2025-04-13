@@ -29,7 +29,6 @@ const useSearch = (onSearch: (answers: string[]) => void) => {
       setButtonTextState(SEARCH_BUTTON_TEXT[isLastIndex ? 1 : 0]);
       setAnswers((prevAnswers) => [...prevAnswers, query]);
     } else {
-      console.log("search!");
       if (process.env.NEXT_PUBLIC_MOCK_AI_MODE === "true") {
         console.log("mock mode");
         onSearch(TEST_SEARCH);
@@ -39,7 +38,6 @@ const useSearch = (onSearch: (answers: string[]) => void) => {
       }
     }
   };
-  console.log("answers", answers);
   return {
     handleSearch,
     searchPlaceholder,
