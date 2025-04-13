@@ -2,6 +2,7 @@ import AuthCard from "@/common/components/auth/auth-card";
 import ButtonHandler from "@/common/components/auth/sign-up/button-handler";
 import HighlightBar from "@/common/components/auth/sign-up/highlight-bar";
 import RegistrationStep from "@/common/components/auth/sign-up/registration-step";
+import { AuthError } from "@/common/components/auth/auth-error";
 import { SignUpFormProvider } from "@/common/providers/form-provider";
 
 export default function Page() {
@@ -17,6 +18,7 @@ export default function Page() {
       <SignUpFormProvider>
         <div className="flex flex-col gap-5">
           <RegistrationStep />
+          <AuthError />
           <ButtonHandler />
           <HighlightBar />
         </div>

@@ -1,9 +1,9 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, ButtonHTMLAttributes } from "react";
 import Button from "@/common/components/ui/Button";
 
-type SubmitButtonProps = {
+type SubmitButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   className?: string;
   loading: boolean;
@@ -13,6 +13,7 @@ export default function SubmitButton({
   children,
   className,
   loading,
+  ...props
 }: SubmitButtonProps) {
   return (
     <Button
@@ -21,6 +22,7 @@ export default function SubmitButton({
       disabled={loading}
       loading={loading}
       className={className}
+      {...props}
     >
       {children}
     </Button>

@@ -11,37 +11,41 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 export const useSignUpForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const { signUp, isLoaded, setActive } = useSignUp();
 
   const methods = useForm<UserRegistrationProps>({
     resolver: zodResolver(UserRegistrationSchema),
-    defaultValues: {
-      type: "user",
-    },
     mode: "onChange",
   });
 
   const onGenerateOTP = async (
     email: string,
     password: string,
-    onNext: React.Dispatch<React.SetStateAction<number>>,
+    onNext?: React.Dispatch<React.SetStateAction<number>>,
   ) => {
     if (!isLoaded) return;
 
     try {
       setLoading(true);
+      setError(null);
       await signUp.create({
         emailAddress: email,
         password: password,
       });
 
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
-      setLoading(false);
 
-      onNext((prev) => prev + 1);
+      setLoading(false);
+      onNext?.((prev) => prev + 1);
     } catch (e) {
       setLoading(false);
-      console.log(e);
+      console.error("Error generating OTP", e);
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError("Error generating verification code. Please try again.");
+      }
     }
   };
 
@@ -49,21 +53,25 @@ export const useSignUpForm = () => {
     async (values: UserRegistrationProps) => {
       if (!isLoaded) return;
 
-      console.log("submitted otp", values.otp);
-
       try {
         setLoading(true);
+        setError(null);
         const completeSignUp = await signUp.attemptEmailAddressVerification({
           code: values.otp,
         });
-        console.log("completeSignUp status", completeSignUp.status);
 
         if (completeSignUp.status !== "complete") {
-          return { message: "Something went wrong" };
+          setLoading(false);
+          setError("Something went wrong with verification");
+          return;
         }
 
         if (completeSignUp.status === "complete") {
-          if (!signUp.createdUserId) return;
+          if (!signUp.createdUserId) {
+            setLoading(false);
+            setError("Something went wrong");
+            return;
+          }
           const now = new Date();
           const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000); // https://clerk.com/docs/advanced-usage/clerk-idp#when-do-the-tokens-expire
 
@@ -80,10 +88,7 @@ export const useSignUpForm = () => {
             }),
           });
 
-          console.log("registered status", registered?.status);
-
           if (registered?.status == 200) {
-            setLoading(false);
             await setActive({
               session: completeSignUp.createdSessionId,
               redirectUrl: "/dashboard",
@@ -92,12 +97,17 @@ export const useSignUpForm = () => {
 
           if (registered?.status == 400) {
             setLoading(false);
-            return { message: "Something went wrong" };
+            setError("Something went wrong with registration");
           }
         }
       } catch (e) {
         setLoading(false);
-        console.log(e);
+        console.error("Error signing up", e);
+        if (e instanceof Error) {
+          setError(e.message);
+        } else {
+          setError("An error occurred during sign up");
+        }
       }
     },
   );
@@ -107,5 +117,7 @@ export const useSignUpForm = () => {
     onGenerateOTP,
     onHandleSubmit,
     loading,
+    error,
+    setError,
   };
 };

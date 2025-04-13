@@ -1,7 +1,10 @@
 import { z, ZodType } from "zod";
 
+export const userTypes = ["none", "traveler", "explorer"] as const;
+export type UserType = (typeof userTypes)[number];
+
 export type UserRegistrationProps = {
-  type: string;
+  type: UserType;
   fullName: string;
   email: string;
   password: string;
@@ -11,7 +14,9 @@ export type UserRegistrationProps = {
 
 export const UserRegistrationSchema: ZodType<UserRegistrationProps> = z
   .object({
-    type: z.string().min(1),
+    type: z.enum(userTypes, {
+      message: "You must select a user type",
+    }),
     fullName: z
       .string()
       .min(4, { message: "Full name must be at least 4 characters long" }),

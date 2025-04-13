@@ -1,20 +1,26 @@
 "use client";
 
+import React from "react";
 import { FormProvider } from "react-hook-form";
 import { useSignUpForm } from "../hooks/use-sign-up";
 import { AuthContextProvider } from "./use-auth-context";
 import { useSignInForm } from "../hooks/use-sign-in";
-import React from "react";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const SignUpFormProvider = ({ children }: Props) => {
-  const { methods, onHandleSubmit, loading } = useSignUpForm();
+  const { methods, onHandleSubmit, loading, error, setError, onGenerateOTP } =
+    useSignUpForm();
 
   return (
-    <AuthContextProvider loading={loading}>
+    <AuthContextProvider
+      loading={loading}
+      error={error}
+      setError={setError}
+      onGenerateOTP={onGenerateOTP}
+    >
       <FormProvider {...methods}>
         <form
           onSubmit={onHandleSubmit}
@@ -28,10 +34,10 @@ const SignUpFormProvider = ({ children }: Props) => {
 };
 
 const SignInFormProvider = ({ children }: Props) => {
-  const { methods, onHandleSubmit, loading } = useSignInForm();
+  const { methods, onHandleSubmit, loading, error, setError } = useSignInForm();
 
   return (
-    <AuthContextProvider loading={loading}>
+    <AuthContextProvider loading={loading} error={error} setError={setError}>
       <FormProvider {...methods}>
         <form
           onSubmit={onHandleSubmit}

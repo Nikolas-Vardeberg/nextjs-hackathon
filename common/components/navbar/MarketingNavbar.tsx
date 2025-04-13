@@ -8,7 +8,7 @@ import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import Logo from "@/common/components/logo";
 
-export default function MarketingNavbar() {
+export function MarketingNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleToggleMobileMenu = () => {

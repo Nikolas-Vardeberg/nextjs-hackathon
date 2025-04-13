@@ -8,8 +8,7 @@ type Props = {
   options?: { value: string; label: string; id: string }[];
   label?: string;
   placeholder: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
+  register: UseFormRegister<FieldValues>;
   name: string;
   errors: FieldErrors<FieldValues>;
   lines?: number;
