@@ -2,7 +2,7 @@
 
 import { useSignUpForm } from "@/common/hooks/use-sign-up";
 import { useFormContext } from "react-hook-form";
-import Button from "../../ui/Button";
+import Button from "@/common/components/ui/Button";
 import { useAuthContextHook } from "@/common/providers/use-auth-context";
 import SubmitButton from "@/common/components/auth/submit-button";
 
