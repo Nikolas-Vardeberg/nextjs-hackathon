@@ -1,6 +1,6 @@
 import mock from "./mock.json";
 import googleMock from "./google-mock.json";
-import { Business, Recommendations } from "./types";
+import { Business, DetailsObject, Recommendations } from "./types";
 export const HERO_SEARCH_DEFAULTS = [
   "What is your ideal vacation destination or rental?",
   "What amenities are most important to you?",
@@ -72,17 +72,16 @@ export async function fetchGoogleDetails(messageContent: string) {
     });
   }
   const content: Recommendations = JSON.parse(messageContent);
-
-  const businesses = [
-    ...content.rentals.top_10_recommendations,
-    ...content.rentals.best_deals,
-    ...content.rentals.most_popular,
-    ...content.rentals.most_luxurious,
-    ...content.vacation_destinations.top_10_recommendations,
-    ...content.vacation_destinations.best_deals,
-    ...content.vacation_destinations.most_popular,
-    ...content.vacation_destinations.most_luxurious,
-  ];
+  const businesses = Object.entries(content).flatMap(
+    ([categoryKey, category]) =>
+      Object.entries(category).flatMap(([typeKey, businessList]) =>
+        (businessList as Business[]).map((business) => ({
+          ...business,
+          categoryKey,
+          typeKey,
+        })),
+      ),
+  ) as Business[];
 
   const googleApiUrl = "https://places.googleapis.com/v1/places:searchText";
 
@@ -100,6 +99,7 @@ export async function fetchGoogleDetails(messageContent: string) {
         },
         body: JSON.stringify({
           textQuery: query,
+          maxResultCount: 1,
         }),
       });
       if (!response.ok) {
@@ -107,8 +107,8 @@ export async function fetchGoogleDetails(messageContent: string) {
           `Failed to fetch details for ${business.business_name}`,
         );
       }
-      const data = await response.json();
-      return { business, details: data };
+      const data: DetailsObject = await response.json();
+      return { ...business, ...data.places?.[0] };
     } catch (error) {
       console.error(
         `Error fetching details for ${business.business_name}:`,
@@ -119,7 +119,5 @@ export async function fetchGoogleDetails(messageContent: string) {
   };
 
   const results = await Promise.all(businesses.map(fetchDetails));
-
-  console.log("Fetched Google API details:", results);
   return results;
 }

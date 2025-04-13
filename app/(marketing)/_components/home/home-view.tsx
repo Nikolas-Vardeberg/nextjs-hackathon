@@ -6,11 +6,9 @@ import Hero from "@/app/(marketing)/_components/home/Hero/Hero";
 import useRecommendations from "@/common/providers/recommendations";
 
 export default function HomeView() {
-  //TODO: move to context
   const { loadRecommendations, recommendations, isLoading } =
     useRecommendations();
 
-  console.log("recommendations", recommendations);
   return (
     <>
       <Hero
@@ -18,9 +16,14 @@ export default function HomeView() {
       />
       <Container as="section" className="py-20 flex flex-col gap-10">
         <Grid columns={{ sm: 1, md: 2, lg: 3 }} className="w-full">
-          <div className="w-full bg-red-500 h-52"></div>
-          <div className="w-full bg-red-500 h-52"></div>
-          <div className="w-full bg-red-500 h-52"></div>
+          <h1>Top Rental Recommendations</h1>
+          {recommendations?.rentals.top_10_recommendations.map((rec, index) => {
+            return (
+              <div className="w-full bg-red-500 h-52" key={index}>
+                {rec.business_name}
+              </div>
+            );
+          })}
         </Grid>
 
         <Grid columns={{ sm: 1, md: 3, lg: 6 }} className="w-full">
