@@ -58,9 +58,9 @@ const FormGenerator = ({
           {label && <span className="font-semibold text-sm">{label}</span>}
           <select form={form} id={`select-${name}`} {...register(name)}>
             {options?.length &&
-              options.map((options) => (
-                <option value={options.value} key={options.id}>
-                  {options.label}
+              options.map((option) => (
+                <option value={option.value} key={option.id}>
+                  {option.label}
                 </option>
               ))}
           </select>
