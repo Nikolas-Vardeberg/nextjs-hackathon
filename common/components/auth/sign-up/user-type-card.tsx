@@ -7,9 +7,9 @@ type Props = {
   title: string;
   text: string;
   register: UseFormRegister<FieldValues>;
-  userType: "none" | "travler" | "explorer";
+  userType: "none" | "traveler" | "explorer";
   setUserType: React.Dispatch<
-    React.SetStateAction<"none" | "travler" | "explorer">
+    React.SetStateAction<"none" | "traveler" | "explorer">
   >;
   icon?: LucideIcon;
 };
