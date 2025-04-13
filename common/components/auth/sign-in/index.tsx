@@ -4,14 +4,14 @@ import { USER_LOGIN_FORM } from "@/common/constants/forms";
 import FormGenerator from "@/common/components/auth/sign-up/form-generator";
 import { useFormContext } from "react-hook-form";
 import SubmitButton from "@/common/components/auth/submit-button";
-import { useSignInForm } from "@/common/hooks/use-sign-in";
+import { useAuthContextHook } from "@/common/providers/use-auth-context";
 
 const SignInForm = () => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
-  const { loading } = useSignInForm();
+  const { loading } = useAuthContextHook();
 
   return (
     <>

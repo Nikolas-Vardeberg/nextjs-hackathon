@@ -29,15 +29,18 @@ export const useSignUpForm = () => {
     if (!isLoaded) return;
 
     try {
+      setLoading(true);
       await signUp.create({
         emailAddress: email,
         password: password,
       });
 
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+      setLoading(false);
 
       onNext((prev) => prev + 1);
     } catch (e) {
+      setLoading(false);
       console.log(e);
     }
   };
@@ -46,11 +49,14 @@ export const useSignUpForm = () => {
     async (values: UserRegistrationProps) => {
       if (!isLoaded) return;
 
+      console.log("submitted otp", values.otp);
+
       try {
         setLoading(true);
         const completeSignUp = await signUp.attemptEmailAddressVerification({
           code: values.otp,
         });
+        console.log("completeSignUp status", completeSignUp.status);
 
         if (completeSignUp.status !== "complete") {
           return { message: "Something went wrong" };
@@ -74,7 +80,10 @@ export const useSignUpForm = () => {
             }),
           });
 
+          console.log("registered status", registered?.status);
+
           if (registered?.status == 200) {
+            setLoading(false);
             await setActive({
               session: completeSignUp.createdSessionId,
               redirectUrl: "/dashboard",
@@ -82,10 +91,12 @@ export const useSignUpForm = () => {
           }
 
           if (registered?.status == 400) {
+            setLoading(false);
             return { message: "Something went wrong" };
           }
         }
       } catch (e) {
+        setLoading(false);
         console.log(e);
       }
     },

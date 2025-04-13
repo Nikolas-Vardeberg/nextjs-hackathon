@@ -4,16 +4,17 @@ import { FormProvider } from "react-hook-form";
 import { useSignUpForm } from "../hooks/use-sign-up";
 import { AuthContextProvider } from "./use-auth-context";
 import { useSignInForm } from "../hooks/use-sign-in";
+import React from "react";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const SignUpFormProvider = ({ children }: Props) => {
-  const { methods, onHandleSubmit } = useSignUpForm();
+  const { methods, onHandleSubmit, loading } = useSignUpForm();
 
   return (
-    <AuthContextProvider>
+    <AuthContextProvider loading={loading}>
       <FormProvider {...methods}>
         <form
           onSubmit={onHandleSubmit}
@@ -27,10 +28,10 @@ const SignUpFormProvider = ({ children }: Props) => {
 };
 
 const SignInFormProvider = ({ children }: Props) => {
-  const { methods, onHandleSubmit } = useSignInForm();
+  const { methods, onHandleSubmit, loading } = useSignInForm();
 
   return (
-    <AuthContextProvider>
+    <AuthContextProvider loading={loading}>
       <FormProvider {...methods}>
         <form
           onSubmit={onHandleSubmit}

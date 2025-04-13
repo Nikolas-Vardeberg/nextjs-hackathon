@@ -7,13 +7,15 @@ import { useAuthContextHook } from "@/common/providers/use-auth-context";
 import SubmitButton from "@/common/components/auth/submit-button";
 
 const ButtonHandler = () => {
-  const { setCurrentStep, currentStep } = useAuthContextHook();
+  const { setCurrentStep, currentStep, loading } = useAuthContextHook();
   const { formState, getFieldState, getValues } = useFormContext();
-  const { onGenerateOTP, loading } = useSignUpForm();
+  const { onGenerateOTP } = useSignUpForm();
 
   const { isDirty: isName } = getFieldState("fullName", formState);
   const { isDirty: isEmail } = getFieldState("email", formState);
   const { isDirty: isPassword } = getFieldState("password", formState);
+
+  console.log("error", formState.errors);
 
   if (currentStep === 3) {
     return (

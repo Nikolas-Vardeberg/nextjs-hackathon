@@ -42,10 +42,15 @@ export const useSignInForm = () => {
               authExpiry: twoHoursFromNow,
             }),
           });
+
+          setLoading(false);
+
           await setActive({
             session: authenticated.createdSessionId,
             redirectUrl: "/dashboard",
           });
+        } else {
+          setLoading(false);
         }
       } catch (error: unknown) {
         setLoading(false);
