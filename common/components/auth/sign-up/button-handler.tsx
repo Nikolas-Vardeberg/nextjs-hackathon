@@ -9,7 +9,7 @@ import SubmitButton from "@/common/components/auth/submit-button";
 const ButtonHandler = () => {
   const { setCurrentStep, currentStep, loading } = useAuthContextHook();
   const { formState, getFieldState, getValues } = useFormContext();
-  const { onGenerateOTP } = useSignUpForm();
+  const { onGenerateOTP, loading: otpLoading } = useSignUpForm();
 
   const { isDirty: isName } = getFieldState("fullName", formState);
   const { isDirty: isEmail } = getFieldState("email", formState);
@@ -34,9 +34,8 @@ const ButtonHandler = () => {
         >
           Back
         </Button>
-        <Button
-          variant="tealwave"
-          type="submit"
+        <SubmitButton
+          loading={otpLoading}
           className="w-full"
           {...(isName &&
             isEmail &&
@@ -51,20 +50,19 @@ const ButtonHandler = () => {
             })}
         >
           Continue
-        </Button>
+        </SubmitButton>
       </div>
     );
   }
 
   return (
-    <Button
-      variant="tealwave"
-      type="submit"
+    <SubmitButton
+      loading={loading}
       className="w-full"
       onClick={() => setCurrentStep((prev: number) => prev + 1)}
     >
       Continue
-    </Button>
+    </SubmitButton>
   );
 };
 
