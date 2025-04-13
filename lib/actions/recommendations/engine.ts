@@ -66,7 +66,7 @@ export async function fetchGoogleDetails(messageContent: string) {
   if (MOCK_AI_MODE) {
     return new Promise((resolve) => {
       setTimeout(() => {
-        console.log("Mocking Google API response: ", googleMock);
+        console.log("Mocking Google API response");
         resolve(googleMock);
       }, 2000);
     });
@@ -87,7 +87,7 @@ export async function fetchGoogleDetails(messageContent: string) {
 
   const fetchDetails = async (business: Business) => {
     const query = `${business.business_name}, ${business.business_address}, ${business.business_city}, ${business.business_state}, ${business.business_country}`;
-    //console.log("Fetching Google API details for:", url);
+
     try {
       const response = await fetch(googleApiUrl, {
         method: "POST",
