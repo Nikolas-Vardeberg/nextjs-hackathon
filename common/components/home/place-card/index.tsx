@@ -90,17 +90,13 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
             {rec.business_city}, {rec.business_country}
           </span>
         </div>
-        <p className="text-gray-600 mb-3">
-          {rec.editorialSummary?.text ||
-            rec.displayName?.text ||
-            rec?.business_name + " in beautiful " + rec?.business_country}
-        </p>
+        <p className="text-gray-600 mb-3">{rec.appealing_description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           <Badge variant="outline" className="bg-teal-50">
-            {rec.categoryKey}
+            {rec.categoryKey?.replaceAll("_", " ")}
           </Badge>
           <Badge variant="outline" className="bg-teal-50">
-            {rec.typeKey.replaceAll("_", " ")}
+            {rec.typeKey?.replaceAll("_", " ")}
           </Badge>
 
           {rec?.types?.slice(0, 5).map((val) => (

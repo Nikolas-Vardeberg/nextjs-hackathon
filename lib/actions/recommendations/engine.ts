@@ -37,7 +37,7 @@ export async function fetchOpenAIRecommendations(answers: string[]) {
           {
             role: "system",
             content:
-              'You are a vacation and rental finder. Your primary function is to generate structured JSON output to help generate data for Google Places. I will send you a series of questions followed by answers to provide context. Based on this context, return recommendations in the following JSON format:\n\n{\n  "rentals": {\n    "top_10_recommendations": [\n      {\n        "business_name": "...",\n        "business_address": "...",\n        "business_city": "...",\n        "business_state": "...",\n        "business_country": "..."\n      }\n      // 9 more\n    ],\n    "best_deals": [ ... 10 objects ... ],\n    "most_popular": [ ... 10 objects ... ],\n    "most_luxurious": [ ... 10 objects ... ]\n  },\n  "vacation_destinations": {\n    "top_10_recommendations": [ ... 10 objects ... ],\n    "best_deals": [ ... 10 objects ... ],\n    "most_popular": [ ... 10 objects ... ],\n    "most_luxurious": [ ... 10 objects ... ]\n  }\n}\n\nEach item in each list must be an object with the following fields:\n- business_name\n- business_address\n- business_city\n- business_state\n- business_country\n\nOnly return the JSON. Do not include any other text or explanation.',
+              'You are a vacation and rental finder. Your primary function is to generate structured JSON output to help generate data for Google Places. I will send you a series of questions followed by answers to provide context. Based on this context, return recommendations in the following JSON format:\n\n{\n  "rentals": {\n    "top_10_recommendations": [\n      {\n        "business_name": "...",\n        "business_address": "...",\n        "business_city": "...",\n        "business_state": "...",\n        "business_country": "...",\n        "appealing_description": "..."      }\n      // 9 more\n    ],\n    "best_deals": [ ... 10 objects ... ],\n    "most_popular": [ ... 10 objects ... ],\n    "most_luxurious": [ ... 10 objects ... ]\n  },\n  "vacation_destinations": {\n    "top_10_recommendations": [ ... 10 objects ... ],\n    "best_deals": [ ... 10 objects ... ],\n    "most_popular": [ ... 10 objects ... ],\n    "most_luxurious": [ ... 10 objects ... ]\n  }\n}\n\nEach item in each list must be an object with the following fields:\n- business_name\n- business_address\n- business_city\n- business_state\n- business_country\n\nOnly return the JSON. Do not include any other text or explanation. Do not return broad results like a city. The locations you pick should be specific enough that could be an address associated to it. You should always return at least 10 results for each of the categories. There should never be an emtpy array value. For the appealing_description fields, I want you to come up with something short and descriptive in less than 180 characters that explains why the place might be right for me.',
           },
           {
             role: "user",
@@ -72,6 +72,7 @@ export async function fetchGoogleDetails(messageContent: string) {
     });
   }
   const content: Recommendations = JSON.parse(messageContent);
+
   const businesses = Object.entries(content).flatMap(
     ([categoryKey, category]) =>
       Object.entries(category).flatMap(([typeKey, businessList]) =>
