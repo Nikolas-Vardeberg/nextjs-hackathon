@@ -1,17 +1,17 @@
-import Hero from "@/common/components/hero/Hero";
-import { HeroContent } from "@/common/components/hero/HeroContent";
-import { HeroSearch } from "@/common/components/hero/HeroSearch";
+import HeroContainer from "@/app/home/_components/Hero/HeroContainer";
+import { HeroContent } from "@/app/home/_components/Hero/HeroContent";
+import { HeroSearch } from "@/app/home/_components/Hero/HeroSearch";
 import useSearch from "@/common/hooks/use-search";
 import heroBg from "@/assets/images/hero/background.webp";
 
-const HeroComponent: React.FC<{ onSearch: (answers: string[]) => void }> = ({
+const Hero: React.FC<{ onSearch: (answers: string[]) => void }> = ({
   onSearch, //TODO: move to context
 }) => {
   const { handleSearch, searchPlaceholder, buttonTextState } =
     useSearch(onSearch);
 
   return (
-    <Hero backgroundImage={heroBg.src}>
+    <HeroContainer backgroundImage={heroBg.src}>
       <HeroContent
         title="Your Vacation Starts Here"
         description="Tell us what inspires you, and our AI will craft the perfect journey tailored just for you"
@@ -23,8 +23,8 @@ const HeroComponent: React.FC<{ onSearch: (answers: string[]) => void }> = ({
           onSearch={handleSearch}
         />
       </HeroContent>
-    </Hero>
+    </HeroContainer>
   );
 };
 
-export default HeroComponent;
+export default Hero;

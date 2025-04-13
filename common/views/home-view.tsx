@@ -2,7 +2,7 @@
 
 import Container from "@/common/components/atoms/layouts/Container";
 import { Grid } from "@/common/components/atoms/layouts/Grid";
-import Hero from "@/app/home/_components/Hero";
+import Hero from "@/app/home/_components/Hero/Hero";
 import { getSearchRecommendations } from "@/lib/actions/recommendations";
 import { useState } from "react";
 
