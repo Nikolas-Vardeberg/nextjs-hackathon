@@ -15,7 +15,6 @@ import { useState } from "react";
 export default function HomeView() {
   const { loadRecommendations, recommendations, isLoading } =
     useRecommendations();
-  const [activeTab, setActiveTab] = useState("destinations");
 
   const hasRentals =
     recommendations?.rentals && Object.keys(recommendations.rentals).length > 0;
@@ -23,6 +22,10 @@ export default function HomeView() {
     recommendations?.vacation_destinations &&
     Object.keys(recommendations.vacation_destinations).length > 0;
   const hasData = hasRentals || hasDestinations;
+
+  const [activeTab, setActiveTab] = useState(
+    hasDestinations ? "destinations" : "rentals",
+  );
 
   return (
     <>
@@ -44,9 +47,8 @@ export default function HomeView() {
 
         {hasData && (
           <Tabs
-            defaultValue={hasDestinations ? "destinations" : "rentals"}
             value={activeTab}
-            onValueChange={setActiveTab}
+            onValueChange={(value) => setActiveTab(value)}
             className="w-full"
           >
             <div className="flex justify-center mb-8">
