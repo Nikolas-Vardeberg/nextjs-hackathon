@@ -1,21 +1,31 @@
 "use client";
 
-import { useSignUpForm } from "@/common/hooks/use-sign-up";
 import { useFormContext } from "react-hook-form";
-import Button from "../../ui/Button";
+import Button from "@/common/components/ui/Button";
 import { useAuthContextHook } from "@/common/providers/use-auth-context";
 import SubmitButton from "@/common/components/auth/submit-button";
 
 const ButtonHandler = () => {
-  const { setCurrentStep, currentStep, loading } = useAuthContextHook();
-  const { formState, getFieldState, getValues } = useFormContext();
-  const { onGenerateOTP } = useSignUpForm();
+  const { setCurrentStep, currentStep, loading, onGenerateOTP } =
+    useAuthContextHook();
+  const { formState, getFieldState, getValues, trigger } = useFormContext();
 
   const { isDirty: isName } = getFieldState("fullName", formState);
   const { isDirty: isEmail } = getFieldState("email", formState);
   const { isDirty: isPassword } = getFieldState("password", formState);
+  const { isDirty: isConfirmPassword } = getFieldState(
+    "confirmPassword",
+    formState,
+  );
 
-  console.log("error", formState.errors);
+  const isFormValid = isName && isEmail && isPassword && isConfirmPassword;
+
+  const handleFirstStepContinue = async () => {
+    const isValid = await trigger("type");
+    if (isValid) {
+      setCurrentStep((prev: number) => prev + 1);
+    }
+  };
 
   if (currentStep === 3) {
     return (
@@ -36,13 +46,11 @@ const ButtonHandler = () => {
         >
           Back
         </Button>
-        <Button
-          variant="tealwave"
-          type="submit"
+        <SubmitButton
+          loading={loading}
           className="w-full"
-          {...(isName &&
-            isEmail &&
-            isPassword && {
+          {...(isFormValid &&
+            onGenerateOTP && {
               onClick: () => {
                 onGenerateOTP(
                   getValues("email"),
@@ -53,20 +61,19 @@ const ButtonHandler = () => {
             })}
         >
           Continue
-        </Button>
+        </SubmitButton>
       </div>
     );
   }
 
   return (
-    <Button
-      variant="tealwave"
-      type="submit"
+    <SubmitButton
+      loading={loading}
       className="w-full"
-      onClick={() => setCurrentStep((prev: number) => prev + 1)}
+      onClick={handleFirstStepContinue}
     >
       Continue
-    </Button>
+    </SubmitButton>
   );
 };
 
