@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default async function AuthLayout({
+export default function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
