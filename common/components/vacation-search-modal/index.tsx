@@ -147,7 +147,7 @@ export default function VacationSearchModal({
             variant="tealwave"
             onClick={onSubmit}
             className="min-w-24 ml-auto"
-            type="button"
+            type="submit"
           >
             {currentStep === VACATION_SEARCH_QUESTIONS.length - 1
               ? "Find My Perfect Vacation"
