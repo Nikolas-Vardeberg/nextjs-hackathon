@@ -6,12 +6,14 @@ const GridSection: React.FC<{
   title?: string;
 }> = ({ recommendations, title }) => {
   return (
-    <Grid columns={{ sm: 1, md: 2, lg: 3 }} className="w-full">
+    <>
       {title && <h1>{title}</h1>}
-      {recommendations?.map((rec, index) => {
-        return <PlaceCard rec={rec} key={index} />;
-      })}
-    </Grid>
+      <Grid columns={{ sm: 1, md: 2, lg: 3 }} className="w-full">
+        {recommendations?.map((rec, index) => {
+          return <PlaceCard rec={rec} key={index} />;
+        })}
+      </Grid>
+    </>
   );
 };
 

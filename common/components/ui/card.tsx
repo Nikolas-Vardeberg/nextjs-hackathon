@@ -1,102 +1,80 @@
-import clsx from "clsx";
 import * as React from "react";
 
-type CardProps = React.HTMLAttributes<HTMLDivElement> & {
-  className?: string;
-};
+import classNames from "clsx";
 
-/**
- * Card Component
- * @description: Reusable card component
- */
-function Card({ className, ...props }: CardProps) {
-  return (
-    <div
-      className={clsx(
-        "rounded-xl border bg-card text-card-foreground shadow",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={classNames(
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      className,
+    )}
+    {...props}
+  />
+));
+Card.displayName = "Card";
 
-type CardHeaderProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
-  className?: string;
-};
+const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={classNames("flex flex-col space-y-1.5 p-6", className)}
+    {...props}
+  />
+));
+CardHeader.displayName = "CardHeader";
 
-/**
- * Card Header Component
- * @description: Reusable card header component
- */
-function CardHeader({ className, ...props }: CardHeaderProps) {
-  return (
-    <div
-      className={clsx("flex flex-col space-y-1.5 p-6", className)}
-      {...props}
-    />
-  );
-}
+const CardTitle = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={classNames(
+      "text-2xl font-semibold leading-none tracking-tight",
+      className,
+    )}
+    {...props}
+  />
+));
+CardTitle.displayName = "CardTitle";
 
-type CardTitleProps = React.HTMLAttributes<HTMLDivElement> & {
-  className?: string;
-};
+const CardDescription = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={classNames("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+));
+CardDescription.displayName = "CardDescription";
 
-/**
- * Card Title Component
- * @description: Reusable card title component
- */
-function CardTitle({ className, ...props }: CardTitleProps) {
-  return (
-    <div
-      className={clsx("font-normal leading-none tracking-tight", className)}
-      {...props}
-    />
-  );
-}
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={classNames("p-6 pt-0", className)} {...props} />
+));
+CardContent.displayName = "CardContent";
 
-type CardDescriptionProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
-  className?: string;
-};
-
-/**
- * Card Description Component
- * @description: Reusable card description component
- */
-function CardDescription({ className, ...props }: CardDescriptionProps) {
-  return (
-    <div
-      className={clsx("text-sm text-muted-foreground", className)}
-      {...props}
-    />
-  );
-}
-
-type CardContentProps = React.HTMLAttributes<HTMLDivElement> & {
-  className?: string;
-};
-
-/**
- * Card Content Component
- * @description: Reusable card content component
- */
-function CardContent({ className, ...props }: CardContentProps) {
-  return <div className={clsx("p-6 pt-0", className)} {...props} />;
-}
-
-type CardFooterProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
-  className?: string;
-};
-
-/**
- * Card Footer Component
- * @description: Reusable card footer component
- */
-function CardFooter({ className, ...props }: CardFooterProps) {
-  return (
-    <div className={clsx("flex items-center p-6 pt-0", className)} {...props} />
-  );
-}
+const CardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={classNames("flex items-center p-6 pt-0", className)}
+    {...props}
+  />
+));
+CardFooter.displayName = "CardFooter";
 
 export {
   Card,
