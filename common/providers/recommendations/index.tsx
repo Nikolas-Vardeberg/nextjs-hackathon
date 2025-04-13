@@ -30,7 +30,6 @@ export const RecommendationsProvider: React.FC<{
   const loadRecommendations = async (answers: string[]) => {
     try {
       const result = await getSearchRecommendations(answers);
-
       setRecommendations(result);
     } catch (e) {
       console.error("Failed to fetch recommendations:", e);
