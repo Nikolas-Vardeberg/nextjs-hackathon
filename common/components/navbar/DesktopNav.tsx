@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Clerk from "../ui/Clerk";
+import NavActions from "./NavActions";
 
 type DesktopNavProps = {
   links: {
@@ -27,7 +27,7 @@ export default function DesktopNav({ links }: DesktopNavProps) {
       </div>
 
       <div className="ml-auto hidden md:flex items-center gap-4">
-        <Clerk />
+        <NavActions />
       </div>
     </>
   );
