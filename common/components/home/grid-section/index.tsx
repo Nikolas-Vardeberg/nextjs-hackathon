@@ -1,5 +1,6 @@
 import { Grid } from "@/common/components/atoms/layouts/Grid";
 import { Business } from "@/lib/actions/recommendations/types";
+
 const GridSection: React.FC<{
   recommendations?: Business[];
   title?: string;

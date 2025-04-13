@@ -4,15 +4,8 @@ import { useFormContext } from "react-hook-form";
 import { useState } from "react";
 import { useAuthContextHook } from "@/common/providers/use-auth-context";
 import TypeSelectionForm from "./type-selection-form";
-import dynamic from "next/dynamic";
-
-const DetailForm = dynamic(() => import("./account-details-form"), {
-  ssr: false,
-});
-
-const OTPForm = dynamic(() => import("./otp-form"), {
-  ssr: true,
-});
+import AccountDetailsForm from "./account-details-form";
+import OTPForm from "./otp-form";
 
 const RegistrationStep = () => {
   const {
@@ -22,9 +15,9 @@ const RegistrationStep = () => {
   } = useFormContext();
   const { currentStep } = useAuthContextHook();
   const [onOTP, setOnOTP] = useState<string>("");
-  const [onUserType, setOnUserType] = useState<"none" | "travler" | "explorer">(
-    "travler",
-  );
+  const [onUserType, setOnUserType] = useState<
+    "none" | "traveler" | "explorer"
+  >("traveler");
 
   setValue("otp", onOTP);
 
@@ -38,7 +31,7 @@ const RegistrationStep = () => {
         />
       );
     case 2:
-      return <DetailForm errors={errors} register={register}></DetailForm>;
+      return <AccountDetailsForm errors={errors} register={register} />;
     case 3:
       return <OTPForm onOTP={onOTP} setOTP={setOnOTP} />;
   }

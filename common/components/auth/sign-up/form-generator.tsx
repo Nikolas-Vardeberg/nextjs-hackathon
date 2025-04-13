@@ -1,5 +1,6 @@
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import Input from "../../ui/Input";
 
 type Props = {
   type: "text" | "email" | "password";
@@ -30,10 +31,10 @@ const FormGenerator = ({
   switch (inputType) {
     case "input":
       return (
-        <label className="flex flex-col gap-2" htmlFor={`input-${label}`}>
-          {label && label}
-          <input
-            id={`input-${label}`}
+        <label className="flex flex-col gap-2" htmlFor={`input-${name}`}>
+          {label && <span className="font-semibold text-sm">{label}</span>}
+          <Input
+            id={`input-${name}`}
             type={type}
             placeholder={placeholder}
             form={form}
@@ -43,7 +44,7 @@ const FormGenerator = ({
             errors={errors}
             name={name}
             render={({ message }) => (
-              <p className="text-red-500">
+              <p className="text-red-500 text-sm">
                 {message === "Required" ? "" : message}
               </p>
             )}
@@ -53,13 +54,13 @@ const FormGenerator = ({
 
     case "select":
       return (
-        <label htmlFor={`select-${label}`}>
-          {label && label}
-          <select form={form} id={`select-${label}`} {...register(name)}>
+        <label className="flex flex-col gap-2" htmlFor={`select-${name}`}>
+          {label && <span className="font-semibold text-sm">{label}</span>}
+          <select form={form} id={`select-${name}`} {...register(name)}>
             {options?.length &&
-              options.map((options) => (
-                <option value={options.value} key={options.id}>
-                  {options.label}
+              options.map((option) => (
+                <option value={option.value} key={option.id}>
+                  {option.label}
                 </option>
               ))}
           </select>
@@ -67,7 +68,7 @@ const FormGenerator = ({
             errors={errors}
             name={name}
             render={({ message }) => (
-              <p className="text-red-500">
+              <p className="text-red-500 text-sm">
                 {message === "Required" ? "" : message}
               </p>
             )}
@@ -77,11 +78,11 @@ const FormGenerator = ({
 
     case "textarea":
       return (
-        <label className="flex flex-col gap-2" htmlFor={`input-${label}`}>
-          {label && label}
+        <label className="flex flex-col gap-2" htmlFor={`input-${name}`}>
+          {label && <span className="font-semibold text-sm">{label}</span>}
           <textarea
             form={form}
-            id={`input-${label}`}
+            id={`input-${name}`}
             placeholder={placeholder}
             {...register(name)}
             rows={lines}
@@ -90,7 +91,7 @@ const FormGenerator = ({
             errors={errors}
             name={name}
             render={({ message }) => (
-              <p className="text-red-500">
+              <p className="text-red-500 text-sm">
                 {message === "Required" ? "" : message}
               </p>
             )}

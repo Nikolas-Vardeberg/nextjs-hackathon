@@ -1,6 +1,6 @@
-import HeroContainer from "@/app/(marketing)/_components/home/Hero/HeroContainer";
-import { HeroContent } from "@/app/(marketing)/_components/home/Hero/HeroContent";
-import { HeroSearch } from "@/app/(marketing)/_components/home/Hero/HeroSearch";
+import HeroContainer from "@/common/components/home/hero/hero-container";
+import { HeroContent } from "@/common/components/home/hero/hero-content";
+import { HeroSearch } from "@/common/components/home/hero/hero-search";
 import useSearch from "@/common/hooks/use-search";
 import heroBg from "@/assets/images/hero/background.webp";
 

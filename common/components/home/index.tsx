@@ -1,9 +1,9 @@
 "use client";
 
 import Container from "@/common/components/atoms/layouts/Container";
-import Hero from "@/app/(marketing)/_components/home/Hero/Hero";
+import Hero from "@/common/components/home/hero";
 import useRecommendations from "@/common/providers/recommendations";
-import GridSection from "./GridSection";
+import GridSection from "./grid-section";
 
 export default function HomeView() {
   const { loadRecommendations, recommendations, isLoading } =

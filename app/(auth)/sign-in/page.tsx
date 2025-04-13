@@ -1,29 +1,19 @@
-import LoginForm from "@/common/components/sign-in/login-form";
-import Button from "@/common/components/ui/Button";
+import AuthCard from "@/common/components/auth/auth-card";
+import SignInForm from "@/common/components/auth/sign-in";
 import { SignInFormProvider } from "@/common/providers/form-provider";
-import Link from "next/link";
 
-const Page = () => {
+export default function Page() {
   return (
-    <div className="flex items-center h-screen justify-center">
+    <AuthCard
+      title="Sign in"
+      description="Welcome back! Sign in to continue"
+      footerText="Don't have an account?"
+      footerLinkText="Create one"
+      footerLinkHref="/sign-up"
+    >
       <SignInFormProvider>
-        <div className="flex flex-col gap-3">
-          <LoginForm />
-          <div className="w-full flex flex-col gap-3 items-center">
-            <Button type="submit" className="w-full">
-              Submit
-            </Button>
-            <p>
-              Dont have an account?{" "}
-              <Link href="/sign-up" className="font-bold">
-                Create one
-              </Link>
-            </p>
-          </div>
-        </div>
+        <SignInForm />
       </SignInFormProvider>
-    </div>
+    </AuthCard>
   );
-};
-
-export default Page;
+}

@@ -3,17 +3,17 @@
 import Container from "@/common/components/atoms/layouts/Container";
 import { cn } from "@/lib/cn";
 
-export type HeroProps = {
+export type HeroContainerProps = {
   backgroundImage?: string;
   className?: string;
   children: React.ReactNode;
 };
 
-export default function Hero({
+export default function HeroContainer({
   backgroundImage,
   className,
   children,
-}: HeroProps) {
+}: HeroContainerProps) {
   const fallbackBackgroundColor = backgroundImage ? undefined : "bg-black";
 
   return (
