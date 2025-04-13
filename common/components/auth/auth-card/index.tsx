@@ -21,7 +21,7 @@ const AuthCard = ({
 }: AuthCardProps) => {
   return (
     <div className="flex items-center justify-center min-h-screen p-4 bg-gray-50">
-      <div className="w-full max-w-sm border border-gray-200 bg-white rounded-lg shadow-md">
+      <div className="w-full max-w-md border border-gray-200 bg-white rounded-lg shadow-md">
         <div className="flex flex-col p-7 gap-6">
           <div className="border-b border-dashed border-gray-200 pb-6">
             <Logo className="mb-4" />
@@ -35,7 +35,10 @@ const AuthCard = ({
           <div className="text-center text-sm border rounded-md border-gray-200 p-3 m-0.5 bg-gray-50">
             {footerText}{" "}
             {footerLinkText && footerLinkHref && (
-              <Link href={footerLinkHref} className="font-bold text-gray-900">
+              <Link
+                href={footerLinkHref}
+                className="font-bold text-tealwave hover:underline hover:underline-offset-4"
+              >
                 {footerLinkText}
               </Link>
             )}
