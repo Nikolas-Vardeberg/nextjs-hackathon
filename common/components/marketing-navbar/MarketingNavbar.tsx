@@ -7,6 +7,7 @@ import Container from "@/common/components/atoms/layouts/Container";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import Logo from "@/common/components/logo";
+
 export default function MarketingNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
