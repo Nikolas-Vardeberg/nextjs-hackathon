@@ -1,5 +1,6 @@
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import Input from "../../ui/Input";
 
 type Props = {
   type: "text" | "email" | "password";
@@ -32,7 +33,7 @@ const FormGenerator = ({
       return (
         <label className="flex flex-col gap-2" htmlFor={`input-${name}`}>
           {label && <span className="font-semibold text-sm">{label}</span>}
-          <input
+          <Input
             id={`input-${name}`}
             type={type}
             placeholder={placeholder}
