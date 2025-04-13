@@ -6,8 +6,6 @@ import { useAuthContextHook } from "../../../providers/use-auth-context";
 export const AuthError = () => {
   const { error } = useAuthContextHook();
 
-  console.log("error", error);
-
   if (!error) return null;
 
   return (
