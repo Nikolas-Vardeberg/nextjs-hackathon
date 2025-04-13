@@ -3,7 +3,7 @@
 import { useAuthContextHook } from "@/common/providers/use-auth-context";
 import clsx from "clsx";
 
-const HightlightBar = () => {
+const HighlightBar = () => {
   const { currentStep } = useAuthContextHook();
 
   return (
@@ -30,4 +30,4 @@ const HightlightBar = () => {
   );
 };
 
-export default HightlightBar;
+export default HighlightBar;
