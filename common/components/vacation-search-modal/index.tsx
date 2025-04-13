@@ -77,7 +77,11 @@ export default function VacationSearchModal({
     if (currentStep < VACATION_SEARCH_QUESTIONS.length - 1) {
       setCurrentStep((prevStep) => prevStep + 1);
     } else {
-      const finalAnswers = [...answers.slice(0, currentStep), data.answer, ...answers.slice(currentStep + 1)];
+      const finalAnswers = [
+        ...answers.slice(0, currentStep),
+        data.answer,
+        ...answers.slice(currentStep + 1),
+      ];
       onSearch(finalAnswers);
       onClose();
     }
