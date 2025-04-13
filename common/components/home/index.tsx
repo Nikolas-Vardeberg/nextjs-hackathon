@@ -15,10 +15,35 @@ export default function HomeView() {
         onSearch={(answers) => !isLoading && loadRecommendations?.(answers)}
       />
       <Container as="section" className="py-20 flex flex-col gap-10">
-        <GridSection
-          title="Top Recommendations"
-          recommendations={recommendations?.rentals.top_10_recommendations}
-        />
+        {recommendations &&
+          Object.entries(recommendations.rentals).map(([key, value]) => (
+            <div key={key}>
+              {/* Render the section title */}
+
+              {/* Render the grid section */}
+              <GridSection
+                title={key.replace(/_/g, " ")}
+                recommendations={value}
+              />
+            </div>
+          ))}
+      </Container>
+      {/*TODO NEED TAB SECTIONS*/}
+      <Container as="section" className="py-20 flex flex-col gap-10">
+        {recommendations &&
+          Object.entries(recommendations.vacation_destinations || []).map(
+            ([key, value]) => (
+              <div key={key}>
+                {/* Render the section title */}
+
+                {/* Render the grid section */}
+                <GridSection
+                  title={key.replace(/_/g, " ")}
+                  recommendations={value}
+                />
+              </div>
+            ),
+          )}
       </Container>
     </>
   );
