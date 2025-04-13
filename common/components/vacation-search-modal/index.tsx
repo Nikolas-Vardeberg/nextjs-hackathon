@@ -58,6 +58,16 @@ export default function VacationSearchModal({
     }
   }, [initialQuery, isOpen, reset]);
 
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      setCurrentStep(0);
+      setAnswers([]);
+      setError("");
+      reset();
+    }
+    onClose();
+  };
+
   useEffect(() => {
     if (answers[currentStep]) {
       setValue("answer", answers[currentStep]);
@@ -97,9 +107,9 @@ export default function VacationSearchModal({
     ((currentStep + 1) / VACATION_SEARCH_QUESTIONS.length) * 100;
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px] p-6">
-        <DialogHeader className="mb-4">
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
+      <DialogContent className="sm:max-w-[500px]">
+        <DialogHeader>
           <DialogTitle className="text-xl text-nightocean">
             {currentQuestion.question}
           </DialogTitle>
@@ -108,14 +118,14 @@ export default function VacationSearchModal({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="w-full bg-gray-200 h-1.5 rounded-full mb-6">
+        <div className="w-full bg-gray-200 h-1.5 rounded-full mb-2">
           <div
             className="bg-tealwave h-1.5 rounded-full transition-all duration-300 ease-in-out"
             style={{ width: `${progressPercentage}%` }}
           ></div>
         </div>
 
-        <form onSubmit={onSubmit} className="py-4">
+        <form onSubmit={onSubmit}>
           <div className="space-y-2">
             <Input
               type="text"
@@ -124,14 +134,14 @@ export default function VacationSearchModal({
               {...register("answer")}
             />
             {(errors.answer || error) && (
-              <p className="text-red-500 text-sm mt-1">
+              <p className="text-red-500 text-sm">
                 {errors.answer?.message?.toString() || error}
               </p>
             )}
           </div>
         </form>
 
-        <DialogFooter className="flex justify-between sm:justify-between mt-6">
+        <DialogFooter className="flex justify-between sm:justify-between mt-4">
           {currentStep > 0 && (
             <Button
               variant="outline"
