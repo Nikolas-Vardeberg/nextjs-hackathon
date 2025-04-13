@@ -13,7 +13,7 @@ import { useState } from "react";
 const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
   const [photoUrl, setPhotoUrl] = useState(
     rec.photos?.[0]?.name
-      ? `https://places.googleapis.com/v1/${rec.photos[0].name}/media`
+      ? `https://places.googleapis.com/v1/${rec.photos[0].name}/media/?maxHeightPx=500`
       : placeholder.src, // Use placeholder if no photo is available
   );
   return (
@@ -26,11 +26,11 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
           {/* Wrapper for responsive image */}
           <Image
             src={photoUrl}
-            loader={placesImageLoader}
+            loader={
+              photoUrl !== placeholder.src ? placesImageLoader : undefined
+            }
             alt={rec.business_name}
-            layout="fill" // Makes the image fill the parent container
-            objectFit="cover" // Ensures the image covers the container
-            objectPosition="center" // Centers the image within the container
+            fill // Makes the image fill the parent container
             loading="lazy"
             placeholder="blur"
             blurDataURL={placeholder.src}
