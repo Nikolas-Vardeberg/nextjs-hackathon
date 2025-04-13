@@ -4,11 +4,12 @@ import { useSignUpForm } from "@/common/hooks/use-sign-up";
 import { useFormContext } from "react-hook-form";
 import Button from "../../ui/Button";
 import { useAuthContextHook } from "@/common/providers/use-auth-context";
+import SubmitButton from "@/common/components/auth/submit-button";
 
 const ButtonHandler = () => {
   const { setCurrentStep, currentStep } = useAuthContextHook();
   const { formState, getFieldState, getValues } = useFormContext();
-  const { onGenerateOTP } = useSignUpForm();
+  const { onGenerateOTP, loading } = useSignUpForm();
 
   const { isDirty: isName } = getFieldState("fullName", formState);
   const { isDirty: isEmail } = getFieldState("email", formState);
@@ -16,9 +17,9 @@ const ButtonHandler = () => {
 
   if (currentStep === 3) {
     return (
-      <Button variant="tealwave" typeof="submit" className="w-full">
+      <SubmitButton loading={loading} className="w-full">
         Create account
-      </Button>
+      </SubmitButton>
     );
   }
 
