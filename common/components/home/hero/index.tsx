@@ -1,14 +1,20 @@
+import { useState } from "react";
 import HeroContainer from "@/common/components/home/hero/hero-container";
 import { HeroContent } from "@/common/components/home/hero/hero-content";
 import { HeroSearch } from "@/common/components/home/hero/hero-search";
-import useSearch from "@/common/hooks/use-search";
+import VacationSearchModal from "@/common/components/vacation-search-modal";
 import heroBg from "@/assets/images/hero/background.webp";
 
 const Hero: React.FC<{ onSearch: (answers: string[]) => void }> = ({
-  onSearch, //TODO: move to context
+  onSearch,
 }) => {
-  const { handleSearch, searchPlaceholder, buttonTextState } =
-    useSearch(onSearch);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [initialQuery, setInitialQuery] = useState("");
+
+  const handleInitialSearch = (query: string) => {
+    setInitialQuery(query);
+    setIsModalOpen(true);
+  };
 
   return (
     <HeroContainer backgroundImage={heroBg.src}>
@@ -18,11 +24,18 @@ const Hero: React.FC<{ onSearch: (answers: string[]) => void }> = ({
         alignment="left"
       >
         <HeroSearch
-          placeholder={searchPlaceholder}
-          buttonText={buttonTextState}
-          onSearch={handleSearch}
+          placeholder="What is your ideal vacation destination or rental?"
+          buttonText="Next"
+          onSearch={handleInitialSearch}
         />
       </HeroContent>
+
+      <VacationSearchModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSearch={onSearch}
+        initialQuery={initialQuery}
+      />
     </HeroContainer>
   );
 };
