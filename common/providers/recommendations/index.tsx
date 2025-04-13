@@ -3,6 +3,7 @@
 import { createContext, useContext, useState } from "react";
 import { getSearchRecommendations } from "@/lib/actions/recommendations";
 import { RecommendationsResponse } from "@/lib/actions/recommendations/types";
+import defaultRecommendations from "@/lib/actions/recommendations/default.json";
 
 type RecommendationsContextType = {
   isLoading?: boolean;
@@ -12,6 +13,7 @@ type RecommendationsContextType = {
 
 const recommendationsContext = createContext<RecommendationsContextType>({
   isLoading: false,
+  recommendations: defaultRecommendations as RecommendationsResponse,
 });
 
 export const Provider = recommendationsContext.Provider;
@@ -21,7 +23,9 @@ export const RecommendationsProvider: React.FC<{
 }> = ({ children }) => {
   const [isLoading] = useState<boolean>(false);
   const [recommendations, setRecommendations] =
-    useState<RecommendationsResponse | null>(null);
+    useState<RecommendationsResponse | null>(
+      defaultRecommendations as RecommendationsResponse,
+    );
 
   const loadRecommendations = async (answers: string[]) => {
     try {
