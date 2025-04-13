@@ -8,7 +8,7 @@ import SubmitButton from "@/common/components/auth/submit-button";
 
 const ButtonHandler = () => {
   const { setCurrentStep, currentStep, loading } = useAuthContextHook();
-  const { formState, getFieldState, getValues } = useFormContext();
+  const { formState, getFieldState, getValues, trigger } = useFormContext();
   const { onGenerateOTP, loading: otpLoading } = useSignUpForm();
 
   const { isDirty: isName } = getFieldState("fullName", formState);
@@ -20,6 +20,13 @@ const ButtonHandler = () => {
   );
 
   const isFormValid = isName && isEmail && isPassword && isConfirmPassword;
+
+  const handleFirstStepContinue = async () => {
+    const isValid = await trigger("type");
+    if (isValid) {
+      setCurrentStep((prev: number) => prev + 1);
+    }
+  };
 
   if (currentStep === 3) {
     return (
@@ -63,7 +70,7 @@ const ButtonHandler = () => {
     <SubmitButton
       loading={loading}
       className="w-full"
-      onClick={() => setCurrentStep((prev: number) => prev + 1)}
+      onClick={handleFirstStepContinue}
     >
       Continue
     </SubmitButton>

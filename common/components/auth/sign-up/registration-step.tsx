@@ -16,7 +16,7 @@ const RegistrationStep = () => {
   } = useFormContext();
   const { currentStep } = useAuthContextHook();
   const [onOTP, setOnOTP] = useState<string>("");
-  const [onUserType, setOnUserType] = useState<UserType>();
+  const [onUserType, setOnUserType] = useState<UserType | undefined>(undefined);
 
   setValue("otp", onOTP);
 
@@ -27,6 +27,7 @@ const RegistrationStep = () => {
           register={register}
           userType={onUserType}
           setUserType={setOnUserType}
+          errors={errors}
         />
       );
     case 2:

@@ -15,8 +15,7 @@ export type UserRegistrationProps = {
 export const UserRegistrationSchema: ZodType<UserRegistrationProps> = z
   .object({
     type: z.enum(userTypes, {
-      required_error: "User type is required",
-      invalid_type_error: "User type must be none, traveler, or explorer",
+      message: "You must select a user type",
     }),
     fullName: z
       .string()

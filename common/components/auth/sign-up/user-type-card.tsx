@@ -8,8 +8,8 @@ type Props = {
   title: string;
   text: string;
   register: UseFormRegister<FieldValues>;
-  userType: UserType;
-  setUserType: React.Dispatch<React.SetStateAction<UserType>>;
+  userType?: UserType;
+  setUserType: React.Dispatch<React.SetStateAction<UserType | undefined>>;
   icon?: LucideIcon;
 };
 
@@ -84,7 +84,8 @@ const UserTypeCard = ({
     <div className="flex items-start space-x-2">
       <input
         {...register("type", {
-          onChange: (event) => setUserType(event.target.value),
+          onChange: (event) => setUserType(event.target.value as UserType),
+          required: "Please select a traveler type",
         })}
         type="radio"
         id={value}
