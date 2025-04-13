@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { useAuthContextHook } from "../providers/use-auth-context";
+import { useAuthContextHook } from "../../../providers/use-auth-context";
 
-export const AuthErrorMessage = () => {
+export const AuthError = () => {
   const { error } = useAuthContextHook();
 
   console.log("error", error);

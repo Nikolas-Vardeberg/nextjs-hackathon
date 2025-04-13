@@ -5,7 +5,7 @@ import FormGenerator from "@/common/components/auth/sign-up/form-generator";
 import { useFormContext } from "react-hook-form";
 import SubmitButton from "@/common/components/auth/submit-button";
 import { useAuthContextHook } from "@/common/providers/use-auth-context";
-import { AuthErrorMessage } from "@/common/components/AuthErrorMessage";
+import { AuthError } from "@/common/components/auth/auth-error";
 
 const SignInForm = () => {
   const {
@@ -28,7 +28,7 @@ const SignInForm = () => {
         ))}
       </div>
 
-      <AuthErrorMessage />
+      <AuthError />
 
       <SubmitButton loading={loading} className="w-full">
         Sign in
