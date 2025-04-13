@@ -1,4 +1,4 @@
-import MarketingNavbar from "@/common/components/marketing-navbar/MarketingNavbar";
+import { MarketingNavbar } from "@/common/components/navbar/MarketingNavbar";
 
 export default function MarketingLayout({
   children,
