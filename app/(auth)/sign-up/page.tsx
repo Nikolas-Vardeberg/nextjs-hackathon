@@ -8,14 +8,14 @@ export default function Page() {
   return (
     <AuthCard
       title="Sign up"
-      description="Sign up to your account"
+      description="Create an account to get started"
       footerText="Already have an account?"
       footerLinkText="Sign in"
       footerLinkHref="/sign-in"
     >
       <div id="clerk-captcha" className="sr-only" />
       <SignUpFormProvider>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-5">
           <RegistrationStep />
           <ButtonHandler />
           <HightlightBar />

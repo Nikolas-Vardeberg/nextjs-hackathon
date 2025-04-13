@@ -15,7 +15,7 @@ const SignInForm = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         {USER_LOGIN_FORM.map((field) => (
           <FormGenerator
             key={field.id}

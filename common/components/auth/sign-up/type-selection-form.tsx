@@ -1,5 +1,6 @@
 import { FieldValues, UseFormRegister } from "react-hook-form";
 import UserTypeCard from "./user-type-card";
+import { USER_TYPE_FORM } from "@/common/constants/forms";
 
 type Props = {
   register: UseFormRegister<FieldValues>;
@@ -12,35 +13,18 @@ type Props = {
 const TypeSelectionForm = ({ register, userType, setUserType }: Props) => {
   return (
     <>
-      <h2>Create an account</h2>
-      <p>
-        Tell us about yourself! How often you travel ? Let&apos;s tailor your
-        experience to your needs.
-      </p>
-      <UserTypeCard
-        register={register}
-        setUserType={setUserType}
-        userType={userType}
-        value="explorer"
-        title="I Travel 5-10 times a year"
-        text="I'm a frequent traveler."
-      />
-      <UserTypeCard
-        register={register}
-        setUserType={setUserType}
-        userType={userType}
-        value="travler"
-        title="I Travel 3-5 times a year"
-        text="I'm a frequent traveler."
-      />
-      <UserTypeCard
-        register={register}
-        setUserType={setUserType}
-        userType={userType}
-        value="none"
-        title="I never travel"
-        text="I'm a frequent traveler."
-      />
+      {USER_TYPE_FORM.map((type) => (
+        <UserTypeCard
+          key={type.value}
+          register={register}
+          setUserType={setUserType}
+          userType={userType}
+          value={type.value}
+          title={type.title}
+          text={type.text}
+          icon={type.icon}
+        />
+      ))}
     </>
   );
 };

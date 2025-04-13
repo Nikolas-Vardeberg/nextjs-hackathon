@@ -1,3 +1,5 @@
+import { Home, Plane, Car, type LucideIcon } from "lucide-react";
+
 type UserRegistrationProps = {
   id: string;
   type: "email" | "text" | "password";
@@ -6,6 +8,13 @@ type UserRegistrationProps = {
   label?: string;
   placeholder: string;
   name: string;
+};
+
+type UserRegistrationTypeProps = {
+  value: string;
+  title: string;
+  text: string;
+  icon: LucideIcon;
 };
 
 export const USER_REGISTRATION_FORM: UserRegistrationProps[] = [
@@ -59,5 +68,27 @@ export const USER_LOGIN_FORM: UserRegistrationProps[] = [
     placeholder: "Enter your password",
     name: "password",
     type: "password",
+  },
+];
+
+export const USER_TYPE_FORM: UserRegistrationTypeProps[] = [
+  {
+    value: "explorer",
+    title: "Frequent Explorer",
+    text: "I travel 5-10 times per year",
+    icon: Plane,
+  },
+  {
+    value: "travler",
+    title: "Regular Traveler",
+    text: "I travel 3-5 times per year",
+    icon: Car,
+  },
+
+  {
+    value: "none",
+    title: "Homebody",
+    text: "I rarely or never travel",
+    icon: Home,
   },
 ];
