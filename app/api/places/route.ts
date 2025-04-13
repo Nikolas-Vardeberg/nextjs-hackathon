@@ -11,6 +11,9 @@
  * @throws {Error} If there is an issue with the network request or the Google Places API response.
  */
 export async function GET(req: Request) {
+  console.warn(
+    "DEPRECATED: This API is deprecated and will be removed in the future.",
+  );
   const { searchParams } = new URL(req.url);
   const input = searchParams.get("input");
 
