@@ -3,17 +3,17 @@
 import { ReactNode } from "react";
 import Button from "@/common/components/ui/Button";
 
-type SubmitButtonProps = {
+type AuthSubmitProps = {
   children: ReactNode;
   className?: string;
   loading: boolean;
 };
 
-export default function SubmitButton({
+export default function AuthSubmit({
   children,
   className,
   loading,
-}: SubmitButtonProps) {
+}: AuthSubmitProps) {
   return (
     <Button
       type="submit"

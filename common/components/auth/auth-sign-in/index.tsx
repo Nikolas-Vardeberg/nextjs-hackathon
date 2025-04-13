@@ -1,12 +1,12 @@
 "use client";
 
 import { USER_LOGIN_FORM } from "@/common/constants/forms";
-import FormGenerator from "../sign-up/form-generator";
+import FormGenerator from "@/common/components/auth/auth-sign-up/form-generator";
 import { useFormContext } from "react-hook-form";
-import SubmitButton from "../submit-button";
+import AuthSubmit from "@/common/components/auth/auth-submit";
 import { useSignInForm } from "@/common/hooks/use-sign-in";
 
-const LoginForm = () => {
+const AuthSignInForm = () => {
   const {
     register,
     formState: { errors },
@@ -27,11 +27,11 @@ const LoginForm = () => {
         ))}
       </div>
 
-      <SubmitButton loading={loading} className="w-full">
+      <AuthSubmit loading={loading} className="w-full">
         Sign in
-      </SubmitButton>
+      </AuthSubmit>
     </>
   );
 };
 
-export default LoginForm;
+export default AuthSignInForm;

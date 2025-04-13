@@ -1,5 +1,5 @@
-import AuthCard from "@/common/components/auth-card";
-import LoginForm from "@/common/components/auth-card/sign-in/login-form";
+import AuthCard from "@/common/components/auth/auth-card";
+import AuthSignInForm from "@/common/components/auth/auth-sign-in";
 import { SignInFormProvider } from "@/common/providers/form-provider";
 
 export default function Page() {
@@ -12,7 +12,7 @@ export default function Page() {
       footerLinkHref="/sign-up"
     >
       <SignInFormProvider>
-        <LoginForm />
+        <AuthSignInForm />
       </SignInFormProvider>
     </AuthCard>
   );

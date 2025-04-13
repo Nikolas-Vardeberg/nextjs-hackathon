@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import Link from "next/link";
-import Logo from "../logo";
+import Logo from "@/common/components/logo";
 
 interface AuthCardProps {
   title: string;

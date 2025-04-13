@@ -2,7 +2,7 @@
 
 import Container from "@/common/components/atoms/layouts/Container";
 import { Grid } from "@/common/components/atoms/layouts/Grid";
-import Hero from "@/app/(marketing)/_components/home/Hero/Hero";
+import Hero from "@/common/components/home/hero";
 import useRecommendations from "@/common/providers/recommendations";
 
 export default function HomeView() {
