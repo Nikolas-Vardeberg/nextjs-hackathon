@@ -13,6 +13,7 @@ export default function Page() {
       footerLinkText="Sign in"
       footerLinkHref="/sign-in"
     >
+      <div id="clerk-captcha" className="sr-only" />
       <SignUpFormProvider>
         <div className="flex flex-col gap-3">
           <RegistrationStep />
