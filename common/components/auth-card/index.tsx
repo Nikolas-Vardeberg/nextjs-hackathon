@@ -32,7 +32,7 @@ const AuthCard = ({
         </div>
 
         {(footerText || footerLinkText) && (
-          <div className="text-center text-sm border rounded-sm border-gray-200 p-3 m-1 bg-gray-50">
+          <div className="text-center text-sm border rounded-md border-gray-200 p-3 m-0.5 bg-gray-50">
             {footerText}{" "}
             {footerLinkText && footerLinkHref && (
               <Link href={footerLinkHref} className="font-bold text-gray-900">
