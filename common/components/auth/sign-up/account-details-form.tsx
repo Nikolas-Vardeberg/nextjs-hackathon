@@ -19,7 +19,7 @@ function AccountDetailsForm({ errors, register }: Props) {
           name={field.name}
         />
       ))}
-      <div id="clerk-captcha" />
+      <div id="clerk-captcha" className="sr-only" />
     </>
   );
 }
