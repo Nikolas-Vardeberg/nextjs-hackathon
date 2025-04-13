@@ -11,10 +11,16 @@ type Props = {
 };
 
 const SignUpFormProvider = ({ children }: Props) => {
-  const { methods, onHandleSubmit, loading } = useSignUpForm();
+  const { methods, onHandleSubmit, loading, error, setError, onGenerateOTP } =
+    useSignUpForm();
 
   return (
-    <AuthContextProvider loading={loading}>
+    <AuthContextProvider
+      loading={loading}
+      error={error}
+      setError={setError}
+      onGenerateOTP={onGenerateOTP}
+    >
       <FormProvider {...methods}>
         <form
           onSubmit={onHandleSubmit}
@@ -28,10 +34,10 @@ const SignUpFormProvider = ({ children }: Props) => {
 };
 
 const SignInFormProvider = ({ children }: Props) => {
-  const { methods, onHandleSubmit, loading } = useSignInForm();
+  const { methods, onHandleSubmit, loading, error, setError } = useSignInForm();
 
   return (
-    <AuthContextProvider loading={loading}>
+    <AuthContextProvider loading={loading} error={error} setError={setError}>
       <FormProvider {...methods}>
         <form
           onSubmit={onHandleSubmit}

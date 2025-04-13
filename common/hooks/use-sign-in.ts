@@ -9,6 +9,7 @@ import { UserLoginProps, UserLoginSchema } from "@/lib/schemas/auth";
 export const useSignInForm = () => {
   const { isLoaded, setActive, signIn } = useSignIn();
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const methods = useForm<UserLoginProps>({
     resolver: zodResolver(UserLoginSchema),
     mode: "onChange",
@@ -19,6 +20,7 @@ export const useSignInForm = () => {
       if (!isLoaded) return;
 
       setLoading(true);
+      setError(null);
 
       try {
         const authenticated = await signIn.create({
@@ -52,11 +54,11 @@ export const useSignInForm = () => {
         }
       } catch (error: unknown) {
         setLoading(false);
-        console.log(error);
+        console.error("Error signing in", error);
         if (error instanceof Error) {
-          return { message: error.message };
+          setError(error.message);
         } else {
-          return { message: "An unknown error occurred" };
+          setError("An unknown error occurred");
         }
       }
     },
@@ -65,6 +67,8 @@ export const useSignInForm = () => {
   return {
     methods,
     loading,
+    error,
+    setError,
     onHandleSubmit,
   };
 };

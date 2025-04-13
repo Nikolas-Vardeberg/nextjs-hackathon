@@ -20,21 +20,22 @@ const RegistrationStep = () => {
 
   setValue("otp", onOTP);
 
-  switch (currentStep) {
-    case 1:
-      return (
+  return (
+    <>
+      {currentStep === 1 && (
         <TypeSelectionForm
           register={register}
           userType={onUserType}
           setUserType={setOnUserType}
           errors={errors}
         />
-      );
-    case 2:
-      return <AccountDetailsForm errors={errors} register={register} />;
-    case 3:
-      return <OTPForm onOTP={onOTP} setOTP={setOnOTP} />;
-  }
+      )}
+      {currentStep === 2 && (
+        <AccountDetailsForm errors={errors} register={register} />
+      )}
+      {currentStep === 3 && <OTPForm onOTP={onOTP} setOTP={setOnOTP} />}
+    </>
+  );
 };
 
 export default RegistrationStep;

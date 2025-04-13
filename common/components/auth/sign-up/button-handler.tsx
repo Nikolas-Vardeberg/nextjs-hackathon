@@ -1,15 +1,14 @@
 "use client";
 
-import { useSignUpForm } from "@/common/hooks/use-sign-up";
 import { useFormContext } from "react-hook-form";
 import Button from "@/common/components/ui/Button";
 import { useAuthContextHook } from "@/common/providers/use-auth-context";
 import SubmitButton from "@/common/components/auth/submit-button";
 
 const ButtonHandler = () => {
-  const { setCurrentStep, currentStep, loading } = useAuthContextHook();
+  const { setCurrentStep, currentStep, loading, onGenerateOTP } =
+    useAuthContextHook();
   const { formState, getFieldState, getValues, trigger } = useFormContext();
-  const { onGenerateOTP, loading: otpLoading } = useSignUpForm();
 
   const { isDirty: isName } = getFieldState("fullName", formState);
   const { isDirty: isEmail } = getFieldState("email", formState);
@@ -48,17 +47,18 @@ const ButtonHandler = () => {
           Back
         </Button>
         <SubmitButton
-          loading={otpLoading}
+          loading={loading}
           className="w-full"
-          {...(isFormValid && {
-            onClick: () => {
-              onGenerateOTP(
-                getValues("email"),
-                getValues("password"),
-                setCurrentStep,
-              );
-            },
-          })}
+          {...(isFormValid &&
+            onGenerateOTP && {
+              onClick: () => {
+                onGenerateOTP(
+                  getValues("email"),
+                  getValues("password"),
+                  setCurrentStep,
+                );
+              },
+            })}
         >
           Continue
         </SubmitButton>
