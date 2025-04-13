@@ -58,6 +58,16 @@ export default function VacationSearchModal({
     }
   }, [initialQuery, isOpen, reset]);
 
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      setCurrentStep(0);
+      setAnswers([]);
+      setError("");
+      reset();
+    }
+    onClose();
+  };
+
   useEffect(() => {
     if (answers[currentStep]) {
       setValue("answer", answers[currentStep]);
@@ -97,7 +107,7 @@ export default function VacationSearchModal({
     ((currentStep + 1) / VACATION_SEARCH_QUESTIONS.length) * 100;
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="text-xl text-nightocean">

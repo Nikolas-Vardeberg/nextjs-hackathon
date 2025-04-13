@@ -16,6 +16,11 @@ const Hero: React.FC<{ onSearch: (answers: string[]) => void }> = ({
     setIsModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setInitialQuery("");
+  };
+
   return (
     <HeroContainer backgroundImage={heroBg.src}>
       <HeroContent
@@ -32,7 +37,7 @@ const Hero: React.FC<{ onSearch: (answers: string[]) => void }> = ({
 
       <VacationSearchModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleCloseModal}
         onSearch={onSearch}
         initialQuery={initialQuery}
       />
