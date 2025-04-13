@@ -15,10 +15,11 @@ const SignUpFormProvider = ({ children }: Props) => {
   return (
     <AuthContextProvider>
       <FormProvider {...methods}>
-        <form onSubmit={onHandleSubmit}>
-          <div className="flex flex-col justify-between gap-3 h-full">
-            {children}
-          </div>
+        <form
+          onSubmit={onHandleSubmit}
+          className="w-full flex flex-col justify-between gap-3 h-full"
+        >
+          {children}
         </form>
       </FormProvider>
     </AuthContextProvider>
@@ -31,10 +32,11 @@ const SignInFormProvider = ({ children }: Props) => {
   return (
     <AuthContextProvider>
       <FormProvider {...methods}>
-        <form onSubmit={onHandleSubmit} className="w-full">
-          <div className="flex flex-col justify-between gap-3 h-full">
-            {children}
-          </div>
+        <form
+          onSubmit={onHandleSubmit}
+          className="w-full flex flex-col justify-between gap-3 h-full"
+        >
+          {children}
         </form>
       </FormProvider>
     </AuthContextProvider>

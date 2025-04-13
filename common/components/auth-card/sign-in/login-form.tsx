@@ -15,21 +15,21 @@ const LoginForm = () => {
 
   return (
     <>
-      {USER_LOGIN_FORM.map((field) => (
-        <FormGenerator
-          key={field.id}
-          {...field}
-          errors={errors}
-          register={register}
-          name={field.name}
-        />
-      ))}
-
-      <div className="w-full flex flex-col gap-3 items-center">
-        <SubmitButton loading={loading} className="w-full">
-          Sign in
-        </SubmitButton>
+      <div className="flex flex-col gap-6">
+        {USER_LOGIN_FORM.map((field) => (
+          <FormGenerator
+            key={field.id}
+            {...field}
+            errors={errors}
+            register={register}
+            name={field.name}
+          />
+        ))}
       </div>
+
+      <SubmitButton loading={loading} className="w-full">
+        Sign in
+      </SubmitButton>
     </>
   );
 };
