@@ -14,6 +14,12 @@ const ButtonHandler = () => {
   const { isDirty: isName } = getFieldState("fullName", formState);
   const { isDirty: isEmail } = getFieldState("email", formState);
   const { isDirty: isPassword } = getFieldState("password", formState);
+  const { isDirty: isConfirmPassword } = getFieldState(
+    "confirmPassword",
+    formState,
+  );
+
+  const isFormValid = isName && isEmail && isPassword && isConfirmPassword;
 
   if (currentStep === 3) {
     return (
@@ -37,17 +43,15 @@ const ButtonHandler = () => {
         <SubmitButton
           loading={otpLoading}
           className="w-full"
-          {...(isName &&
-            isEmail &&
-            isPassword && {
-              onClick: () => {
-                onGenerateOTP(
-                  getValues("email"),
-                  getValues("password"),
-                  setCurrentStep,
-                );
-              },
-            })}
+          {...(isFormValid && {
+            onClick: () => {
+              onGenerateOTP(
+                getValues("email"),
+                getValues("password"),
+                setCurrentStep,
+              );
+            },
+          })}
         >
           Continue
         </SubmitButton>

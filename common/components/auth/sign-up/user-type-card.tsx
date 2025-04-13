@@ -1,16 +1,15 @@
 import clsx from "clsx";
 import { LucideIcon, User } from "lucide-react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
+import type { UserType } from "@/lib/schemas/auth";
 
 type Props = {
-  value: string;
+  value: UserType;
   title: string;
   text: string;
   register: UseFormRegister<FieldValues>;
-  userType: "none" | "traveler" | "explorer";
-  setUserType: React.Dispatch<
-    React.SetStateAction<"none" | "traveler" | "explorer">
-  >;
+  userType: UserType;
+  setUserType: React.Dispatch<React.SetStateAction<UserType>>;
   icon?: LucideIcon;
 };
 
@@ -35,7 +34,7 @@ const UserTypeCard = ({
         return isSelected
           ? "border-sky-600 bg-sky-100"
           : "border-sky-200 bg-sky-50 hover:border-gray-300";
-      default:
+      case "none":
         return isSelected
           ? "border-slate-700 bg-slate-100"
           : "border-slate-200 bg-slate-50 hover:border-gray-300";
@@ -52,7 +51,7 @@ const UserTypeCard = ({
           : "bg-orange-200 text-orange-500";
       case "traveler":
         return isSelected ? "bg-sky-600 text-white" : "bg-sky-200 text-sky-600";
-      default:
+      case "none":
         return isSelected
           ? "bg-slate-700 text-white"
           : "bg-slate-200 text-slate-700";
@@ -71,7 +70,7 @@ const UserTypeCard = ({
           title: "text-sky-800",
           description: "text-sky-700",
         };
-      default:
+      case "none":
         return {
           title: "text-slate-800",
           description: "text-slate-600",

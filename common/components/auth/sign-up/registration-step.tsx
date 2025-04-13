@@ -6,6 +6,7 @@ import { useAuthContextHook } from "@/common/providers/use-auth-context";
 import TypeSelectionForm from "./type-selection-form";
 import AccountDetailsForm from "./account-details-form";
 import OTPForm from "./otp-form";
+import type { UserType } from "@/lib/schemas/auth";
 
 const RegistrationStep = () => {
   const {
@@ -15,9 +16,7 @@ const RegistrationStep = () => {
   } = useFormContext();
   const { currentStep } = useAuthContextHook();
   const [onOTP, setOnOTP] = useState<string>("");
-  const [onUserType, setOnUserType] = useState<
-    "none" | "traveler" | "explorer"
-  >("traveler");
+  const [onUserType, setOnUserType] = useState<UserType>();
 
   setValue("otp", onOTP);
 

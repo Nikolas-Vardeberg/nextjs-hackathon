@@ -1,4 +1,5 @@
 import { Home, Plane, Car, type LucideIcon } from "lucide-react";
+import type { UserType } from "@/lib/schemas/auth";
 
 type UserRegistrationProps = {
   id: string;
@@ -11,7 +12,7 @@ type UserRegistrationProps = {
 };
 
 type UserRegistrationTypeProps = {
-  value: string;
+  value: UserType;
   title: string;
   text: string;
   icon: LucideIcon;
