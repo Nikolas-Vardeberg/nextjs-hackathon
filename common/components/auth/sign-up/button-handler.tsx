@@ -15,8 +15,6 @@ const ButtonHandler = () => {
   const { isDirty: isEmail } = getFieldState("email", formState);
   const { isDirty: isPassword } = getFieldState("password", formState);
 
-  console.log("error", formState.errors);
-
   if (currentStep === 3) {
     return (
       <SubmitButton loading={loading} className="w-full">

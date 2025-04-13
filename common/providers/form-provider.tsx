@@ -1,10 +1,10 @@
 "use client";
 
+import React from "react";
 import { FormProvider } from "react-hook-form";
 import { useSignUpForm } from "../hooks/use-sign-up";
 import { AuthContextProvider } from "./use-auth-context";
 import { useSignInForm } from "../hooks/use-sign-in";
-import React from "react";
 
 type Props = {
   children: React.ReactNode;
