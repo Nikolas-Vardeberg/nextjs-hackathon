@@ -22,7 +22,7 @@ export const useSignUpForm = () => {
   const onGenerateOTP = async (
     email: string,
     password: string,
-    onNext: React.Dispatch<React.SetStateAction<number>>,
+    onNext?: React.Dispatch<React.SetStateAction<number>>,
   ) => {
     if (!isLoaded) return;
 
@@ -37,7 +37,7 @@ export const useSignUpForm = () => {
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
 
       setLoading(false);
-      onNext((prev) => prev + 1);
+      onNext?.((prev) => prev + 1);
     } catch (e) {
       setLoading(false);
       console.error("Error generating OTP", e);

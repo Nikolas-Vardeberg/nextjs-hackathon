@@ -1,11 +1,36 @@
-import OTPInput from "./otp-input";
+"use client";
 
-type Props = {
+import { useFormContext } from "react-hook-form";
+import OTPInput from "./otp-input";
+import { useSignUpForm } from "@/common/hooks/use-sign-up";
+import { useState, useEffect } from "react";
+
+type OTPFormProps = {
   setOTP: React.Dispatch<React.SetStateAction<string>>;
   onOTP: string;
 };
 
-const OTPForm = ({ onOTP, setOTP }: Props) => {
+const OTPForm = ({ onOTP, setOTP }: OTPFormProps) => {
+  const { onGenerateOTP } = useSignUpForm();
+  const { getValues } = useFormContext();
+  const [cooldown, setCooldown] = useState(0);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (cooldown > 0) {
+      timer = setTimeout(() => setCooldown(cooldown - 1), 1000);
+    }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [cooldown]);
+
+  const handleResend = () => {
+    if (cooldown > 0) return;
+
+    onGenerateOTP(getValues("email"), getValues("password"));
+    setCooldown(60); // 60 second cooldown
+  };
   return (
     <div className="flex flex-col items-center space-y-5 w-full max-w-full px-2">
       <div className="text-center">
@@ -24,12 +49,15 @@ const OTPForm = ({ onOTP, setOTP }: Props) => {
           Didn&apos;t receive a code?{" "}
           <button
             type="button"
-            onClick={() => {
-              alert("Not yet implemented");
-            }}
-            className="text-tealwave hover:text-tealwave/80 font-medium"
+            onClick={handleResend}
+            disabled={cooldown > 0}
+            className={`font-medium ${
+              cooldown > 0
+                ? "text-gray-400"
+                : "text-tealwave hover:text-tealwave/80  cursor-pointer"
+            }`}
           >
-            Resend
+            {cooldown > 0 ? `Resend in ${cooldown}s` : "Resend"}
           </button>
         </p>
       </div>
