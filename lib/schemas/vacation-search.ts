@@ -26,17 +26,9 @@ const amenitiesValidation = z.string().min(1, "Please list some amenities");
 
 const budgetValidation = z
   .string()
-  .min(1, "Please provide a budget")
-  .refine(
-    (val) =>
-      !isNaN(parseFloat(val)) ||
-      val.includes("-") ||
-      val.toLowerCase().includes("usd") ||
-      val.includes("$"),
-    {
-      message: "Please enter a valid budget amount or range (e.g. $500-$1000)",
-    },
-  );
+  .regex(
+    /^\$\d+(-\$\d+)?$/,
+    "Please enter a valid budget amount or range (e.g. $500-$1000)"
 const locationValidation = z.string().min(1, "Please provide a location");
 
 const pastExperienceValidation = z
