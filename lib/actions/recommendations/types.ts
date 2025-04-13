@@ -4,6 +4,42 @@ export interface Business {
   business_city: string;
   business_state: string;
   business_country: string;
+  categoryKey: string;
+  typeKey: string;
+}
+
+export interface DetailsObject {
+  places: Place[];
+}
+
+export interface PlaceDetails {
+  details: DetailsObject;
+}
+
+export interface Place {
+  formattedAddress: string;
+  displayName: DisplayName;
+  photos: Photo[];
+}
+
+interface DisplayName {
+  text: string;
+  languageCode: string;
+}
+
+interface Photo {
+  name: string;
+  widthPx: number;
+  heightPx: number;
+  authorAttributions: AuthorAttribution[];
+  flagContentUri: string;
+  googleMapsUri: string;
+}
+
+export interface AuthorAttribution {
+  displayName: string;
+  uri: string;
+  photoUri: string;
 }
 
 export interface RecommendationsCategory {
@@ -35,4 +71,32 @@ export interface OpenAIResponse {
   created: number; // Timestamp of the response
   model: string; // Model used, e.g., "gpt-4o-mini"
   choices: OpenAIChoice[]; // Array of choices returned by OpenAI
+}
+
+export interface RecommendationsResponse {
+  rentals: {
+    top_10_recommendations: RecommendationItem[];
+    best_deals?: RecommendationItem[];
+    most_popular?: RecommendationItem[];
+    most_luxurious?: RecommendationItem[];
+  };
+  vacation_destinations?: {
+    top_10_recommendations?: RecommendationItem[];
+    best_deals?: RecommendationItem[];
+    most_popular?: RecommendationItem[];
+    most_luxurious?: RecommendationItem[];
+  };
+}
+
+export interface RecommendationItem {
+  business_name: string;
+  business_address: string;
+  business_city: string;
+  business_state: string;
+  business_country: string;
+  categoryKey: string;
+  typeKey: string;
+  formattedAddress: string;
+  displayName: DisplayName;
+  photos: Photo[];
 }
