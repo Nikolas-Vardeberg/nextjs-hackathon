@@ -2,15 +2,18 @@
 
 import { createContext, useContext, useState } from "react";
 import { getSearchRecommendations } from "@/lib/actions/recommendations";
+import { RecommendationsResponse } from "@/lib/actions/recommendations/types";
+import defaultRecommendations from "@/lib/actions/recommendations/default.json";
 
 type RecommendationsContextType = {
   isLoading?: boolean;
   loadRecommendations?: (answers: string[]) => Promise<void>;
-  recommendations?: unknown | null;
+  recommendations?: RecommendationsResponse | null;
 };
 
 const recommendationsContext = createContext<RecommendationsContextType>({
   isLoading: false,
+  recommendations: defaultRecommendations as RecommendationsResponse,
 });
 
 export const Provider = recommendationsContext.Provider;
@@ -19,11 +22,15 @@ export const RecommendationsProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const [isLoading] = useState<boolean>(false);
-  const [recommendations, setRecommendations] = useState<unknown | null>(null);
+  const [recommendations, setRecommendations] =
+    useState<RecommendationsResponse | null>(
+      defaultRecommendations as RecommendationsResponse,
+    );
 
   const loadRecommendations = async (answers: string[]) => {
     try {
       const result = await getSearchRecommendations(answers);
+
       setRecommendations(result);
     } catch (e) {
       console.error("Failed to fetch recommendations:", e);
