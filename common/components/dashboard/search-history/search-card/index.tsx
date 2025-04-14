@@ -1,5 +1,6 @@
 import React from "react";
 import { MapPin, Star, Heart } from "lucide-react";
+import SearchDetails from "../search-details";
 
 interface Destination {
   name: string;
@@ -19,6 +20,16 @@ const SearchCard: React.FC<SearchCardProps> = ({
   tags,
   destinations,
 }) => {
+  const questions = [
+    { label: "Duration", value: "7-10 days" },
+    { label: "Budget", value: "Mid-range" },
+    { label: "Activities", value: "Relaxation" },
+    { label: "Accommodation", value: "Hotel or resort" },
+  ];
+
+  const recommendationSummary =
+    "Based on your preferences for a 7-10 days relaxation trip with mid-range budget, we recommended destinations known for their relaxation opportunities and excellent hotel or resort options.";
+
   return (
     <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
       <div className="flex flex-col space-y-1.5 p-6 pb-2 pt-4">
@@ -73,6 +84,10 @@ const SearchCard: React.FC<SearchCardProps> = ({
           ))}
         </div>
       </div>
+      <SearchDetails
+        questions={questions}
+        recommendationSummary={recommendationSummary}
+      />
     </div>
   );
 };
