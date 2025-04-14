@@ -13,7 +13,7 @@ const SearchDetails: React.FC<SearchDetailsProps> = ({
 }) => {
   return (
     <div className="px-6 pb-4">
-      <div className="border-t pt-3">
+      <div className="border-t pt-3 border-gray-300">
         <h4 className="font-medium mb-2">Search Details</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <QuestionsAndAnswers questions={questions} />

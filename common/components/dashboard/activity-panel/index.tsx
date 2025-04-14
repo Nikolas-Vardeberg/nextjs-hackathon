@@ -4,7 +4,7 @@ import { Search, MapPin, Heart, Calendar } from "lucide-react";
 
 const ActivityPanel: React.FC = () => {
   return (
-    <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
+    <div className="rounded-lg border bg-card text-card-foreground shadow-sm bg-white border-gray-200 ">
       <div className="flex flex-col space-y-1.5 p-6">
         <h3 className="text-2xl font-semibold leading-none tracking-tight">
           Your Activity

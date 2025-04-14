@@ -25,12 +25,14 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div>
-      <HeroSearch
-        placeholder="What is your ideal vacation destination or rental?"
-        buttonText="Next"
-        onSearch={handleInitialSearch}
-      />
+    <div className="container m-auto px-10">
+      <center className="my-10">
+        <HeroSearch
+          placeholder="What is your ideal vacation destination or rental?"
+          buttonText="Next"
+          onSearch={handleInitialSearch}
+        />
+      </center>
       <VacationSearchModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -46,19 +48,18 @@ const Dashboard: React.FC = () => {
           <SavedPanel />
         </div>
       </div>
-      <div className="container m-auto">
-        <div>
-          {Object.entries(recommendations!.vacation_destinations || {}).map(
-            ([key, value]) => (
-              <div key={key}>
-                <GridSection
-                  title={key.replace(/_/g, " ")}
-                  recommendations={value}
-                />
-              </div>
-            ),
-          )}
-        </div>
+
+      <div>
+        {Object.entries(recommendations!.vacation_destinations || {}).map(
+          ([key, value]) => (
+            <div key={key}>
+              <GridSection
+                title={key.replace(/_/g, " ")}
+                recommendations={value}
+              />
+            </div>
+          ),
+        )}
       </div>
     </div>
   );

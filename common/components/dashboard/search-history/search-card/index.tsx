@@ -31,12 +31,12 @@ const SearchCard: React.FC<SearchCardProps> = ({
     "Based on your preferences for a 7-10 days relaxation trip with mid-range budget, we recommended destinations known for their relaxation opportunities and excellent hotel or resort options.";
 
   return (
-    <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
+    <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-gray-200">
       <div className="flex flex-col space-y-1.5 p-6 pb-2 pt-4">
         <div className="flex justify-between items-start">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-teal-50 text-teal-700">
+              <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-teal-50 text-teal-700 border-gray-300">
                 Search
               </div>
               <div className="flex items-center text-sm text-gray-500">
@@ -53,7 +53,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
           {tags.map((tag, index) => (
             <div
               key={index}
-              className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-secondary-foreground"
+              className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-secondary-foreground border-gray-300"
             >
               {tag}
             </div>
@@ -63,7 +63,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
           {destinations.map((destination, index) => (
             <div
               key={index}
-              className="relative rounded-md border p-2 flex items-center gap-3"
+              className="relative rounded-md border p-2 flex items-center gap-3 border-gray-300"
             >
               <div className="w-12 h-12 rounded-md bg-gray-100 flex items-center justify-center">
                 <MapPin className="text-teal-600" />

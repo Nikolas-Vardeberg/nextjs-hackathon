@@ -3,7 +3,7 @@ import { Star, Heart } from "lucide-react";
 const SavedPanel: React.FC = () => {
   return (
     <div className="mt-6">
-      <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
+      <div className="rounded-lg border bg-card text-card-foreground shadow-sm bg-white border-gray-200">
         <div className="flex flex-col space-y-1.5 p-6">
           <h3 className="text-2xl font-semibold leading-none tracking-tight">
             Saved Destinations
@@ -41,7 +41,7 @@ const SavedPanel: React.FC = () => {
             ].map((destination, index) => (
               <div
                 key={index}
-                className="flex gap-3 border rounded-md p-3 hover:bg-gray-50 transition-colors"
+                className="flex gap-3 border rounded-md p-3 hover:bg-gray-50 transition-colors border-gray-300"
               >
                 <div className="w-16 h-16 rounded-md overflow-hidden flex-shrink-0">
                   <Image
