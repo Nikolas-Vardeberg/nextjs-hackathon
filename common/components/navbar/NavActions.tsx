@@ -40,8 +40,8 @@ export default function NavActions({ onClose }: NavActionsProps) {
                     flexShrink: 1,
                   },
                   avatarBox: {
-                    width: onClose ? "36px" : "32px",
-                    height: onClose ? "36px" : "32px",
+                    width: onClose ? "32px" : "32px",
+                    height: onClose ? "32px" : "32px",
                     flexShrink: 0,
                   },
                   userButtonBox: {
