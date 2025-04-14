@@ -20,7 +20,7 @@ export default function NavActions({ onClose }: NavActionsProps) {
         </Button>
       </SignedOut>
       <SignedIn>
-        <div className="mt-auto sm:mt-[unset] flex sm:flex-row flex-col gap-2 sm:gap-4 pt-4 border-t border-gray-100 w-full sm:border-none sm:pt-0">
+        <div className="mt-auto md:mt-[unset] flex md:flex-row flex-col gap-2 md:gap-4 pt-4 border-t border-gray-100 w-full md:border-none md:pt-0">
           <Button variant="tealwave" onClick={onClose} asChild>
             <Link href="/dashboard">Dashboard</Link>
           </Button>
