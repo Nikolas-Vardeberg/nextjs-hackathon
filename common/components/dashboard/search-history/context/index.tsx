@@ -1,6 +1,9 @@
 import useUserDocumentContext from "@/common/providers/user-document";
 import getSavedRecommendations from "@/lib/actions/get-saved-recommendations";
-import { RecommendationsResponse } from "@/lib/actions/recommendations/types";
+import {
+  RecommendationItem,
+  RecommendationsResponse,
+} from "@/lib/actions/recommendations/types";
 import React, {
   createContext,
   useContext,
@@ -9,23 +12,17 @@ import React, {
   useEffect,
 } from "react";
 
-// const searches = [
-//   {
-//     title: "Beach vacation in Europe",
-//     date: "Apr 10, 2025",
-//     tags: ["7-10 days", "Mid-range", "Relaxation", "Hotel or resort"],
-//     destinations: [
-//       { name: "Santorini, Greece", recommended: true },
-//       { name: "Amalfi Coast, Italy", recommended: true },
-//       { name: "Mallorca, Spain", recommended: true },
-//     ],
-//     recommendations: [{}] as RecommendationItem[],
-//     rawRecommendationsData: {} as RecommendationsResponse,
-//   },
-// ];
+type SearchItem = {
+  title: string;
+  date: string;
+  tags: string[];
+  destinations: { name: string; recommended: boolean }[];
+  recommendations: RecommendationItem[];
+  rawRecommendationsData: RecommendationsResponse;
+};
 
 interface SearchHistoryContextType {
-  searchHistory: typeof searches;
+  searchHistory: SearchItem[];
   isLoading: boolean;
 }
 
@@ -50,7 +47,7 @@ export const SearchHistoryProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [searchHistory, setSearchHistory] = useState<typeof searches>([]);
+  const [searchHistory, setSearchHistory] = useState<SearchItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { userDocID } = useUserDocumentContext();
 
