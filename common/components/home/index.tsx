@@ -3,7 +3,8 @@
 import Container from "@/common/components/atoms/layouts/Container";
 import Hero from "@/common/components/home/hero";
 import useRecommendations from "@/common/providers/recommendations";
-import GridSection from "./grid-section";
+// import GridSection from "./grid-section";
+import ScrollSection from "./scroll-section";
 import {
   Tabs,
   TabsList,
@@ -68,19 +69,18 @@ export default function HomeView() {
                   recommendations!.vacation_destinations || {},
                 ).map(([key, value]) => (
                   <div key={key}>
-                    <GridSection
+                    <ScrollSection
                       title={key.replace(/_/g, " ")}
                       recommendations={value}
                     />
                   </div>
                 ))}
             </TabsContent>
-
             <TabsContent value="rentals" className="flex flex-col gap-10">
               {hasRentals &&
                 Object.entries(recommendations!.rentals).map(([key, value]) => (
                   <div key={key}>
-                    <GridSection
+                    <ScrollSection
                       title={key.replace(/_/g, " ")}
                       recommendations={value}
                     />
