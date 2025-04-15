@@ -24,7 +24,7 @@ const saveRecommendations = async (
       customValue_2: JSON.stringify(answers),
     });
     const savedDocument = await openAPIDocument.save();
-    return Response.json({ success: true, data: savedDocument });
+    return { success: true, data: savedDocument };
   } catch (e) {
     console.log(e);
     if (e && e instanceof Error) throw Error(e.message);
