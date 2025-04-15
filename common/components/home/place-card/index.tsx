@@ -60,6 +60,7 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
         {/* Wrapper for responsive image */}
         <Image
           src={photoUrl}
+          fetchPriority="low"
           loader={photoUrl !== placeholder.src ? placesImageLoader : undefined}
           alt={rec.business_name}
           loading="lazy"

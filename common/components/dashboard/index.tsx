@@ -50,7 +50,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       <div>
-        {Object.entries(recommendations!.vacation_destinations || {}).map(
+        {Object.entries(recommendations?.vacation_destinations || {}).map(
           ([key, value]) => (
             <div key={key}>
               <GridSection

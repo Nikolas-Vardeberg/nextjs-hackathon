@@ -34,6 +34,8 @@ export const UserDocumentProvider: React.FC<{ children: React.ReactNode }> = ({
     // and set it in the context. For now, it's just a placeholder.
     const fetchUserDocument = async () => {
       try {
+        if (isLoading) return;
+        setIsLoading(true);
         // Simulate an API call
         const response = await fetch(
           `/api/users/user-docs?clerkUserID=${encodeURIComponent(userID)}`,
@@ -44,7 +46,7 @@ export const UserDocumentProvider: React.FC<{ children: React.ReactNode }> = ({
             },
           },
         );
-        const data = await response.json();
+        const { data } = await response.json();
         setUserDocument(data);
       } catch (error) {
         console.error("Error fetching user document:", error);
