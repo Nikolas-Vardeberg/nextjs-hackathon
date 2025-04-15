@@ -12,6 +12,8 @@ import placesImageLoader from "@/lib/image-loaders/places";
 import { useState } from "react";
 import Badge from "../../ui/Badge";
 import Button from "../../ui/Button";
+import { useUser } from "@clerk/nextjs";
+import HeartButton from "../../ui/HeartButton";
 
 const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
   const [photoUrl, setPhotoUrl] = useState(
@@ -19,6 +21,8 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
       ? `https://places.googleapis.com/v1/${rec.photos[0].name}/media/?maxHeightPx=500`
       : placeholder.src, // Use placeholder if no photo is available
   );
+
+  const { isSignedIn } = useUser();
 
   const renderStars = () => {
     const rating = rec?.rating || 0; // Get the rating value
@@ -65,6 +69,11 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
           onError={() => setPhotoUrl(placeholder.src)} // Set fallback image on error
           className="rounded-md object-cover  object-center" // Optional: Add rounded corners
         />
+        {isSignedIn && (
+          <div className="absolute top-2 left-2">
+            <HeartButton onClick={(isSelected) => isSelected} />
+          </div>
+        )}
         {rec?.rating && (
           <div className="absolute top-2 right-2 bg-white rounded-full px-2 py-1 flex items-center">
             {renderStars()}
