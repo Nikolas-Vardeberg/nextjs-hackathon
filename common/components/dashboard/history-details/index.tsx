@@ -52,7 +52,7 @@ const CriterionCard = ({
   </div>
 );
 
-export default function SearchesView({ id }: { id: string }) {
+export default function HistoryDetailsView({ id }: { id: string }) {
   const { userDocID } = useUserDocumentContext();
   const [isLoading, setIsLoading] = useState(true);
   const [recommendation, setRecommendation] = useState<SearchItem>();

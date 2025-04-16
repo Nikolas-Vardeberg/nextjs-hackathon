@@ -48,7 +48,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
             </h3>
           </div>
           <Button variant="inverted-link" asChild>
-            <Link href={`/dashboard/searches/${id}`}>
+            <Link href={`/dashboard/history/${id}`}>
               View <ExternalLink size={14} />
             </Link>
           </Button>

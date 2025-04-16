@@ -9,7 +9,7 @@ import useRecommendations from "@/common/providers/recommendations";
 import GridSection from "../home/grid-section";
 import Container from "../atoms/layouts/Container";
 
-const Dashboard: React.FC = () => {
+const DashboardView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialQuery, setInitialQuery] = useState("");
   const { loadRecommendations, recommendations, isLoading } =
@@ -68,4 +68,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardView;
