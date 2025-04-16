@@ -111,7 +111,7 @@ export const SearchHistoryProvider = ({
       }
     };
     getRecs();
-  }, [isLoading, userDocID, searchHistory]);
+  }, [isLoading, userDocID, searchHistory, didAttemptNoResults]);
   return (
     <SearchHistoryContext.Provider value={{ searchHistory, isLoading }}>
       {children}
