@@ -39,7 +39,9 @@ const SearchCard: React.FC<SearchCardProps> = ({
                 {date}
               </div>
             </div>
-            <h3 className="font-semibold tracking-tight text-lg">{title}</h3>
+            <h3 className="font-semibold tracking-tight text-lg my-3">
+              {title}
+            </h3>
           </div>
         </div>
       </div>
