@@ -13,7 +13,7 @@ export default function SearchesSkeleton() {
         <div className="mb-6">
           <Link
             href="/dashboard"
-            className="inline-flex items-center text-sm text-teal-600 hover:text-teal-700 mb-4"
+            className="inline-flex items-center text-sm text-primary hover:text-primary/80 mb-4"
           >
             <ArrowLeft className="mr-1 h-4 w-4" /> Back to Dashboard
           </Link>

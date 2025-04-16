@@ -1,73 +1,87 @@
 import Image from "next/image";
-import { Star, Heart } from "lucide-react";
+import { Star, Heart, MapPin } from "lucide-react";
 import placeholderImage from "@/assets/images/card/placeholder.png";
 import Badge from "../../ui/Badge";
 
 const SavedPanel: React.FC = () => {
+  const destinations = [
+    {
+      name: "Santorini",
+      location: "Greece",
+      rating: 4.8,
+      tags: ["Beach", "Romantic", "Scenic"],
+    },
+    {
+      name: "Kyoto",
+      location: "Japan",
+      rating: 4.7,
+      tags: ["Cultural", "Historic"],
+    },
+    {
+      name: "Bali",
+      location: "Indonesia",
+      rating: 4.6,
+      tags: ["Beach", "Adventure"],
+    },
+    {
+      name: "Montreal",
+      location: "Canada",
+      rating: 4.5,
+      tags: ["Urban", "Cultural"],
+    },
+    {
+      name: "Galapagos Islands",
+      location: "Ecuador",
+      rating: 4.9,
+      tags: ["Nature", "Wildlife"],
+    },
+  ];
+
   return (
     <div className="">
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm bg-white border-gray-200">
-        <div className="flex flex-col space-y-1.5 p-6">
-          <h3 className="text-2xl font-semibold leading-none tracking-tight">
-            Saved Destinations
-          </h3>
+        <div className="flex flex-col space-y-1.5 p-6 pb-3">
+          <div className="flex justify-between items-center">
+            <h3 className="text-2xl font-semibold leading-none tracking-tight">
+              Saved Destinations
+            </h3>
+          </div>
         </div>
         <div className="p-6 pt-0">
           <div className="space-y-4">
-            {/* Saved Destination Items */}
-            {[
-              {
-                name: "Santorini, Greece",
-                rating: 4.8,
-                tags: ["Beach", "Romantic", "Scenic"],
-              },
-              {
-                name: "Kyoto, Japan",
-                rating: 4.7,
-                tags: ["Cultural", "Historic"],
-              },
-              {
-                name: "Bali, Indonesia",
-                rating: 4.6,
-                tags: ["Beach", "Adventure"],
-              },
-              {
-                name: "Montreal, Canada",
-                rating: 4.5,
-                tags: ["Urban", "Cultural"],
-              },
-              {
-                name: "Galapagos Islands, Ecuador",
-                rating: 4.9,
-                tags: ["Nature", "Wildlife"],
-              },
-            ].map((destination, index) => (
+            {destinations.map((destination, index) => (
               <div
                 key={index}
-                className="flex gap-3 border rounded-md p-3 hover:bg-gray-50 transition-colors border-gray-300"
+                className="flex items-start gap-4 py-4 border-b border-gray-200 last:border-b-0"
               >
-                <div className="w-16 h-16 rounded-md overflow-hidden flex-shrink-0">
+                <div className="relative w-16 h-16 rounded-md overflow-hidden flex-shrink-0">
                   <Image
                     alt={destination.name}
                     src={placeholderImage}
-                    width={150}
-                    height={100}
+                    width={64}
+                    height={64}
                     className="w-full h-full object-cover"
                   />
+                  <button className="absolute top-0.5 right-0.5 inline-flex items-center justify-center text-red-500 bg-white/70 rounded-full p-0.5">
+                    <Heart className="h-4 w-4 fill-red-500" />
+                  </button>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-medium truncate">{destination.name}</h4>
-                    <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground text-red-500 h-8 w-8">
-                      <Heart className="fill-red-500" />
-                    </button>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-500 mb-1">
-                    <Star
-                      size={16}
-                      className="mr-1 text-yellow-500 fill-yellow-500"
-                    />
-                    <span>{destination.rating}</span>
+                  <h4 className="font-medium text-base truncate">
+                    {destination.name}
+                  </h4>
+                  <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
+                    <div className="flex items-center min-w-0">
+                      <MapPin className="h-3.5 w-3.5 mr-1 flex-shrink-0" />
+                      <span className="truncate">{destination.location}</span>
+                    </div>
+                    <div className="flex items-center text-sm flex-shrink-0">
+                      <Star
+                        size={16}
+                        className="mr-1 text-yellow-500 fill-yellow-500"
+                      />
+                      <span>{destination.rating}</span>
+                    </div>
                   </div>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {destination.tags.map((tag, tagIndex) => (
