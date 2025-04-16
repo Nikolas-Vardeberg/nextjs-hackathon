@@ -1,6 +1,8 @@
 import React from "react";
-import { MapPin } from "lucide-react";
+import { MapPin, ExternalLink } from "lucide-react";
 import SearchDetails from "../search-details";
+import Link from "next/link";
+import Button from "@/common/components/ui/Button";
 
 interface Destination {
   name: string;
@@ -10,6 +12,7 @@ interface Destination {
 }
 
 interface SearchCardProps {
+  id: string;
   title: string;
   date: string;
   tags: string[];
@@ -19,6 +22,7 @@ interface SearchCardProps {
 }
 
 const SearchCard: React.FC<SearchCardProps> = ({
+  id,
   title,
   date,
   tags,
@@ -43,6 +47,11 @@ const SearchCard: React.FC<SearchCardProps> = ({
               {title}
             </h3>
           </div>
+          <Button variant="inverted-link" asChild>
+            <Link href={`/dashboard/searches/${id}`}>
+              View <ExternalLink size={14} />
+            </Link>
+          </Button>
         </div>
       </div>
       <div className="p-6 pt-0 pb-3">

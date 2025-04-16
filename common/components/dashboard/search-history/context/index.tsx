@@ -12,7 +12,8 @@ import React, {
   useEffect,
 } from "react";
 
-type SearchItem = {
+export type SearchItem = {
+  id: string;
   title: string;
   summary: string;
   answers: string[];
@@ -28,7 +29,7 @@ interface SearchHistoryContextType {
   isLoading: boolean;
 }
 
-const formatDate = (timestamp: string | number | Date): string => {
+export const formatDate = (timestamp: string | number | Date): string => {
   const date = new Date(timestamp);
   return new Intl.DateTimeFormat("en-US", {
     month: "short",
@@ -50,23 +51,19 @@ export const SearchHistoryProvider = ({
   children: ReactNode;
 }) => {
   const [searchHistory, setSearchHistory] = useState<SearchItem[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { userDocID } = useUserDocumentContext();
   const [didAttemptNoResults, setDidAttemptNoResults] = useState(false);
+
   useEffect(() => {
     const getRecs = async () => {
-      if (
-        !isLoading &&
-        userDocID &&
-        searchHistory.length < 1 &&
-        !didAttemptNoResults
-      ) {
+      if (userDocID && !didAttemptNoResults) {
         try {
           setIsLoading(true);
           const recs = await getSavedRecommendations(userDocID);
           if (recs?.success && recs?.data) {
             const formattedData = recs?.data.map(
-              ({ customValue_1, openAIID, updatedAt, customValue_2 }) => {
+              ({ customValue_1, openAIID, updatedAt, customValue_2, id }) => {
                 const recommendationsJSON = JSON.parse(
                   customValue_1 || "",
                 ) as RecommendationsResponse;
@@ -82,6 +79,7 @@ export const SearchHistoryProvider = ({
                   ) || []; // TODO: NEED TO HAVE USER SELECT IF THEY ARE SEARCHING FOR A DESTINATION OR RENTAL
 
                 return {
+                  id,
                   recommendations: recommendationsSlice,
                   rawRecommendationsData: recommendationsJSON,
                   openAIID,
@@ -121,7 +119,7 @@ export const SearchHistoryProvider = ({
       }
     };
     getRecs();
-  }, [isLoading, userDocID, searchHistory, didAttemptNoResults]);
+  }, [userDocID, didAttemptNoResults]);
   return (
     <SearchHistoryContext.Provider value={{ searchHistory, isLoading }}>
       {children}
