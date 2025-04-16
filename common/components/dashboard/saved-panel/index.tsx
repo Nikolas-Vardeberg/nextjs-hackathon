@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Star, Heart } from "lucide-react";
+import placeholderImage from "@/assets/images/card/placeholder.png";
+
 const SavedPanel: React.FC = () => {
   return (
     <div className="mt-6">
@@ -46,7 +48,7 @@ const SavedPanel: React.FC = () => {
                 <div className="w-16 h-16 rounded-md overflow-hidden flex-shrink-0">
                   <Image
                     alt={destination.name}
-                    src="/placeholder.svg"
+                    src={placeholderImage}
                     width={150}
                     height={100}
                     className="w-full h-full object-cover"

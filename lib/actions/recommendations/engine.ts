@@ -1,6 +1,7 @@
 import mock from "./mock.json";
 import googleMock from "./google-mock.json";
 import { Business, DetailsObject, Recommendations } from "./types";
+
 export const HERO_SEARCH_DEFAULTS = [
   "What is your ideal vacation destination or rental?",
   "What amenities are most important to you?",
@@ -9,12 +10,14 @@ export const HERO_SEARCH_DEFAULTS = [
   "What was your favorite vacation or rental experience?",
   "When are you planning to travel?",
 ];
+
 const MOCK_AI_MODE = process.env.NEXT_PUBLIC_MOCK_AI_MODE === "true";
 
 export async function fetchOpenAIRecommendations(answers: string[]) {
   const formattedPrompt = HERO_SEARCH_DEFAULTS.map((question, index) => {
     return `Question ${index + 1}: ${question} Answer: ${answers[index]}`;
   }).join("\n");
+
   if (MOCK_AI_MODE) {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -22,6 +25,7 @@ export async function fetchOpenAIRecommendations(answers: string[]) {
       }, 2000);
     });
   }
+
   const openAIResponse = await fetch(
     "https://api.openai.com/v1/chat/completions",
     {

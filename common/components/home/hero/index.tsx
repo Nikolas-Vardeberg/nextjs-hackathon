@@ -5,9 +5,10 @@ import { HeroSearch } from "@/common/components/home/hero/hero-search";
 import VacationSearchModal from "@/common/components/vacation-search-modal";
 import heroBg from "@/assets/images/hero/background.webp";
 
-const Hero: React.FC<{ onSearch: (answers: string[]) => void }> = ({
-  onSearch,
-}) => {
+const Hero: React.FC<{
+  onSearch: (answers: string[]) => void;
+  isLoading?: boolean;
+}> = ({ onSearch, isLoading = false }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialQuery, setInitialQuery] = useState("");
 
@@ -40,6 +41,8 @@ const Hero: React.FC<{ onSearch: (answers: string[]) => void }> = ({
         onClose={handleCloseModal}
         onSearch={onSearch}
         initialQuery={initialQuery}
+        isLoading={isLoading}
+        scrollToId="vacation-tab-results"
       />
     </HeroContainer>
   );

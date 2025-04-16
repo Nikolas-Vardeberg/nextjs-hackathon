@@ -32,6 +32,7 @@ export default function HomeView() {
     <>
       <Hero
         onSearch={(answers) => !isLoading && loadRecommendations?.(answers)}
+        isLoading={isLoading}
       />
       <Container as="section" className="py-20">
         {!hasData && (
@@ -48,6 +49,7 @@ export default function HomeView() {
 
         {hasData && (
           <Tabs
+            id="vacation-tab-results"
             value={activeTab}
             onValueChange={(value) => setActiveTab(value)}
             className="w-full"
