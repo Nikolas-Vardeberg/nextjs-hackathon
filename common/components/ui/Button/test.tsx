@@ -39,7 +39,7 @@ describe("Button", () => {
   it("should render with variant outline", () => {
     const { getByTestId } = render(<Button variant="outline">Test</Button>);
     expect(getByTestId("button").className).toContain(
-      "text-black border border-black",
+      "text-gray-600 border border-gray-600 hover:bg-gray-900 hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black",
     );
   });
 

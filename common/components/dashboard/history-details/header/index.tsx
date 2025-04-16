@@ -30,7 +30,7 @@ export default function Header({ recommendation }: HeaderProps) {
 
       <div className="flex flex-wrap gap-2 mb-6">
         {recommendation?.tags.map((tag, index) => (
-          <Badge key={index} variant="white">
+          <Badge key={`${tag}-${index}`} variant="white">
             <Tag className="mr-1 h-3 w-3" /> {tag}
           </Badge>
         ))}
