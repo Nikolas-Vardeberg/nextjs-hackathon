@@ -158,7 +158,7 @@ export default function SearchesView({ id }: { id: string }) {
     [];
 
   return (
-    <Container>
+    <Container className="bg-gray-100 min-h-screen w-full">
       <div className="mb-6">
         <Link
           href="/dashboard"

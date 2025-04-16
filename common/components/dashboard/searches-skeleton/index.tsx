@@ -1,12 +1,12 @@
 "use client";
 
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Container } from "lucide-react";
 import Link from "next/link";
 import { Skeleton } from "@/common/components/ui/Skeleton";
 
 export default function SearchesSkeleton() {
   return (
-    <div className="container mx-auto px-6 py-8">
+    <Container className="bg-gray-100 min-h-screen w-full">
       {/* Back to Dashboard and Header */}
       <div className="mb-6">
         <Link
@@ -67,7 +67,7 @@ export default function SearchesSkeleton() {
           ))}
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 
