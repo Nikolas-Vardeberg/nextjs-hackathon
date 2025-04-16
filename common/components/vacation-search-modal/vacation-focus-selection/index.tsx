@@ -20,7 +20,7 @@ export default function VacationFocusSelection({
           <div
             key={id}
             onClick={() => onChange(id)}
-            className={`flex items-center p-4 rounded-lg cursor-pointer transition-all border border-gray-200 
+            className={`flex items-center p-4 group rounded-lg cursor-pointer transition-all border border-gray-200 
               ${
                 isSelected
                   ? "ring-2 ring-tealwave ring-offset-0 bg-teal-50 shadow-sm"
