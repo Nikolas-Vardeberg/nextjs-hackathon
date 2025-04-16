@@ -23,22 +23,22 @@ export default function VacationFocusSelection({
             className={`flex items-center p-4 group rounded-lg cursor-pointer transition-all border border-gray-200 
               ${
                 isSelected
-                  ? "ring-2 ring-tealwave ring-offset-0 bg-teal-50 shadow-sm"
-                  : "hover:border-tealwave hover:shadow-sm"
+                  ? "ring-2 ring-primary ring-offset-0 bg-teal-50 shadow-sm"
+                  : "hover:border-primary hover:shadow-sm"
               }`}
           >
             <div
               className={`flex items-center justify-center w-10 h-10 rounded-full mr-3 transition-colors ${
                 isSelected
-                  ? "bg-tealwave text-white"
-                  : "bg-gray-100 text-gray-500 group-hover:bg-teal-100 group-hover:text-tealwave"
+                  ? "bg-primary text-white"
+                  : "bg-gray-100 text-gray-500 group-hover:bg-teal-100 group-hover:text-primary"
               }`}
             >
               <Icon className="w-5 h-5" />
             </div>
             <div>
               <h3
-                className={`font-medium ${isSelected ? "text-tealwave" : "text-nightocean"}`}
+                className={`font-medium ${isSelected ? "text-primary" : "text-nightocean"}`}
               >
                 {title}
               </h3>

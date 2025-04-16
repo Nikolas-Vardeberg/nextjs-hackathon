@@ -39,7 +39,7 @@ const ButtonHandler = () => {
     return (
       <div className="flex flex-row gap-3">
         <Button
-          variant="inverted-tealwave"
+          variant="inverted-primary"
           type="button"
           className="w-full"
           onClick={() => setCurrentStep((prev: number) => prev - 1)}

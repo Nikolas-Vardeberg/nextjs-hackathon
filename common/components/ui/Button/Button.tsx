@@ -31,15 +31,13 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-black text-white hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/80",
+        primary:
+          "bg-primary text-white hover:bg-primary/80 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-primary",
+        "inverted-primary":
+          "bg-white text-primary border border-primary hover:bg-primary hover:text-white",
         destructive: "bg-red-500 text-black",
         outline:
           "text-black border border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black",
-        tealwave:
-          "bg-tealwave text-white hover:bg-tealwave/80 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-tealwave",
-        "inverted-tealwave":
-          "bg-white text-tealwave border border-tealwave hover:bg-tealwave hover:text-white",
         link: "inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-800 transition-colors underline",
         "inverted-link":
           "inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-800 transition-colors hover:underline",
@@ -52,7 +50,7 @@ export const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
       size: "default",
     },
   },

@@ -54,7 +54,7 @@ const OTPForm = ({ onOTP, setOTP }: OTPFormProps) => {
             className={`font-medium ${
               cooldown > 0
                 ? "text-gray-400"
-                : "text-tealwave hover:text-tealwave/80  cursor-pointer"
+                : "text-primary hover:text-primary/80  cursor-pointer"
             }`}
           >
             {cooldown > 0 ? `Resend in ${cooldown}s` : "Resend"}

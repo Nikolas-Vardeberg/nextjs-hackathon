@@ -29,10 +29,10 @@ describe("Button", () => {
     expect(getByTestId("button").className).toContain("underline");
   });
 
-  it("should render with variant default", () => {
-    const { getByTestId } = render(<Button variant="default">Test</Button>);
+  it("should render with variant primary", () => {
+    const { getByTestId } = render(<Button variant="primary">Test</Button>);
     expect(getByTestId("button").className).toContain(
-      "bg-black text-white hover:bg-black/80",
+      "bg-primary text-white hover:bg-primary/80 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-primary",
     );
   });
 

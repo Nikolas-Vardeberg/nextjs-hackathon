@@ -54,7 +54,7 @@ export default function VacationQuestionForm({
             <Input
               type="text"
               placeholder={currentQuestion.placeholder}
-              className="w-full border-gray-200 focus:border-tealwave focus:ring-tealwave"
+              className="w-full border-gray-200 focus:border-primary focus:ring-primary"
               {...register("answer")}
             />
           )}
@@ -80,7 +80,7 @@ export default function VacationQuestionForm({
         )}
 
         <Button
-          variant="tealwave"
+          variant="primary"
           onClick={onSubmit}
           className="min-w-24 ml-auto"
           type="submit"

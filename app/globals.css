@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* stylelint-disable-next-line prettier/prettier */
+@import 'tailwindcss';
 
 /* stylelint-disable-next-line at-rule-no-unknown */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -7,8 +8,9 @@
   --font-family-montserrat: var(--font-montserrat), sans-serif;
 
   /* Custom colors */
+  --color-primary: #219ebc;
   --color-skywater: #8ecae6;
-  --color-tealwave: #219ebc;
+  --color-tealwave: #219ebc; /* Replacing with --color-primary */
   --color-nightocean: #023047;
   --color-sunburst: #ffb703;
   --color-ember: #fb8500;

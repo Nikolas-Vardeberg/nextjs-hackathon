@@ -37,7 +37,7 @@ const AuthCard = ({
             {footerLinkText && footerLinkHref && (
               <Link
                 href={footerLinkHref}
-                className="font-bold text-tealwave hover:underline hover:underline-offset-4"
+                className="font-bold text-primary hover:underline hover:underline-offset-4"
               >
                 {footerLinkText}
               </Link>

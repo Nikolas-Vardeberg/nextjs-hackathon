@@ -18,7 +18,7 @@ export default function DesktopNav({ links }: DesktopNavProps) {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="hover:text-tealwave font-medium"
+                  className="hover:text-primary font-medium"
                 >
                   {link.label}
                 </Link>
