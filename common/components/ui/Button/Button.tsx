@@ -35,12 +35,15 @@ export const buttonVariants = cva(
           "bg-primary text-white hover:bg-primary/80 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-primary",
         "inverted-primary":
           "bg-white text-primary border border-primary hover:bg-primary hover:text-white",
-        destructive: "bg-red-500 text-black",
+        secondary:
+          "bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700",
+        destructive: "bg-red-500 text-white hover:bg-red-600",
         outline:
-          "text-black border border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black",
+          "text-gray-600 border border-gray-600 hover:bg-gray-900 hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black",
         link: "inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors underline",
         "inverted-link":
           "inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors hover:underline",
+        ghost: "hover:bg-gray-100 text-gray-500 hover:text-gray-700",
       },
       size: {
         default: "h-9 px-4 py-2",

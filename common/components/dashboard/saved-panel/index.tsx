@@ -42,9 +42,7 @@ const SavedPanel: React.FC = () => {
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm bg-white border-gray-200">
         <div className="flex flex-col space-y-1.5 p-6 pb-3">
           <div className="flex justify-between items-center">
-            <h3 className="text-2xl font-semibold leading-none tracking-tight">
-              Saved Destinations
-            </h3>
+            <h2 className="text-xl font-semibold">Saved Destinations</h2>
           </div>
         </div>
         <div className="p-6 pt-0">

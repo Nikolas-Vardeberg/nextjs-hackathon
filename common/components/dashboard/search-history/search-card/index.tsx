@@ -1,6 +1,5 @@
 import React from "react";
-import { MapPin, ArrowRight } from "lucide-react";
-import SearchDetails from "../search-details";
+import { Eye, Trash2, Search as SearchIcon, MapPin } from "lucide-react";
 import Link from "next/link";
 import Button from "@/common/components/ui/Button";
 import Badge from "@/common/components/ui/Badge";
@@ -8,76 +7,87 @@ import Badge from "@/common/components/ui/Badge";
 interface Destination {
   name: string;
   url?: string;
-  country: string;
-  city: string;
+  country?: string;
+  city?: string;
 }
 
 interface SearchCardProps {
   id: string;
   title: string;
   date: string;
-  tags: string[];
+  tags?: string[];
   destinations: Destination[];
-  summary: string;
+  summary?: string;
   answers?: string[];
+  maxDestinationsCount?: number;
 }
 
 const SearchCard: React.FC<SearchCardProps> = ({
   id,
   title,
   date,
-  tags,
   destinations,
-  summary,
-  answers,
+  maxDestinationsCount = 3,
 }) => {
+  const displayDestinations = destinations.slice(0, maxDestinationsCount);
+  const remainingDestinations =
+    destinations.length - displayDestinations.length;
+
   return (
-    <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-gray-200">
-      <div className="flex flex-col space-y-1.5 p-6 pb-2 pt-4">
-        <div className="flex justify-between items-start">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <Badge variant="primary">Search</Badge>
-              <div className="flex items-center text-sm text-gray-500">
-                {date}
-              </div>
-            </div>
-            <h3 className="font-semibold tracking-tight text-lg my-3">
-              {title}
-            </h3>
-          </div>
-          <Button variant="inverted-link" asChild>
+    <div className="rounded-lg border bg-card text-card-foreground shadow-sm border-gray-200 p-4 space-y-2">
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-2 text-sm text-gray-500">
+          <SearchIcon size={16} className="text-primary" />
+          <span className="ml-1">{date}</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
             <Link href={`/dashboard/history/${id}`}>
-              View <ArrowRight size={14} />
+              <Eye size={16} />
+              <span className="sr-only">View</span>
             </Link>
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 hover:text-destructive hover:bg-red-50"
+          >
+            <Trash2 size={16} />
+            <span className="sr-only">Delete</span>
           </Button>
         </div>
       </div>
-      <div className="p-6 pt-0 pb-3">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {destinations.map((destination, index) => (
+
+      <h3 className="font-semibold tracking-tight text-lg pb-2">{title}</h3>
+
+      <div className="flex flex-wrap gap-2 items-center">
+        {displayDestinations.map((destination, index) =>
+          destination.url ? (
             <a
               href={destination.url}
-              target="_blank"
-              rel="noopener"
               key={index}
-              className="relative rounded-md border p-2 flex items-center gap-3 border-gray-300"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
             >
-              <div className="w-12 h-12 rounded-md bg-gray-100 flex items-center justify-center">
-                <MapPin className="text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-medium truncate">{destination.name}</div>
-
-                <div className="flex items-center text-sm text-gray-500">
-                  {destination.city}, {destination.country}
-                </div>
-              </div>
+              <Badge variant="secondary" className="hover:bg-gray-200 ">
+                <MapPin size={12} className="inline mr-1" />
+                <span className="group-hover:underline">
+                  {destination.name}
+                </span>
+              </Badge>
             </a>
-          ))}
-        </div>
+          ) : (
+            <Badge key={index} variant="secondary">
+              <MapPin size={12} className="inline mr-1" />
+              {destination.name}
+            </Badge>
+          ),
+        )}
+        {remainingDestinations > 0 && (
+          <Badge variant="dashed">+{remainingDestinations} more</Badge>
+        )}
       </div>
-      <SearchDetails tags={tags} answers={answers} summary={summary} />
     </div>
   );
 };
