@@ -15,9 +15,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "TRP - Travel Right Planned",
+  title: "TRP - AI Vacation Planner",
   description:
-    "Travel Right Planned. Toward Real Paradise. Trust. Relaxation. Personally",
+    "TRP is an AI vacation planner that helps you plan your next vacation. It uses AI to generate personalized vacation recommendations based on your preferences.",
 };
 
 export default async function RootLayout({
