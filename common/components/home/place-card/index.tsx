@@ -73,16 +73,15 @@ const PlaceCard: React.FC<{
           blurDataURL={placeholder.src}
           onError={() => setPhotoUrl(placeholder.src)} // Set fallback image on error
         />
-        {isSignedIn && (
-          <div className="absolute top-2 left-2">
-            <HeartButton onClick={(isSelected) => isSelected} />
+        {rec?.rating && (
+          <div className="absolute top-2 left-2 bg-white rounded-full px-2 py-1 flex items-center">
+            {renderStars()}
+            <span className="ml-1 text-sm font-medium">{rec?.rating}</span>
           </div>
         )}
-        {rec?.rating && (
-          <div className="absolute top-2 right-2 bg-white rounded-full px-2 py-1 flex items-center">
-            {renderStars()}
-
-            <span className="ml-1 text-sm font-medium">{rec?.rating}</span>
+        {isSignedIn && (
+          <div className="absolute top-2 right-2">
+            <HeartButton onClick={(isSelected) => isSelected} />
           </div>
         )}
       </div>

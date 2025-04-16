@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Star, Heart } from "lucide-react";
 import placeholderImage from "@/assets/images/card/placeholder.png";
+import Badge from "../../ui/Badge";
 
 const SavedPanel: React.FC = () => {
   return (
@@ -62,17 +63,17 @@ const SavedPanel: React.FC = () => {
                     </button>
                   </div>
                   <div className="flex items-center text-sm text-gray-500 mb-1">
-                    <Star className="mr-1 text-yellow-500 fill-yellow-500" />
+                    <Star
+                      size={16}
+                      className="mr-1 text-yellow-500 fill-yellow-500"
+                    />
                     <span>{destination.rating}</span>
                   </div>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {destination.tags.map((tag, tagIndex) => (
-                      <div
-                        key={tagIndex}
-                        className="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground text-xs"
-                      >
+                      <Badge key={tagIndex} variant="secondary">
                         {tag}
-                      </div>
+                      </Badge>
                     ))}
                   </div>
                 </div>

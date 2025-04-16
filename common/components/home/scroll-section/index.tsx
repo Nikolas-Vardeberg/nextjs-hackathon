@@ -52,7 +52,7 @@ const ScrollSection: React.FC<{
           className="absolute left-2 top-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-2.5 shadow-md transform -translate-y-1/2 transition-all duration-200 ease-in-out hover:scale-110 hidden md:flex"
           aria-label="Scroll left"
         >
-          <ChevronLeft className="h-6 w-6 text-teal-600" />
+          <ChevronLeft className="h-6 w-6 text-primary" />
         </button>
       )}
 
@@ -62,7 +62,7 @@ const ScrollSection: React.FC<{
           className="absolute right-2 top-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-2.5 shadow-md transform -translate-y-1/2 transition-all duration-200 ease-in-out hover:scale-110 hidden md:flex"
           aria-label="Scroll right"
         >
-          <ChevronRight className="h-6 w-6 text-teal-600" />
+          <ChevronRight className="h-6 w-6 text-primary" />
         </button>
       )}
 
