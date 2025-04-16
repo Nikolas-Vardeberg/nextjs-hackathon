@@ -8,7 +8,12 @@ const GridSection: React.FC<{
   return (
     <>
       {title && <h1 className="text-2xl font-bold capitalize mb-4">{title}</h1>}
-      <Grid columns={{ sm: 1, md: 2, lg: 3 }} className="w-full">
+      <Grid
+        columns={{ sm: 1, md: 2, lg: 3 }}
+        x={{ md: 16, lg: 16 }}
+        y={{ md: 16, lg: 16 }}
+        className="w-full"
+      >
         {recommendations?.map((rec, index) => {
           return <PlaceCard rec={rec} key={index} />;
         })}
