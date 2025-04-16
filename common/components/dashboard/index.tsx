@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { HeroSearch } from "../home/hero/hero-search";
-import ActivityPanel from "./activity-panel";
+// import ActivityPanel from "./activity-panel";
 import SavedPanel from "./saved-panel";
 import SearchHistory from "./search-history";
 import VacationSearchModal from "../vacation-search-modal";
@@ -43,8 +43,8 @@ const Dashboard: React.FC = () => {
         <div className="lg:col-span-2">
           <SearchHistory />
         </div>
-        <div>
-          <ActivityPanel />
+        <div className="space-y-4">
+          {/* <ActivityPanel /> */}
           <SavedPanel />
         </div>
       </div>
