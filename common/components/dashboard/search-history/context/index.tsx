@@ -27,6 +27,8 @@ export type SearchItem = {
 interface SearchHistoryContextType {
   searchHistory: SearchItem[];
   isLoading: boolean;
+  refetchSearchHistory: () => Promise<void>;
+  clearLocalHistory: () => void;
 }
 
 export const formatDate = (timestamp: string | number | Date): string => {
@@ -43,7 +45,12 @@ const formattedDate = formatDate("2025-04-10T00:00:00Z");
 console.log(formattedDate); // Output: Apr 10, 2025
 const SearchHistoryContext = createContext<
   SearchHistoryContextType | undefined
->({ isLoading: false, searchHistory: [] });
+>({
+  isLoading: false,
+  searchHistory: [],
+  refetchSearchHistory: async () => {},
+  clearLocalHistory: () => {},
+});
 
 export const SearchHistoryProvider = ({
   children,
@@ -51,77 +58,101 @@ export const SearchHistoryProvider = ({
   children: ReactNode;
 }) => {
   const [searchHistory, setSearchHistory] = useState<SearchItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { userDocID } = useUserDocumentContext();
-  const [didAttemptNoResults, setDidAttemptNoResults] = useState(false);
+
+  const fetchSearchHistory = React.useCallback(async () => {
+    if (!userDocID) {
+      setIsLoading(false);
+      setSearchHistory([]);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const recs = await getSavedRecommendations(userDocID);
+      if (recs?.success && recs?.data && recs.data.length > 0) {
+        const formattedData = recs.data.map(
+          ({ customValue_1, openAIID, updatedAt, customValue_2, id }) => {
+            const recommendationsJSON = JSON.parse(
+              customValue_1 || "",
+            ) as RecommendationsResponse;
+
+            const answersArray = JSON.parse(customValue_2 || "") as string[];
+
+            const recommendationsSlice =
+              recommendationsJSON?.vacation_destinations?.top_10_recommendations?.slice(
+                0,
+                3,
+              ) || [];
+
+            return {
+              id,
+              recommendations: recommendationsSlice,
+              rawRecommendationsData: recommendationsJSON,
+              openAIID,
+              answers: answersArray,
+              date: formatDate(updatedAt),
+              title:
+                recommendationsSlice?.[0]?.recommendation_title ||
+                answersArray?.[0] ||
+                "Search History Item",
+              summary:
+                recommendationsSlice?.[0]?.recommendation_summary ||
+                answersArray?.[3] ||
+                "",
+              destinations:
+                recommendationsSlice?.map((slice) => ({
+                  name: slice.business_name,
+                  city: slice.business_city,
+                  country: slice.business_country,
+                  url: slice.googleMapsUri || slice.websiteUri,
+                })) || [],
+              tags:
+                recommendationsSlice?.flatMap(
+                  (slice) =>
+                    slice.types?.map((t) => t.replaceAll(/_/g, " ")) || [],
+                ) || [],
+            };
+          },
+        );
+        setSearchHistory(formattedData);
+      } else {
+        setSearchHistory([]);
+      }
+    } catch (e) {
+      console.error("Error fetching search history:", e);
+      setSearchHistory([]);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [userDocID]);
+
+  const clearLocalHistory = React.useCallback(() => {
+    setSearchHistory([]);
+  }, []);
 
   useEffect(() => {
-    const getRecs = async () => {
-      if (userDocID && !didAttemptNoResults) {
-        try {
-          setIsLoading(true);
-          const recs = await getSavedRecommendations(userDocID);
-          if (recs?.success && recs?.data) {
-            const formattedData = recs?.data.map(
-              ({ customValue_1, openAIID, updatedAt, customValue_2, id }) => {
-                const recommendationsJSON = JSON.parse(
-                  customValue_1 || "",
-                ) as RecommendationsResponse;
+    if (userDocID) {
+      fetchSearchHistory();
+    } else {
+      setIsLoading(true);
+      setSearchHistory([]);
+    }
+  }, [userDocID, fetchSearchHistory]);
 
-                const answersArray = JSON.parse(
-                  customValue_2 || "",
-                ) as string[];
+  const contextValue = React.useMemo(
+    () => ({
+      searchHistory,
+      isLoading,
+      refetchSearchHistory: fetchSearchHistory,
+      clearLocalHistory,
+    }),
+    [searchHistory, isLoading, fetchSearchHistory, clearLocalHistory],
+  );
 
-                const recommendationsSlice =
-                  recommendationsJSON?.vacation_destinations?.top_10_recommendations?.slice(
-                    0,
-                    3,
-                  ) || []; // TODO: NEED TO HAVE USER SELECT IF THEY ARE SEARCHING FOR A DESTINATION OR RENTAL
-
-                return {
-                  id,
-                  recommendations: recommendationsSlice,
-                  rawRecommendationsData: recommendationsJSON,
-                  openAIID,
-                  answers: answersArray,
-                  date: formatDate(updatedAt),
-                  title:
-                    recommendationsSlice[0].recommendation_title ||
-                    answersArray[0],
-                  summary:
-                    recommendationsSlice[0].recommendation_summary ||
-                    answersArray[3],
-                  destinations:
-                    recommendationsSlice?.map((slice) => ({
-                      name: slice.business_name,
-                      city: slice.business_city,
-                      country: slice.business_country,
-                      url: slice.googleMapsUri || slice.websiteUri,
-                    })) || [],
-                  tags:
-                    recommendationsSlice?.flatMap(
-                      (slice) =>
-                        slice.types?.map((t) => t.replaceAll(/_/g, " ")) || [],
-                    ) || [],
-                };
-              },
-            );
-
-            setSearchHistory(formattedData);
-          }
-          setIsLoading(false);
-        } catch (e) {
-          console.error(e);
-          setIsLoading(false);
-        } finally {
-          setDidAttemptNoResults(true);
-        }
-      }
-    };
-    getRecs();
-  }, [userDocID, didAttemptNoResults]);
   return (
-    <SearchHistoryContext.Provider value={{ searchHistory, isLoading }}>
+    <SearchHistoryContext.Provider value={contextValue}>
       {children}
     </SearchHistoryContext.Provider>
   );

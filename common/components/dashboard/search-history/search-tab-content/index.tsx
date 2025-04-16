@@ -11,7 +11,7 @@ const INITIAL_COUNT = 3;
 const INCREMENT_COUNT = 5;
 
 const SearchTabContent: React.FC = () => {
-  const { searchHistory, isLoading } = useSearchHistory();
+  const { searchHistory, isLoading, refetchSearchHistory } = useSearchHistory();
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
 
   if (isLoading) {
@@ -28,6 +28,10 @@ const SearchTabContent: React.FC = () => {
     setVisibleCount(INITIAL_COUNT);
   };
 
+  const handleDelete = () => {
+    refetchSearchHistory();
+  };
+
   const visibleSearches = searchHistory.slice(0, visibleCount);
 
   return (
@@ -37,7 +41,11 @@ const SearchTabContent: React.FC = () => {
       ) : (
         <>
           {visibleSearches.map((search, index) => (
-            <SearchCard key={search.id || index} {...search} />
+            <SearchCard
+              key={search.id || index}
+              {...search}
+              onDelete={handleDelete}
+            />
           ))}
           <div className="flex flex-wrap justify-center gap-2 pt-2">
             {visibleCount > INITIAL_COUNT && (
