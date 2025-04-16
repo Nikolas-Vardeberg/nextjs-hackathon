@@ -1,25 +1,37 @@
 import React from "react";
 
 interface QuestionsAndAnswersProps {
-  questions: { label: string; value: string }[];
+  answers?: string[];
 }
 
 const QuestionsAndAnswers: React.FC<QuestionsAndAnswersProps> = ({
-  questions,
+  answers,
 }) => {
   return (
     <div>
       <h5 className="text-sm font-medium text-gray-500 mb-1">
         Your Questions & Answers
       </h5>
-      <ul className="space-y-2 text-sm">
-        {questions.map((question, index) => (
-          <li key={index} className="flex gap-2">
-            <span className="font-medium">{question.label}:</span>
-            <span>{question.value}</span>
+      {answers && (
+        <ul className="space-y-2 text-sm">
+          <li className="">
+            <span className="font-medium">Destination: </span>
+            <span>{answers[3]}</span>
           </li>
-        ))}
-      </ul>
+          <li className="">
+            <span className="font-medium">Accommodation: </span>
+            <span>{answers[1]}</span>
+          </li>
+          <li className="">
+            <span className="font-medium">Budget: </span>
+            <span>{answers[2]}</span>
+          </li>
+          <li className="">
+            <span className="font-medium">Duration: </span>
+            <span>{answers[5]}</span>
+          </li>
+        </ul>
+      )}
     </div>
   );
 };

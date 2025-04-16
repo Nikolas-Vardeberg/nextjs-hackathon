@@ -15,6 +15,7 @@ import React, {
 type SearchItem = {
   title: string;
   summary: string;
+  answers: string[];
   date: string;
   tags: string[];
   destinations: { name: string; recommended: boolean }[];
@@ -84,6 +85,7 @@ export const SearchHistoryProvider = ({
                   recommendations: recommendationsSlice,
                   rawRecommendationsData: recommendationsJSON,
                   openAIID,
+                  answers: answersArray,
                   date: formatDate(updatedAt),
                   title:
                     recommendationsSlice[0].recommendation_title ||

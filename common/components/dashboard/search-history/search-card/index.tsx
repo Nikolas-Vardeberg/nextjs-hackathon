@@ -13,6 +13,7 @@ interface SearchCardProps {
   tags: string[];
   destinations: Destination[];
   summary: string;
+  answers?: string[];
 }
 
 const SearchCard: React.FC<SearchCardProps> = ({
@@ -21,14 +22,8 @@ const SearchCard: React.FC<SearchCardProps> = ({
   tags,
   destinations,
   summary,
+  answers,
 }) => {
-  const questions = [
-    { label: "Duration", value: "7-10 days" },
-    { label: "Budget", value: "Mid-range" },
-    { label: "Activities", value: "Relaxation" },
-    { label: "Accommodation", value: "Hotel or resort" },
-  ];
-
   return (
     <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-gray-200">
       <div className="flex flex-col space-y-1.5 p-6 pb-2 pt-4">
@@ -80,7 +75,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
           ))}
         </div>
       </div>
-      <SearchDetails questions={questions} summary={summary} />
+      <SearchDetails answers={answers} summary={summary} />
     </div>
   );
 };
