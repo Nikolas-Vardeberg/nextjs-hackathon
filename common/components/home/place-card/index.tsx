@@ -55,10 +55,7 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
   };
 
   return (
-    <Card
-      className="overflow-hidden hover:shadow-lg transition-shadow"
-      key={photoUrl}
-    >
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow h-[550px] flex flex-col">
       <div className="relative h-72">
         {/* Wrapper for responsive image */}
         <Image
@@ -74,7 +71,6 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
           }}
           blurDataURL={placeholder.src}
           onError={() => setPhotoUrl(placeholder.src)} // Set fallback image on error
-          className="rounded-md" // Optional: Add rounded corners
         />
         {isSignedIn && (
           <div className="absolute top-2 left-2">
@@ -89,9 +85,9 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
           </div>
         )}
       </div>
-      <CardContent className="p-4 ">
+      <CardContent className="p-4 flex-grow">
         <div className="flex items-start justify-between mb-2 mt-6">
-          <CardTitle>{rec.business_name}</CardTitle>
+          <CardTitle className="line-clamp-1">{rec.business_name}</CardTitle>
           <div className="text-teal-700 font-medium">
             {rec?.priceLevel === "PRICE_LEVEL_FREE" || !rec?.priceLevel
               ? "$"
@@ -106,23 +102,43 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
             {rec.business_city}, {rec.business_country}
           </span>
         </div>
-        <p className="text-gray-600 mb-3">{rec.appealing_description}</p>
+        <p className="text-gray-600 mb-3 line-clamp-2">
+          {rec.appealing_description}
+        </p>
         <div className="flex flex-wrap gap-2 mb-4">
-          <Badge variant="outline" className="bg-teal-50">
-            {rec.categoryKey?.replaceAll("_", " ")}
-          </Badge>
-          <Badge variant="outline" className="bg-teal-50">
-            {rec.typeKey?.replaceAll("_", " ")}
-          </Badge>
+          {/* Get all badges first */}
+          {(() => {
+            const allBadges = [
+              rec.categoryKey,
+              rec.typeKey,
+              ...(rec?.types?.slice(0, 5) || []),
+            ].filter(Boolean);
 
-          {rec?.types?.slice(0, 5).map((val) => (
-            <Badge variant="outline" className="bg-teal-50" key={val}>
-              {val.replaceAll("_", " ")}
-            </Badge>
-          ))}
+            // Only show first 3 badges
+            const visibleBadges = allBadges.slice(0, 3);
+            const remainingCount = allBadges.length - visibleBadges.length;
+
+            return (
+              <>
+                {visibleBadges.map((badge, index) => (
+                  <Badge variant="outline" className="bg-teal-50" key={index}>
+                    {typeof badge === "string"
+                      ? badge.replaceAll("_", " ")
+                      : ""}
+                  </Badge>
+                ))}
+
+                {remainingCount > 0 && (
+                  <Badge variant="outline" className="bg-teal-50">
+                    +{remainingCount} more
+                  </Badge>
+                )}
+              </>
+            );
+          })()}
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="mt-auto">
         <a
           className="w-full block"
           href={rec?.websiteUri || rec?.googleMapsUri}
