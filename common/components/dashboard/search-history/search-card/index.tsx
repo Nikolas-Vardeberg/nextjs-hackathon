@@ -134,7 +134,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
           destination.url ? (
             <a
               href={destination.url}
-              key={index}
+              key={`${destination.name}-${index}`}
               target="_blank"
               rel="noopener noreferrer"
               className="group"
@@ -147,7 +147,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
               </Badge>
             </a>
           ) : (
-            <Badge key={index} variant="secondary">
+            <Badge key={`${destination.name}-${index}`} variant="secondary">
               <MapPin size={12} className="inline mr-1" />
               {destination.name}
             </Badge>
