@@ -23,7 +23,7 @@ export const RecommendationsProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const { userDocID } = useUserDocumentContext();
-  const [isLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [recommendations, setRecommendations] =
     useState<RecommendationsResponse | null>(
       defaultRecommendations as RecommendationsResponse,
@@ -31,10 +31,13 @@ export const RecommendationsProvider: React.FC<{
 
   const loadRecommendations = async (answers: string[]) => {
     try {
+      setIsLoading(true);
       const result = await getSearchRecommendations(answers, userDocID);
       setRecommendations(result);
     } catch (e) {
       console.error("Failed to fetch recommendations:", e);
+    } finally {
+      setIsLoading(false);
     }
   };
 

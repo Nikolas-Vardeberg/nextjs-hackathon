@@ -28,20 +28,23 @@ export default function MobileNav({ links, onClose }: MobileNavProps) {
           <X size={24} />
         </button>
 
-        <ul className="flex flex-col gap-4 my-6">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="block py-2 hover:text-black text-neutral-800 font-medium"
-                onClick={onClose}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="flex gap-2 flex-col">
+        {links.length > 0 && (
+          <ul className="flex flex-col gap-4 my-6">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="block py-2 hover:text-black text-neutral-800 font-medium"
+                  onClick={onClose}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div className="flex gap-2 flex-col mt-auto">
           <NavActions onClose={onClose} />
         </div>
       </div>

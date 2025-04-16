@@ -9,7 +9,6 @@ export type HeroSearchProps = {
   onSearch?: (query: string) => void;
 };
 
-// TODO: This is placeholder for now
 export function HeroSearch({
   placeholder = "What are you looking for?",
   buttonText = "Search",
