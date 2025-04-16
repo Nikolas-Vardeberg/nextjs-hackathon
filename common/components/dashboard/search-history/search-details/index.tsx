@@ -4,7 +4,7 @@ import RecommendationSummary from "../recommendation-summary";
 
 interface SearchDetailsProps {
   summary: string;
-  answers?: [];
+  answers?: string[];
 }
 
 const SearchDetails: React.FC<SearchDetailsProps> = ({ answers, summary }) => {
