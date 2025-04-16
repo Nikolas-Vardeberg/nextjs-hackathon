@@ -50,10 +50,15 @@ export const SearchHistoryProvider = ({
   const [searchHistory, setSearchHistory] = useState<SearchItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { userDocID } = useUserDocumentContext();
-
+  const [didAttemptNoResults, setDidAttemptNoResults] = useState(false);
   useEffect(() => {
     const getRecs = async () => {
-      if (!isLoading && userDocID && searchHistory.length < 1) {
+      if (
+        !isLoading &&
+        userDocID &&
+        searchHistory.length < 1 &&
+        !didAttemptNoResults
+      ) {
         try {
           setIsLoading(true);
           const recs = await getSavedRecommendations(userDocID);
@@ -100,11 +105,13 @@ export const SearchHistoryProvider = ({
         } catch (e) {
           console.error(e);
           setIsLoading(false);
+        } finally {
+          setDidAttemptNoResults(true);
         }
       }
     };
     getRecs();
-  }, [isLoading, userDocID, searchHistory]);
+  }, [isLoading, userDocID, searchHistory, didAttemptNoResults]);
   return (
     <SearchHistoryContext.Provider value={{ searchHistory, isLoading }}>
       {children}
