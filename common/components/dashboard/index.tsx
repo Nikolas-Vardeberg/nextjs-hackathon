@@ -51,7 +51,7 @@ const DashboardView: React.FC = () => {
           </div>
         </div>
 
-        <div>
+        <div className="space-y-4">
           {Object.entries(recommendations?.vacation_destinations || {}).map(
             ([key, value]) => (
               <div key={key}>
