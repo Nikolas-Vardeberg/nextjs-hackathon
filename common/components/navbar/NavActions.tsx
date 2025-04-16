@@ -12,12 +12,14 @@ export default function NavActions({ onClose }: NavActionsProps) {
   return (
     <>
       <SignedOut>
-        <Button variant="inverted-tealwave" onClick={onClose} asChild>
-          <Link href="/sign-in">Sign In</Link>
-        </Button>
-        <Button variant="tealwave" onClick={onClose} asChild>
-          <Link href="/sign-up">Get Started</Link>
-        </Button>
+        <div className="mt-auto md:mt-[unset] flex md:flex-row flex-col gap-2 md:gap-4 pt-4 border-t border-gray-100 w-full md:border-none md:pt-0">
+          <Button variant="inverted-tealwave" onClick={onClose} asChild>
+            <Link href="/sign-in">Sign In</Link>
+          </Button>
+          <Button variant="tealwave" onClick={onClose} asChild>
+            <Link href="/sign-up">Get Started</Link>
+          </Button>
+        </div>
       </SignedOut>
       <SignedIn>
         <div className="mt-auto md:mt-[unset] flex md:flex-row flex-col gap-2 md:gap-4 pt-4 border-t border-gray-100 w-full md:border-none md:pt-0">
