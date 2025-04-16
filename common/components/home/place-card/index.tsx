@@ -15,7 +15,10 @@ import Button from "../../ui/Button";
 import { useUser } from "@clerk/nextjs";
 import HeartButton from "../../ui/HeartButton";
 
-const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
+const PlaceCard: React.FC<{
+  rec: RecommendationItem;
+  maxTagCount?: number;
+}> = ({ rec, maxTagCount = 3 }) => {
   const [photoUrl, setPhotoUrl] = useState(
     rec.photos?.[0]?.name
       ? `https://places.googleapis.com/v1/${rec.photos[0].name}/media/?`
@@ -56,7 +59,7 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow h-[550px] flex flex-col">
-      <div className="relative h-72">
+      <div className="relative h-56 w-full flex-shrink-0">
         {/* Wrapper for responsive image */}
         <Image
           src={photoUrl}
@@ -66,9 +69,7 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
           loading="lazy"
           placeholder="blur"
           fill
-          style={{
-            objectFit: "cover",
-          }}
+          className="object-cover object-center w-full h-full"
           blurDataURL={placeholder.src}
           onError={() => setPhotoUrl(placeholder.src)} // Set fallback image on error
         />
@@ -85,7 +86,7 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
           </div>
         )}
       </div>
-      <CardContent className="p-4 flex-grow">
+      <CardContent className="p-4 flex-grow overflow-hidden">
         <div className="flex items-start justify-between mb-2 mt-6">
           <CardTitle className="line-clamp-1">{rec.business_name}</CardTitle>
           <div className="text-teal-700 font-medium">
@@ -114,8 +115,8 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
               ...(rec?.types?.slice(0, 5) || []),
             ].filter(Boolean);
 
-            // Only show first 4 badges to prevent overflow
-            const visibleBadges = allBadges.slice(0, 4);
+            // Only show first x badges to prevent overflow
+            const visibleBadges = allBadges.slice(0, maxTagCount);
             const remainingCount = allBadges.length - visibleBadges.length;
 
             return (
