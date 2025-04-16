@@ -18,7 +18,7 @@ import HeartButton from "../../ui/HeartButton";
 const PlaceCard: React.FC<{
   rec: RecommendationItem;
   maxTagCount?: number;
-}> = ({ rec, maxTagCount = 3 }) => {
+}> = ({ rec, maxTagCount = 4 }) => {
   const [photoUrl, setPhotoUrl] = useState(
     rec.photos?.[0]?.name
       ? `https://places.googleapis.com/v1/${rec.photos[0].name}/media/?`
@@ -89,7 +89,7 @@ const PlaceCard: React.FC<{
       <CardContent className="p-4 flex-grow overflow-hidden">
         <div className="flex items-start justify-between mb-2 mt-6">
           <CardTitle className="line-clamp-1">{rec.business_name}</CardTitle>
-          <div className="text-teal-700 font-medium">
+          <div className="text-teal-600 font-medium">
             {rec?.priceLevel === "PRICE_LEVEL_FREE" || !rec?.priceLevel
               ? "$"
               : rec?.priceLevel === "PRICE_LEVEL_MODERATE"
@@ -122,7 +122,7 @@ const PlaceCard: React.FC<{
             return (
               <>
                 {visibleBadges.map((badge, index) => (
-                  <Badge variant="outline" className="bg-teal-50" key={index}>
+                  <Badge variant="secondary" key={index}>
                     {typeof badge === "string"
                       ? badge.replaceAll("_", " ")
                       : ""}
@@ -130,9 +130,7 @@ const PlaceCard: React.FC<{
                 ))}
 
                 {remainingCount > 0 && (
-                  <Badge variant="outline" className="bg-teal-50">
-                    +{remainingCount} more
-                  </Badge>
+                  <Badge variant="dashed">+{remainingCount} more</Badge>
                 )}
               </>
             );
@@ -140,16 +138,15 @@ const PlaceCard: React.FC<{
         </div>
       </CardContent>
       <CardFooter className="mt-auto">
-        <a
-          className="w-full block"
-          href={rec?.websiteUri || rec?.googleMapsUri}
-          target="_blank"
-          rel="noopener"
-        >
-          <Button className="w-full bg-teal-600 hover:bg-teal-700">
+        <Button className="w-full" asChild>
+          <a
+            href={rec?.websiteUri || rec?.googleMapsUri}
+            target="_blank"
+            rel="noopener"
+          >
             View Details
-          </Button>
-        </a>
+          </a>
+        </Button>
       </CardFooter>
     </Card>
   );
