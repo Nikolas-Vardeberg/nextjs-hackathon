@@ -115,7 +115,7 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
             ].filter(Boolean);
 
             // Only show first 3 badges
-            const visibleBadges = allBadges.slice(0, 3);
+            const visibleBadges = allBadges.slice(0, 4);
             const remainingCount = allBadges.length - visibleBadges.length;
 
             return (
