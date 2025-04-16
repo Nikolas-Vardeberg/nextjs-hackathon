@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin, ExternalLink } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
 import SearchDetails from "../search-details";
 import Link from "next/link";
 import Button from "@/common/components/ui/Button";
@@ -49,7 +49,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
           </div>
           <Button variant="inverted-link" asChild>
             <Link href={`/dashboard/history/${id}`}>
-              View <ExternalLink size={14} />
+              View <ArrowRight size={14} />
             </Link>
           </Button>
         </div>

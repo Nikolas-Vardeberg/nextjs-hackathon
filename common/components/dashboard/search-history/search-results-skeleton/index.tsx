@@ -21,6 +21,7 @@ export default function SearchResultsSkeleton({
                 </div>
                 <Skeleton className="h-7 w-64 my-3" />
               </div>
+              <Skeleton className="h-9 w-20 rounded-md" />
             </div>
           </div>
           <div className="p-6 pt-0 pb-3">
