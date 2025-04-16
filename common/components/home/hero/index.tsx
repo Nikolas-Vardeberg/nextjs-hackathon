@@ -24,14 +24,8 @@ const Hero: React.FC<{ onSearch: (answers: string[]) => void }> = ({
   return (
     <HeroContainer backgroundImage={heroBg.src}>
       <HeroContent
-        title={
-          <>
-            Travel Right Planned
-            <div className="h-4" />
-            Toward Real Paradise
-          </>
-        }
-        description="Trust. Relaxation. Personally."
+        title="Your Perfect Getaway"
+        description="Our AI helps you explore destinations and find the perfect rental for your next vacation"
         alignment="left"
       >
         <HeroSearch
