@@ -12,7 +12,7 @@ const ScrollSection: React.FC<{
         {recommendations?.map((rec, index) => (
           <div
             key={rec.business_name || index}
-            className="snap-start min-w-[280px]"
+            className="snap-start min-w-[350px]"
           >
             <PlaceCard rec={rec} />
           </div>
