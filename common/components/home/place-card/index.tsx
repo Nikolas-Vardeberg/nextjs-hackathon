@@ -58,7 +58,7 @@ const PlaceCard: React.FC<{
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow h-[550px] flex flex-col">
+    <Card className="overflow-hidden bg-white hover:shadow-lg transition-shadow h-[550px] flex flex-col">
       <div className="relative h-56 w-full flex-shrink-0">
         {/* Wrapper for responsive image */}
         <Image
