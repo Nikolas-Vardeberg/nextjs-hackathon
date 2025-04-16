@@ -77,7 +77,7 @@ const ScrollSection: React.FC<{
 
         <div
           ref={scrollContainerRef}
-          className="w-full flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 scroll-smooth"
+          className="w-full flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 scroll-smooth custom-scrollbar"
         >
           {recommendations?.map((rec, index) => (
             <div
