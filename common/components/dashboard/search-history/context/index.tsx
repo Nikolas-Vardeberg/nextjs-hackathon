@@ -18,7 +18,7 @@ type SearchItem = {
   answers: string[];
   date: string;
   tags: string[];
-  destinations: { name: string; recommended: boolean }[];
+  destinations: { name: string; url?: string; country: string; city: string }[];
   recommendations: RecommendationItem[];
   rawRecommendationsData: RecommendationsResponse;
 };
@@ -96,7 +96,9 @@ export const SearchHistoryProvider = ({
                   destinations:
                     recommendationsSlice?.map((slice) => ({
                       name: slice.business_name,
-                      recommended: true,
+                      city: slice.business_city,
+                      country: slice.business_country,
+                      url: slice.googleMapsUri || slice.websiteUri,
                     })) || [],
                   tags:
                     recommendationsSlice?.flatMap(

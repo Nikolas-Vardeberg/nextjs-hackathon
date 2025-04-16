@@ -1,10 +1,12 @@
 import React from "react";
-import { MapPin, Star } from "lucide-react";
+import { MapPin } from "lucide-react";
 import SearchDetails from "../search-details";
 
 interface Destination {
   name: string;
-  recommended: boolean;
+  url?: string;
+  country: string;
+  city: string;
 }
 
 interface SearchCardProps {
@@ -34,7 +36,6 @@ const SearchCard: React.FC<SearchCardProps> = ({
                 Search
               </div>
               <div className="flex items-center text-sm text-gray-500">
-                <Star className="mr-1 text-yellow-500 fill-yellow-500" />
                 {date}
               </div>
             </div>
@@ -43,19 +44,12 @@ const SearchCard: React.FC<SearchCardProps> = ({
         </div>
       </div>
       <div className="p-6 pt-0 pb-3">
-        <div className="flex flex-wrap gap-2 mb-3">
-          {tags.map((tag, index) => (
-            <div
-              key={index}
-              className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-secondary-foreground border-gray-300"
-            >
-              {tag}
-            </div>
-          ))}
-        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {destinations.map((destination, index) => (
-            <div
+            <a
+              href={destination.url}
+              target="_blank"
+              rel="noopener"
               key={index}
               className="relative rounded-md border p-2 flex items-center gap-3 border-gray-300"
             >
@@ -64,18 +58,16 @@ const SearchCard: React.FC<SearchCardProps> = ({
               </div>
               <div className="flex-1 min-w-0">
                 <div className="font-medium truncate">{destination.name}</div>
-                {destination.recommended && (
-                  <div className="flex items-center text-sm text-gray-500">
-                    <Star className="mr-1 text-yellow-500 fill-yellow-500" />
-                    Recommended
-                  </div>
-                )}
+
+                <div className="flex items-center text-sm text-gray-500">
+                  {destination.city}, {destination.country}
+                </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
-      <SearchDetails answers={answers} summary={summary} />
+      <SearchDetails tags={tags} answers={answers} summary={summary} />
     </div>
   );
 };
