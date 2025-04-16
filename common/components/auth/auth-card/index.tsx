@@ -24,7 +24,7 @@ const AuthCard = ({
       <div className="w-full max-w-md border border-gray-200 bg-white rounded-lg shadow-md">
         <div className="flex flex-col p-7 gap-6">
           <div className="border-b border-dashed border-gray-200 pb-6">
-            <Logo className="mb-4" />
+            <Logo className="mb-2" />
             <h1 className="text-2xl font-bold">{title}</h1>
             {description && <p className="text-gray-600 mt-2">{description}</p>}
           </div>
