@@ -13,6 +13,7 @@ export type VacationSearchQuestion = {
 
 export type VacationSearchAnswers = {
   destination: string;
+  accommodationType: string;
   amenities: string;
   budget: string;
   location: string;
@@ -39,25 +40,39 @@ const pastExperienceValidation = z
 
 const travelDateValidation = z.string().min(1, "Please provide a travel date");
 
+const accommodationTypeValidation = z
+  .string()
+  .refine((val) => val === "destinations" || val === "rentals", {
+    message: "Please select either Vacation Destinations or Vacation Rentals",
+  });
+
 export const VACATION_SEARCH_QUESTIONS: VacationSearchQuestion[] = [
   {
     id: 1,
     question: "What is your ideal vacation destination or rental?",
-    placeholder: "Type your answer here...",
+    placeholder: "e.g. Mexico City, Mexico",
     validation: z.object({
       answer: destinationValidation,
     }),
   },
   {
     id: 2,
+    question: "What is your vacation focus?",
+    placeholder: "Select Vacation Destinations or Vacation Rentals",
+    validation: z.object({
+      answer: accommodationTypeValidation,
+    }),
+  },
+  {
+    id: 3,
     question: "What amenities are most important to you?",
-    placeholder: "Type your answer here...",
+    placeholder: "e.g. Pool, Free Wifi, etc.",
     validation: z.object({
       answer: amenitiesValidation,
     }),
   },
   {
-    id: 3,
+    id: 4,
     question: "What is your budget range?",
     placeholder: "Enter your budget range (e.g. $500-$1000)",
     validation: z.object({
@@ -65,25 +80,25 @@ export const VACATION_SEARCH_QUESTIONS: VacationSearchQuestion[] = [
     }),
   },
   {
-    id: 4,
+    id: 5,
     question: "Are you looking for a specific location?",
-    placeholder: "Type your answer here...",
+    placeholder: "e.g. San Francisco, CA",
     validation: z.object({
       answer: locationValidation,
     }),
   },
   {
-    id: 5,
+    id: 6,
     question: "What was your favorite vacation or rental experience?",
-    placeholder: "Type your answer here...",
+    placeholder: "e.g. I loved the food in Mexico",
     validation: z.object({
       answer: pastExperienceValidation,
     }),
   },
   {
-    id: 6,
+    id: 7,
     question: "When are you planning to travel?",
-    placeholder: "When are you planning to travel? (e.g. June 2024)",
+    placeholder: "e.g. June 2024",
     validation: z.object({
       answer: travelDateValidation,
     }),
@@ -92,6 +107,7 @@ export const VACATION_SEARCH_QUESTIONS: VacationSearchQuestion[] = [
 
 export const VacationSearchSchema = z.object({
   destination: destinationValidation,
+  accommodationType: accommodationTypeValidation,
   amenities: amenitiesValidation,
   budget: budgetValidation,
   location: locationValidation,

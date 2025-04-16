@@ -1,7 +1,7 @@
-import { Home, Plane, Car, type LucideIcon } from "lucide-react";
+import { Home, Plane, Car, type LucideIcon, HomeIcon } from "lucide-react";
 import type { UserType } from "@/lib/schemas/auth";
 
-type UserRegistrationProps = {
+export type UserRegistrationProps = {
   id: string;
   type: "email" | "text" | "password";
   inputType: "select" | "input";
@@ -11,10 +11,17 @@ type UserRegistrationProps = {
   name: string;
 };
 
-type UserRegistrationTypeProps = {
+export type UserRegistrationTypeProps = {
   value: UserType;
   title: string;
   text: string;
+  icon: LucideIcon;
+};
+
+export type VacationFocusOption = {
+  id: string;
+  title: string;
+  description?: string;
   icon: LucideIcon;
 };
 
@@ -91,5 +98,20 @@ export const USER_TYPE_FORM: UserRegistrationTypeProps[] = [
     title: "Homebody",
     text: "I rarely or never travel",
     icon: Home,
+  },
+];
+
+export const VACATION_FOCUS_OPTIONS: VacationFocusOption[] = [
+  {
+    id: "destinations",
+    title: "Vacation Destinations",
+    description: "Discover attractions, local culture, and unique experiences",
+    icon: Plane,
+  },
+  {
+    id: "rentals",
+    title: "Vacation Rentals",
+    description: "Find apartments, lofts, studios, and homes to stay in",
+    icon: HomeIcon,
   },
 ];
