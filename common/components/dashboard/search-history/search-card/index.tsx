@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin, Star, Heart } from "lucide-react";
+import { MapPin, Star } from "lucide-react";
 import SearchDetails from "../search-details";
 
 interface Destination {
@@ -12,6 +12,7 @@ interface SearchCardProps {
   date: string;
   tags: string[];
   destinations: Destination[];
+  summary: string;
 }
 
 const SearchCard: React.FC<SearchCardProps> = ({
@@ -19,6 +20,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
   date,
   tags,
   destinations,
+  summary,
 }) => {
   const questions = [
     { label: "Duration", value: "7-10 days" },
@@ -26,9 +28,6 @@ const SearchCard: React.FC<SearchCardProps> = ({
     { label: "Activities", value: "Relaxation" },
     { label: "Accommodation", value: "Hotel or resort" },
   ];
-
-  const recommendationSummary =
-    "Based on your preferences for a 7-10 days relaxation trip with mid-range budget, we recommended destinations known for their relaxation opportunities and excellent hotel or resort options.";
 
   return (
     <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-gray-200">
@@ -77,17 +76,11 @@ const SearchCard: React.FC<SearchCardProps> = ({
                   </div>
                 )}
               </div>
-              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-accent hover:text-accent-foreground h-10 w-10 text-red-500">
-                <Heart className="fill-red-500" />
-              </button>
             </div>
           ))}
         </div>
       </div>
-      <SearchDetails
-        questions={questions}
-        recommendationSummary={recommendationSummary}
-      />
+      <SearchDetails questions={questions} summary={summary} />
     </div>
   );
 };

@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
     dirs: ["app", "common", "i18n", ".storybook", "lib"], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
   },
   images: {
+    deviceSizes: [640, 828, 1200],
+
     remotePatterns: [
       {
         protocol: "https",

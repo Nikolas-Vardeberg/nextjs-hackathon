@@ -18,7 +18,7 @@ import HeartButton from "../../ui/HeartButton";
 const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
   const [photoUrl, setPhotoUrl] = useState(
     rec.photos?.[0]?.name
-      ? `https://places.googleapis.com/v1/${rec.photos[0].name}/media/?maxHeightPx=500`
+      ? `https://places.googleapis.com/v1/${rec.photos[0].name}/media/?`
       : placeholder.src, // Use placeholder if no photo is available
   );
 
@@ -55,7 +55,10 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+    <Card
+      className="overflow-hidden hover:shadow-lg transition-shadow"
+      key={photoUrl}
+    >
       <div className="relative h-72">
         {/* Wrapper for responsive image */}
         <Image
@@ -66,9 +69,12 @@ const PlaceCard: React.FC<{ rec: RecommendationItem }> = ({ rec }) => {
           loading="lazy"
           placeholder="blur"
           fill
+          style={{
+            objectFit: "cover",
+          }}
           blurDataURL={placeholder.src}
           onError={() => setPhotoUrl(placeholder.src)} // Set fallback image on error
-          className="rounded-md object-cover  object-center" // Optional: Add rounded corners
+          className="rounded-md" // Optional: Add rounded corners
         />
         {isSignedIn && (
           <div className="absolute top-2 left-2">

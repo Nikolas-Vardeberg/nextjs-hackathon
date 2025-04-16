@@ -5,6 +5,8 @@ export interface Business {
   business_state: string;
   business_country: string;
   appealing_description?: string;
+  recommendation_title?: string;
+  recommendation_summary?: string;
   categoryKey: string;
   typeKey: string;
 }
@@ -113,6 +115,8 @@ export interface RecommendationItem extends Place {
   business_state: string;
   business_country: string;
   appealing_description: string;
+  recommendation_title?: string;
+  recommendation_summary?: string;
   categoryKey: string;
   typeKey: string;
 }
