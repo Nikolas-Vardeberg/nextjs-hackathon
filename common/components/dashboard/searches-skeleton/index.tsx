@@ -1,73 +1,76 @@
 "use client";
 
-import { ArrowLeft, Container } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Skeleton } from "@/common/components/ui/Skeleton";
+import Container from "../../atoms/layouts/Container";
 
 export default function SearchesSkeleton() {
   return (
-    <Container className="bg-gray-100 min-h-screen w-full">
-      {/* Back to Dashboard and Header */}
-      <div className="mb-6">
-        <Link
-          href="/dashboard"
-          className="inline-flex items-center text-sm text-teal-600 hover:text-teal-700 mb-4"
-        >
-          <ArrowLeft className="mr-1 h-4 w-4" /> Back to Dashboard
-        </Link>
+    <div className="bg-gray-100 min-h-screen w-full py-10">
+      <Container>
+        {/* Back to Dashboard and Header */}
+        <div className="mb-6">
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center text-sm text-teal-600 hover:text-teal-700 mb-4"
+          >
+            <ArrowLeft className="mr-1 h-4 w-4" /> Back to Dashboard
+          </Link>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-2">
-          <Skeleton className="h-10 w-3/4 md:w-1/2" />
-          <Skeleton className="h-8 w-32" />
-        </div>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-2">
+            <Skeleton className="h-10 w-3/4 md:w-1/2" />
+            <Skeleton className="h-8 w-32" />
+          </div>
 
-        <Skeleton className="h-16 w-full max-w-3xl mb-6" />
+          <Skeleton className="h-16 w-full max-w-3xl mb-6" />
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <Skeleton key={index} className="h-6 w-16 rounded-full" />
-          ))}
-        </div>
-      </div>
-
-      {/* Search Criteria Cards */}
-      <div className="mb-8">
-        <Skeleton className="h-8 w-48 mb-4" />
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <div
-              key={index}
-              className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
-            >
-              <div className="flex items-center mb-2">
-                <Skeleton className="h-5 w-5 mr-2 rounded" />
-                <Skeleton className="h-5 w-20" />
-              </div>
-              <Skeleton className="h-5 w-full" />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Tabs and Results */}
-      <div className="mb-8">
-        {/* Tabs */}
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex h-10 items-center justify-center rounded-full bg-white p-1 text-gray-600">
-            <Skeleton className="h-8 w-32 rounded-full mr-2" />
-            <Skeleton className="h-8 w-32 rounded-full" />
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <Skeleton key={index} className="h-6 w-16 rounded-full" />
+            ))}
           </div>
         </div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {Array.from({ length: 3 }).map((_, index) => (
-            <CardSkeleton key={index} />
-          ))}
+        {/* Search Criteria Cards */}
+        <div className="mb-8">
+          <Skeleton className="h-8 w-48 mb-4" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <div
+                key={index}
+                className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+              >
+                <div className="flex items-center mb-2">
+                  <Skeleton className="h-5 w-5 mr-2 rounded" />
+                  <Skeleton className="h-5 w-20" />
+                </div>
+                <Skeleton className="h-5 w-full" />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </Container>
+
+        {/* Tabs and Results */}
+        <div className="mb-8">
+          {/* Tabs */}
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex h-10 items-center justify-center rounded-full bg-white p-1 text-gray-600">
+              <Skeleton className="h-8 w-32 rounded-full mr-2" />
+              <Skeleton className="h-8 w-32 rounded-full" />
+            </div>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <CardSkeleton key={index} />
+            ))}
+          </div>
+        </div>
+      </Container>
+    </div>
   );
 }
 
