@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import useUserDocumentContext from "@/common/providers/user-document";
 import getSavedRecommendation from "@/lib/actions/get-saved-recommendation";
