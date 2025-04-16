@@ -3,6 +3,7 @@ import { MapPin, ArrowRight } from "lucide-react";
 import SearchDetails from "../search-details";
 import Link from "next/link";
 import Button from "@/common/components/ui/Button";
+import Badge from "@/common/components/ui/Badge";
 
 interface Destination {
   name: string;
@@ -36,9 +37,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
         <div className="flex justify-between items-start">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-teal-50 text-teal-700 border-gray-300">
-                Search
-              </div>
+              <Badge variant="primary">Search</Badge>
               <div className="flex items-center text-sm text-gray-500">
                 {date}
               </div>
@@ -65,7 +64,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
               className="relative rounded-md border p-2 flex items-center gap-3 border-gray-300"
             >
               <div className="w-12 h-12 rounded-md bg-gray-100 flex items-center justify-center">
-                <MapPin className="text-teal-600" />
+                <MapPin className="text-primary" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="font-medium truncate">{destination.name}</div>

@@ -18,7 +18,7 @@ export default function SubmitButton({
   return (
     <Button
       type="submit"
-      variant="tealwave"
+      variant="primary"
       disabled={loading}
       loading={loading}
       className={className}

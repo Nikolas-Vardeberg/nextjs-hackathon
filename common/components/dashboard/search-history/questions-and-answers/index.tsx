@@ -16,19 +16,19 @@ const QuestionsAndAnswers: React.FC<QuestionsAndAnswersProps> = ({
         <ul className="space-y-2 text-sm">
           <li className="">
             <span className="font-medium">Destination: </span>
-            <span>{answers[3]}</span>
+            <span className="text-gray-700">{answers[3]}</span>
           </li>
           <li className="">
             <span className="font-medium">Accommodation: </span>
-            <span>{answers[1]}</span>
+            <span className="text-gray-700">{answers[1]}</span>
           </li>
           <li className="">
             <span className="font-medium">Budget: </span>
-            <span>{answers[2]}</span>
+            <span className="text-gray-700">{answers[2]}</span>
           </li>
           <li className="">
             <span className="font-medium">Duration: </span>
-            <span>{answers[5]}</span>
+            <span className="text-gray-700">{answers[5]}</span>
           </li>
         </ul>
       )}

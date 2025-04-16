@@ -38,9 +38,9 @@ export const buttonVariants = cva(
         destructive: "bg-red-500 text-black",
         outline:
           "text-black border border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black",
-        link: "inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-800 transition-colors underline",
+        link: "inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors underline",
         "inverted-link":
-          "inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-800 transition-colors hover:underline",
+          "inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2",

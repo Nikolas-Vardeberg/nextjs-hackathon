@@ -12,7 +12,7 @@ const RecommendationSummary: React.FC<RecommendationSummaryProps> = ({
       <h5 className="text-sm font-medium text-gray-500 mb-1">
         AI Recommendation Summary
       </h5>
-      <p className="text-sm">{summary}</p>
+      <p className="text-sm text-gray-700">{summary}</p>
     </div>
   );
 };
