@@ -11,6 +11,7 @@ import {
   Clock,
   Activity,
   LucideIcon,
+  Container,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -157,7 +158,7 @@ export default function SearchesView({ id }: { id: string }) {
     [];
 
   return (
-    <div className="container mx-auto px-6 py-8">
+    <Container>
       <div className="mb-6">
         <Link
           href="/dashboard"
@@ -296,6 +297,6 @@ export default function SearchesView({ id }: { id: string }) {
           </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </Container>
   );
 }

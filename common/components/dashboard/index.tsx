@@ -7,6 +7,7 @@ import SearchHistory from "./search-history";
 import VacationSearchModal from "../vacation-search-modal";
 import useRecommendations from "@/common/providers/recommendations";
 import GridSection from "../home/grid-section";
+import Container from "../atoms/layouts/Container";
 
 const Dashboard: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +26,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="container m-auto px-10">
+    <Container>
       <center className="my-10">
         <HeroSearch
           placeholder="What is your ideal vacation destination or rental?"
@@ -61,7 +62,7 @@ const Dashboard: React.FC = () => {
           ),
         )}
       </div>
-    </div>
+    </Container>
   );
 };
 
