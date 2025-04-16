@@ -72,6 +72,11 @@ export function useVacationSearch({
   }, [reset]);
 
   const handleOpenChange = (open: boolean) => {
+    // Prevent closing the dialog when processing
+    if (!open && isProcessing) {
+      return;
+    }
+
     if (!open) {
       resetState();
       onClose();
