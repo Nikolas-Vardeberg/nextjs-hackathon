@@ -83,6 +83,7 @@ export const useSignUpForm = () => {
             body: JSON.stringify({
               fullName: values.fullName,
               authToken: signUp.createdSessionId,
+              // TODO: change this to clerkUserID
               clerkUserID: signUp.emailAddress,
               authExpiry: twoHoursFromNow,
             }),

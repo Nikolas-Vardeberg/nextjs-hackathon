@@ -36,11 +36,13 @@ export const buttonVariants = cva(
         destructive: "bg-red-500 text-black",
         outline:
           "text-black border border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black",
-        link: "underline text-black dark:text-white",
         tealwave:
           "bg-tealwave text-white hover:bg-tealwave/80 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-tealwave",
         "inverted-tealwave":
           "bg-white text-tealwave border border-tealwave hover:bg-tealwave hover:text-white",
+        link: "inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-800 transition-colors underline",
+        "inverted-link":
+          "inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-800 transition-colors hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2",

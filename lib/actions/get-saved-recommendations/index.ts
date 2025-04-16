@@ -14,6 +14,7 @@ const getSavedRecommendations = async (
   try {
     await auth();
     await connectDB();
+
     const openAPIDocuments = await OpenAIDocument.find({
       userDocID,
     })
