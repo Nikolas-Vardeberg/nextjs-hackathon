@@ -54,7 +54,7 @@ export const UserDocumentProvider: React.FC<{ children: React.ReactNode }> = ({
   const [userDocument, setUserDocument] = useState<UserDocument | undefined>(
     undefined,
   );
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [didTry, setDidTry] = useState<boolean>(false);
   const userID = user?.primaryEmailAddress?.emailAddress;
   const [favorites, setFavorites] = useState<FavoritesType[]>([]);
@@ -83,13 +83,11 @@ export const UserDocumentProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 
   useEffect(() => {
-    if (isLoading || userDocument || !userID || didTry) return; // Prevents re-fetching if already loaded
-
+    if (userDocument || !userID || didTry) return; // Prevents re-fetching if already loaded
     // This is where you would fetch the user document from your API or context
     // and set it in the context. For now, it's just a placeholder.
     const fetchUserDocument = async () => {
       try {
-        if (isLoading) return;
         setIsLoading(true);
         setDidTry(true);
         // Simulate an API call
