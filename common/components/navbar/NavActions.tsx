@@ -16,7 +16,7 @@ export default function NavActions({ onClose }: NavActionsProps) {
           <Button variant="inverted-primary" onClick={onClose} asChild>
             <Link href="/sign-in">Sign In</Link>
           </Button>
-          <Button variant="inverted-primary" onClick={onClose} asChild>
+          <Button variant="primary" onClick={onClose} asChild>
             <Link href="/sign-up">Get Started</Link>
           </Button>
         </div>

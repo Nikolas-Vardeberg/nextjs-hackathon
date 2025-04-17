@@ -8,7 +8,7 @@ export default function NotFoundBack() {
   const router = useRouter();
 
   return (
-    <Button variant="default" onClick={() => router.back()}>
+    <Button variant="inverted-primary" onClick={() => router.back()}>
       <ArrowLeft />
       Back
     </Button>
