@@ -8,9 +8,6 @@
     },
     "app/**/*": {
       "maxDuration": 300
-    },
-    "lib/actions/**/*": {
-      "maxDuration": 300
     }
   }
 }
