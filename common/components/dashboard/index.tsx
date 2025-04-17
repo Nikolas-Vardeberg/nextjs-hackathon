@@ -25,6 +25,11 @@ const DashboardView: React.FC = () => {
     setInitialQuery("");
   };
 
+  const onSearch = (answers: string[]) => {
+    if (isLoading) return;
+    loadRecommendations?.(answers);
+  };
+
   return (
     <div className="bg-gray-100 min-h-screen w-full py-10">
       <Container>
@@ -38,8 +43,10 @@ const DashboardView: React.FC = () => {
         <VacationSearchModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          onSearch={(answers) => !isLoading && loadRecommendations?.(answers)}
+          onSearch={onSearch}
           initialQuery={initialQuery}
+          isLoading={isLoading}
+          scrollToId="vacation-search-results"
         />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <div className="lg:col-span-2">
@@ -51,7 +58,7 @@ const DashboardView: React.FC = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div id="vacation-search-results" className="space-y-4">
           {Object.entries(recommendations?.vacation_destinations || {}).map(
             ([key, value]) => (
               <div key={key}>
