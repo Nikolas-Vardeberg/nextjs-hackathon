@@ -6,7 +6,7 @@
     "dashboard": {
       "maxDuration": 300
     },
-    "/": {
+    "": {
       "maxDuration": 300
     }
   }
