@@ -12,15 +12,26 @@ export default function VacationFocusSelection({
   onChange,
 }: VacationFocusSelectionProps) {
   return (
-    <div className="grid grid-cols-1 gap-4 w-full">
+    <div className="grid grid-cols-1 gap-4 w-full" role="radiogroup">
       {VACATION_FOCUS_OPTIONS.map(({ id, icon: Icon, title, description }) => {
         const isSelected = value === id;
+
+        const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            onChange(id);
+          }
+        };
 
         return (
           <div
             key={id}
             onClick={() => onChange(id)}
-            className={`flex items-center p-4 group rounded-lg cursor-pointer transition-all border border-gray-200 
+            onKeyDown={handleKeyDown}
+            role="radio"
+            aria-checked={isSelected}
+            tabIndex={0}
+            className={`flex items-center p-4 group rounded-lg cursor-pointer transition-all border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1
               ${
                 isSelected
                   ? "ring-2 ring-primary ring-offset-0 bg-teal-50 shadow-sm"
