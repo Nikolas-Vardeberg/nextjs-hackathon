@@ -1,13 +1,13 @@
 {
   "functions": {
     "app/api/**/*": {
-      "maxDuration": 60
+      "maxDuration": 300
     },
     "dashboard": {
-      "maxDuration": 60
+      "maxDuration": 300
     },
     "/": {
-      "maxDuration": 60
+      "maxDuration": 300
     }
   }
 }
