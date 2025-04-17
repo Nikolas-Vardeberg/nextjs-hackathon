@@ -14,6 +14,8 @@ import Badge from "../../ui/Badge";
 import Button from "../../ui/Button";
 import { useUser } from "@clerk/nextjs";
 import HeartButton from "../../ui/HeartButton";
+import saveFavorite from "@/lib/actions/save-favorite";
+import useUserDocumentContext from "@/common/providers/user-document";
 
 const PlaceCard: React.FC<{
   rec: RecommendationItem;
@@ -26,6 +28,7 @@ const PlaceCard: React.FC<{
   );
 
   const { isSignedIn } = useUser();
+  const { userDocID, isFavoriteSelector, isLoading } = useUserDocumentContext();
 
   const renderStars = () => {
     const rating = rec?.rating || 0; // Get the rating value
@@ -57,6 +60,21 @@ const PlaceCard: React.FC<{
     });
   };
 
+  const toggleFavorite: (
+    isSelected: boolean,
+  ) => Promise<boolean | undefined> = async (isSelected: boolean) => {
+    if (userDocID) {
+      const saved = await saveFavorite(
+        userDocID,
+        rec.id,
+        isSelected,
+        JSON.stringify(rec),
+      );
+      return saved?.success && isSelected;
+    }
+    return isSelected;
+  };
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow h-[550px] flex flex-col">
       <div className="relative h-56 w-full flex-shrink-0">
@@ -73,9 +91,12 @@ const PlaceCard: React.FC<{
           blurDataURL={placeholder.src}
           onError={() => setPhotoUrl(placeholder.src)} // Set fallback image on error
         />
-        {isSignedIn && (
+        {isSignedIn && userDocID && rec?.id && !isLoading && (
           <div className="absolute top-2 left-2">
-            <HeartButton onClick={(isSelected) => isSelected} />
+            <HeartButton
+              defaultIsSelected={isFavoriteSelector(rec?.id) || false}
+              onClick={toggleFavorite}
+            />
           </div>
         )}
         {rec?.rating && (

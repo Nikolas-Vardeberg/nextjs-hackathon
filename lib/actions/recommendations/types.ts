@@ -20,6 +20,7 @@ export interface PlaceDetails {
 }
 
 export interface Place {
+  id: string;
   formattedAddress: string;
   displayName: DisplayName;
   photos: Photo[];

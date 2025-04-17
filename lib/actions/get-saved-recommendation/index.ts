@@ -39,7 +39,6 @@ const getSavedRecommendation = async ({
       customValue_2: recommendation.customValue_2,
       customValue_3: recommendation.customValue_3,
     };
-
     return { success: true, data: serializedData };
   } catch (e) {
     console.log(e);
