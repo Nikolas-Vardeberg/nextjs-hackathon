@@ -29,7 +29,7 @@ export default function HomeView() {
   );
 
   return (
-    <main id="main-content" tabIndex={-1} className="outline-none">
+    <>
       <Hero
         onSearch={(answers) => !isLoading && loadRecommendations?.(answers)}
         isLoading={isLoading}
@@ -92,6 +92,6 @@ export default function HomeView() {
           </Tabs>
         )}
       </Container>
-    </main>
+    </>
   );
 }

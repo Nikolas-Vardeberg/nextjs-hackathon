@@ -10,7 +10,9 @@ export default function MarketingLayout({
     <>
       <SkipMain />
       <MarketingNavbar />
-      {children}
+      <main id="main-content" tabIndex={-1} className="outline-none">
+        {children}
+      </main>
     </>
   );
 }

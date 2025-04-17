@@ -37,11 +37,7 @@ const DashboardView: React.FC = () => {
   };
 
   return (
-    <main
-      id="main-content"
-      tabIndex={-1}
-      className="bg-gray-100 min-h-screen w-full py-10 outline-none"
-    >
+    <div className="bg-gray-100 min-h-screen w-full py-10">
       <Container>
         <center className="my-10">
           <HeroSearch
@@ -81,7 +77,7 @@ const DashboardView: React.FC = () => {
           )}
         </div>
       </Container>
-    </main>
+    </div>
   );
 };
 
