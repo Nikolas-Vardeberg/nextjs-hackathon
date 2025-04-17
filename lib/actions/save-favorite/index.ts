@@ -24,7 +24,6 @@ const saveFavorite = async (
     );
     return { success: true };
   } catch (e) {
-    console.log(e);
     if (e && e instanceof Error) throw Error(e.message);
   }
 };

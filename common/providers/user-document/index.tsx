@@ -11,7 +11,7 @@ import {
 import { useUser } from "@clerk/nextjs";
 import { RecommendationItem } from "@/lib/actions/recommendations/types";
 import getFavorites from "@/lib/actions/get-favorites";
-
+import saveFavorite from "@/lib/actions/save-favorite";
 type FavoritesType = {
   userDocID: string;
   googlePlaceID: string;
@@ -25,6 +25,16 @@ type UserDocumentContextType = {
   userDocID?: string;
   favorites?: FavoritesType[];
   isFavoriteSelector: (googlePlaceID: string) => boolean;
+  removeFavorite?: (
+    googlePlaceID: string,
+    googlePlaceDataCache: RecommendationItem,
+    favorite: boolean,
+  ) => Promise<void>;
+  addFavorite?: (
+    googlePlaceID: string,
+    googlePlaceDataCache: RecommendationItem,
+    favorite: boolean,
+  ) => Promise<void>;
 };
 
 const userDocumentContext = createContext<UserDocumentContextType>({
@@ -48,6 +58,29 @@ export const UserDocumentProvider: React.FC<{ children: React.ReactNode }> = ({
   const [didTry, setDidTry] = useState<boolean>(false);
   const userID = user?.primaryEmailAddress?.emailAddress;
   const [favorites, setFavorites] = useState<FavoritesType[]>([]);
+
+  const removeFavorite = useCallback(
+    async (
+      googlePlaceID: string,
+      googlePlaceDataCache: RecommendationItem,
+      favorite: boolean,
+    ) => {
+      try {
+        await saveFavorite(
+          userDocument?._id?.toString() || "",
+          googlePlaceID,
+          favorite,
+          JSON.stringify(googlePlaceDataCache),
+        );
+        setFavorites(
+          favorites.filter((fav) => fav.googlePlaceID !== googlePlaceID),
+        );
+      } catch {
+        console.error("issue removing favorite");
+      }
+    },
+    [favorites, userDocument?._id],
+  );
 
   useEffect(() => {
     if (isLoading || userDocument || !userID || didTry) return; // Prevents re-fetching if already loaded
@@ -109,7 +142,35 @@ export const UserDocumentProvider: React.FC<{ children: React.ReactNode }> = ({
     [favorites],
   );
 
-  console.log("favororits", favorites);
+  const addFavorite = useCallback(
+    async (
+      googlePlaceID: string,
+      googlePlaceDataCache: RecommendationItem,
+      favorite: boolean,
+    ) => {
+      try {
+        await saveFavorite(
+          userDocument?._id?.toString() || "",
+          googlePlaceID,
+          favorite,
+          JSON.stringify(googlePlaceDataCache),
+        );
+        setFavorites([
+          ...favorites,
+          {
+            userDocID: userDocument?._id?.toString() || "",
+            googlePlaceID,
+            favorite,
+            googlePlaceDataCache,
+          },
+        ]);
+      } catch {
+        console.error("issue adding favorite");
+      }
+    },
+    [favorites, userDocument?._id],
+  );
+
   return (
     <Provider
       value={{
@@ -118,6 +179,8 @@ export const UserDocumentProvider: React.FC<{ children: React.ReactNode }> = ({
         userDocument,
         isLoading,
         userDocID: userDocument?._id?.toString(),
+        removeFavorite,
+        addFavorite,
       }}
     >
       {children}

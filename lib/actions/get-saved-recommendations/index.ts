@@ -35,7 +35,6 @@ const getSavedRecommendations = async (
     }));
     return { success: true, data: serializedData };
   } catch (e) {
-    console.log(e);
     if (e && e instanceof Error) throw Error(e.message);
   }
 };

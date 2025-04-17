@@ -14,7 +14,7 @@ import Badge from "../../ui/Badge";
 import Button from "../../ui/Button";
 import { useUser } from "@clerk/nextjs";
 import HeartButton from "../../ui/HeartButton";
-import saveFavorite from "@/lib/actions/save-favorite";
+
 import useUserDocumentContext from "@/common/providers/user-document";
 
 const PlaceCard: React.FC<{
@@ -28,7 +28,14 @@ const PlaceCard: React.FC<{
   );
 
   const { isSignedIn } = useUser();
-  const { userDocID, isFavoriteSelector, isLoading } = useUserDocumentContext();
+  const {
+    userDocID,
+    isFavoriteSelector,
+    isLoading,
+    addFavorite,
+    removeFavorite,
+    favorites,
+  } = useUserDocumentContext();
 
   const renderStars = () => {
     const rating = rec?.rating || 0; // Get the rating value
@@ -63,14 +70,12 @@ const PlaceCard: React.FC<{
   const toggleFavorite: (
     isSelected: boolean,
   ) => Promise<boolean | undefined> = async (isSelected: boolean) => {
-    if (userDocID) {
-      const saved = await saveFavorite(
-        userDocID,
-        rec.id,
-        isSelected,
-        JSON.stringify(rec),
-      );
-      return saved?.success && isSelected;
+    if (userDocID && addFavorite && removeFavorite) {
+      if (isSelected) {
+        await addFavorite(rec.id, rec, isSelected);
+      } else {
+        await removeFavorite(rec.id, rec, isSelected);
+      }
     }
     return isSelected;
   };
@@ -99,7 +104,13 @@ const PlaceCard: React.FC<{
           </div>
         )}
         {isSignedIn && userDocID && rec?.id && !isLoading && (
-          <div className="absolute top-2 right-2">
+          <div
+            className="absolute top-2 right-2"
+            key={
+              favorites?.find((fave) => fave.googlePlaceID === rec.id)
+                ?.googlePlaceID
+            }
+          >
             <HeartButton
               defaultIsSelected={isFavoriteSelector(rec?.id) || false}
               onClick={toggleFavorite}

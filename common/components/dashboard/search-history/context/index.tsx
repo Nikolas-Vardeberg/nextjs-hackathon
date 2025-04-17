@@ -41,8 +41,6 @@ export const formatDate = (timestamp: string | number | Date): string => {
 };
 
 // Example usage
-const formattedDate = formatDate("2025-04-10T00:00:00Z");
-console.log(formattedDate); // Output: Apr 10, 2025
 const SearchHistoryContext = createContext<
   SearchHistoryContextType | undefined
 >({
