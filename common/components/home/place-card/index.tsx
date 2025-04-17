@@ -76,7 +76,7 @@ const PlaceCard: React.FC<{
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow h-[550px] flex flex-col">
+    <Card className="overflow-hidden bg-white hover:shadow-lg transition-shadow h-[550px] flex flex-col">
       <div className="relative h-56 w-full flex-shrink-0">
         {/* Wrapper for responsive image */}
         <Image
@@ -100,10 +100,14 @@ const PlaceCard: React.FC<{
           </div>
         )}
         {rec?.rating && (
-          <div className="absolute top-2 right-2 bg-white rounded-full px-2 py-1 flex items-center">
+          <div className="absolute top-2 left-2 bg-white rounded-full px-2 py-1 flex items-center">
             {renderStars()}
-
             <span className="ml-1 text-sm font-medium">{rec?.rating}</span>
+          </div>
+        )}
+        {isSignedIn && (
+          <div className="absolute top-2 right-2">
+            <HeartButton onClick={(isSelected) => isSelected} />
           </div>
         )}
       </div>

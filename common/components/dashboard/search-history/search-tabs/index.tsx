@@ -1,10 +1,14 @@
 import React from "react";
 import SearchTabContent from "../search-tab-content";
 
-const SearchTabs: React.FC = () => {
+interface SearchTabsProps {
+  searchTrigger: number;
+}
+
+const SearchTabs: React.FC<SearchTabsProps> = ({ searchTrigger }) => {
   return (
     <div dir="ltr" data-orientation="horizontal">
-      <SearchTabContent />
+      <SearchTabContent searchTrigger={searchTrigger} />
     </div>
   );
 };

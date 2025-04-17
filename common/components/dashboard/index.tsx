@@ -12,6 +12,7 @@ import Container from "../atoms/layouts/Container";
 const DashboardView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialQuery, setInitialQuery] = useState("");
+  const [searchTrigger, setSearchTrigger] = useState(0);
   const { loadRecommendations, recommendations, isLoading } =
     useRecommendations();
 
@@ -23,6 +24,16 @@ const DashboardView: React.FC = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setInitialQuery("");
+  };
+
+  const onSearch = async (answers: string[]) => {
+    if (isLoading) return;
+    try {
+      await loadRecommendations?.(answers);
+      setSearchTrigger((prev) => prev + 1);
+    } catch (error) {
+      console.error("Error loading recommendations:", error);
+    }
   };
 
   return (
@@ -38,12 +49,14 @@ const DashboardView: React.FC = () => {
         <VacationSearchModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          onSearch={(answers) => !isLoading && loadRecommendations?.(answers)}
+          onSearch={onSearch}
           initialQuery={initialQuery}
+          isLoading={isLoading}
+          scrollToId="vacation-search-results"
         />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <div className="lg:col-span-2">
-            <SearchHistory />
+            <SearchHistory searchTrigger={searchTrigger} />
           </div>
           <div className="space-y-4">
             {/* <ActivityPanel /> */}
@@ -51,7 +64,7 @@ const DashboardView: React.FC = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div id="vacation-search-results" className="space-y-4">
           {Object.entries(recommendations?.vacation_destinations || {}).map(
             ([key, value]) => (
               <div key={key}>
