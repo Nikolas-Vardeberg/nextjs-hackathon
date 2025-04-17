@@ -23,7 +23,7 @@ type UserDocumentContextType = {
   userDocument?: UserDocument;
   isLoading?: boolean;
   userDocID?: string;
-  favorites?: RecommendationItem[];
+  favorites?: FavoritesType[];
   isFavoriteSelector: (googlePlaceID: string) => boolean;
 };
 
@@ -114,6 +114,7 @@ export const UserDocumentProvider: React.FC<{ children: React.ReactNode }> = ({
     <Provider
       value={{
         isFavoriteSelector,
+        favorites: favorites,
         userDocument,
         isLoading,
         userDocID: userDocument?._id?.toString(),
