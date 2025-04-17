@@ -3,10 +3,13 @@
     "app/api/**/*": {
       "maxDuration": 300
     },
-    "dashboard": {
+    "src/pages/**/*": {
       "maxDuration": 300
     },
-    "src/pages/**/*": {
+    "app/**/*": {
+      "maxDuration": 300
+    },
+    "lib/actions/**/*": {
       "maxDuration": 300
     }
   }
