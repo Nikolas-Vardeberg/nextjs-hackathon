@@ -17,13 +17,14 @@ const SignInForm = () => {
   return (
     <>
       <div className="flex flex-col gap-5">
-        {USER_LOGIN_FORM.map((field) => (
+        {USER_LOGIN_FORM.map((field, index) => (
           <FormGenerator
             key={field.id}
             {...field}
             errors={errors}
             register={register}
             name={field.name}
+            autoFocus={index === 0}
           />
         ))}
       </div>

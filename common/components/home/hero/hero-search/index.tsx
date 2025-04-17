@@ -39,7 +39,6 @@ export function HeroSearch({
       className="flex items-center bg-white rounded-full p-1 sm:p-1.5 focus-within:ring-2 focus-within:ring-[var(--color-primary)] max-w-full sm:max-w-lg shadow-lg"
     >
       <Input
-        autoFocus
         placeholder={placeholder}
         name="query"
         className="w-full border-none shadow-none focus-visible:ring-0 text-black text-sm md:text-base"

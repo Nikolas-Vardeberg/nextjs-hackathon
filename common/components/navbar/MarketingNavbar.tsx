@@ -7,6 +7,7 @@ import Container from "@/common/components/atoms/layouts/Container";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import Logo from "@/common/components/logo";
+import SkipMain from "../ui/SkipMain";
 
 export function MarketingNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -53,6 +54,7 @@ export function MarketingNavbar() {
 
   return (
     <header className="w-full bg-white">
+      <SkipMain />
       <Container as="nav" className="py-4 flex items-center">
         <Logo className="flex-shrink-0" />
         <DesktopNav links={NAV_LINKS} />

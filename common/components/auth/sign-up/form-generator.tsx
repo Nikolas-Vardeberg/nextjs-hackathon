@@ -13,6 +13,7 @@ type Props = {
   errors: FieldErrors<FieldValues>;
   lines?: number;
   form?: string;
+  autoFocus?: boolean;
 };
 
 const FormGenerator = ({
@@ -26,6 +27,7 @@ const FormGenerator = ({
   label,
   lines,
   options,
+  autoFocus,
 }: Props) => {
   switch (inputType) {
     case "input":
@@ -37,6 +39,7 @@ const FormGenerator = ({
             type={type}
             placeholder={placeholder}
             form={form}
+            autoFocus={autoFocus}
             {...register(name)}
           />
           <ErrorMessage
@@ -55,7 +58,12 @@ const FormGenerator = ({
       return (
         <label className="flex flex-col gap-2" htmlFor={`select-${name}`}>
           {label && <span className="font-semibold text-sm">{label}</span>}
-          <select form={form} id={`select-${name}`} {...register(name)}>
+          <select
+            form={form}
+            id={`select-${name}`}
+            {...register(name)}
+            autoFocus={autoFocus}
+          >
             {options?.length &&
               options.map((option) => (
                 <option value={option.value} key={option.id}>
@@ -85,6 +93,7 @@ const FormGenerator = ({
             placeholder={placeholder}
             {...register(name)}
             rows={lines}
+            autoFocus={autoFocus}
           />
           <ErrorMessage
             errors={errors}
