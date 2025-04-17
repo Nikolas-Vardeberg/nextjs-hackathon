@@ -40,7 +40,7 @@ export default async function RootLayout({
                 forcedTheme="light"
                 disableTransitionOnChange
               >
-                <main>{children}</main>
+                <main id="main-content">{children}</main>
               </ThemeProvider>
               {SITE_CONFIG.isProd && (
                 <Script
