@@ -38,7 +38,6 @@ export async function getSearchRecommendations(
   );
 
   const retVal = groupedData as unknown as RecommendationsResponse;
-  console.log("user doc id", userDocID);
   if (userDocID) {
     //don't wait... do it behind the scenes so the user can move on
     saveRecommendations(
