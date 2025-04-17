@@ -10,13 +10,14 @@ type Props = {
 function AccountDetailsForm({ errors, register }: Props) {
   return (
     <>
-      {USER_REGISTRATION_FORM.map((field) => (
+      {USER_REGISTRATION_FORM.map((field, index) => (
         <FormGenerator
           key={field.id}
           {...field}
           errors={errors}
           register={register}
           name={field.name}
+          autoFocus={index === 0}
         />
       ))}
     </>
