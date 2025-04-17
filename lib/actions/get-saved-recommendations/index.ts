@@ -5,6 +5,7 @@ import { OpenAIDocument as OpenAIDocumentType } from "./../../mongoose/models/ty
 import { auth } from "@clerk/nextjs/server";
 import OpenAIDocument from "@/lib/mongoose/models/open-ai";
 import { connectDB } from "@/lib/mongoose";
+import { revalidatePath } from "next/cache";
 
 const getSavedRecommendations = async (
   userDocID: string,
@@ -33,6 +34,8 @@ const getSavedRecommendations = async (
       customValue_2: doc.customValue_2,
       customValue_3: doc.customValue_3,
     }));
+
+    revalidatePath("/dashboard");
     return { success: true, data: serializedData };
   } catch (e) {
     if (e && e instanceof Error) throw Error(e.message);
