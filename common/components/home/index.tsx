@@ -11,7 +11,7 @@ import {
   TabsTrigger,
   TabsContent,
 } from "@/common/components/ui/Tabs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function HomeView() {
   const { loadRecommendations, recommendations, isLoading } =
@@ -27,6 +27,23 @@ export default function HomeView() {
   const [activeTab, setActiveTab] = useState(
     hasDestinations ? "destinations" : "rentals",
   );
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft" && hasDestinations && activeTab === "rentals") {
+        setActiveTab("destinations");
+      } else if (
+        e.key === "ArrowRight" &&
+        hasRentals &&
+        activeTab === "destinations"
+      ) {
+        setActiveTab("rentals");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeTab, hasDestinations, hasRentals]);
 
   return (
     <>

@@ -1,5 +1,4 @@
 import { DashboardNavbar } from "@/common/components/navbar/DashboardNavbar";
-import SkipMain from "@/common/components/ui/SkipMain";
 
 export default function DashboardLayout({
   children,
@@ -8,11 +7,8 @@ export default function DashboardLayout({
 }>) {
   return (
     <>
-      <SkipMain />
       <DashboardNavbar />
-      <main id="main-content" tabIndex={-1} className="outline-none">
-        {children}
-      </main>
+      <main id="main-content">{children}</main>
     </>
   );
 }
