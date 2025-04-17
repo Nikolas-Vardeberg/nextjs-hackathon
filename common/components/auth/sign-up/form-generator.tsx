@@ -10,7 +10,6 @@ type Props = {
   placeholder: string;
   register: UseFormRegister<FieldValues>;
   name: string;
-  autoFocus?: boolean;
   errors: FieldErrors<FieldValues>;
   lines?: number;
   form?: string;
