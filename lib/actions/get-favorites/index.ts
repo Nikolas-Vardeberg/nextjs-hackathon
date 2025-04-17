@@ -12,7 +12,6 @@ const getFavorites = async (
     await auth();
     await connectDB();
 
-    console.log(userDocID);
     const favorites = await PlaceDocument.find({ userDocID, favorite: true })
       .limit(limit || 1000)
       .skip(skip || 0)
@@ -26,7 +25,6 @@ const getFavorites = async (
       })) as unknown as PlaceDocumentType[],
     };
   } catch (e) {
-    console.log(e);
     if (e && e instanceof Error) throw Error(e.message);
   }
 };

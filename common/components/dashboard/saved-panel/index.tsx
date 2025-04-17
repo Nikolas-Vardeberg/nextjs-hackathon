@@ -6,8 +6,7 @@ import useUserDocumentContext from "@/common/providers/user-document";
 import { tinyPlacesImageLoader } from "@/lib/image-loaders/places";
 
 const SavedPanel: React.FC = () => {
-  const { favorites } = useUserDocumentContext();
-  console.log("roe", favorites);
+  const { favorites, removeFavorite } = useUserDocumentContext();
   return (
     <div className="">
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm bg-white border-gray-200">
@@ -50,7 +49,17 @@ const SavedPanel: React.FC = () => {
                       }} // Set fallback image on error
                       className="w-full h-full object-cover"
                     />
-                    <button className="absolute top-0.5 right-0.5 inline-flex items-center justify-center text-red-500 bg-white/70 rounded-full p-0.5">
+                    <button
+                      onClick={() => {
+                        if (destination && removeFavorite)
+                          removeFavorite(
+                            destination.googlePlaceID,
+                            destination.googlePlaceDataCache,
+                            !destination.favorite,
+                          );
+                      }}
+                      className="absolute top-0.5 right-0.5 inline-flex items-center justify-center text-red-500 bg-white/70 rounded-full p-0.5"
+                    >
                       <Heart className="h-4 w-4 fill-red-500" />
                     </button>
                   </div>

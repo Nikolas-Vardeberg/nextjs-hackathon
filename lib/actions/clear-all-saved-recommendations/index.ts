@@ -23,10 +23,6 @@ const clearAllSavedRecommendations = async ({
     });
 
     if (result.acknowledged) {
-      console.log(
-        `Deleted ${result.deletedCount} recommendations for userDocID: ${userDocID}`,
-      );
-
       revalidatePath("/dashboard");
       return { success: true, deletedCount: result.deletedCount };
     } else {

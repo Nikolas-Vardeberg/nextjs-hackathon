@@ -44,7 +44,6 @@ export async function GET(req: Request) {
       data: openAPIDocuments,
     });
   } catch (e) {
-    console.log(e);
     if (e instanceof Error) {
       return Response.json(
         { success: false, message: e.message },
@@ -94,7 +93,6 @@ export async function POST(req: Request) {
     const savedDocument = await openAPIDocument.save();
     return Response.json({ success: true, data: savedDocument });
   } catch (e) {
-    console.log(e);
     if (e instanceof Error) {
       return Response.json(
         { success: false, message: e.message },

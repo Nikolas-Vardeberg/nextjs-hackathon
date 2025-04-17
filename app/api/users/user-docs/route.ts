@@ -43,7 +43,6 @@ export async function GET(req: Request) {
       data: userDoc,
     });
   } catch (e) {
-    console.log(e);
     if (e instanceof Error) {
       return Response.json(
         { success: false, message: e.message },
@@ -96,7 +95,6 @@ export async function POST(req: Request) {
 
     return Response.json({ success: true, data: savedDocument });
   } catch (e) {
-    console.log(e);
     if (e instanceof Error) {
       return Response.json(
         { success: false, message: e.message },
@@ -174,7 +172,6 @@ export async function PUT(req: Request) {
 
     return Response.json({ success: true, data: updatedDocument });
   } catch (e) {
-    console.log(e);
     if (e instanceof Error) {
       return Response.json(
         { success: false, message: e.message },
