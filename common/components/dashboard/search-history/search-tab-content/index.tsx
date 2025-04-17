@@ -43,8 +43,8 @@ const SearchTabContent: React.FC = () => {
           {visibleSearches.map((search, index) => (
             <SearchCard
               key={search.id || index}
-              {...search}
               onDelete={handleDelete}
+              {...search}
             />
           ))}
           <div className="flex flex-wrap justify-center gap-2 pt-2">

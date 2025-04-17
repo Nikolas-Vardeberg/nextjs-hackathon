@@ -23,7 +23,10 @@ export default function SearchResultsSkeleton({
             </div>
           </div>
 
-          <Skeleton className="h-6 w-3/4 my-3" />
+          <div className="flex justify-between items-center pt-1">
+            <Skeleton className="h-6 w-3/4" />
+            <Skeleton className="h-8 w-8 rounded-full" />
+          </div>
 
           <div className="flex flex-wrap gap-2 items-center">
             <Skeleton className="h-6 w-24 rounded-full" />
