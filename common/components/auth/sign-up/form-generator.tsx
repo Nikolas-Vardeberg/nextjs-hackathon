@@ -10,6 +10,7 @@ type Props = {
   placeholder: string;
   register: UseFormRegister<FieldValues>;
   name: string;
+  autoFocus?: boolean;
   errors: FieldErrors<FieldValues>;
   lines?: number;
   form?: string;
@@ -26,6 +27,7 @@ const FormGenerator = ({
   label,
   lines,
   options,
+  autoFocus,
 }: Props) => {
   switch (inputType) {
     case "input":
@@ -37,6 +39,7 @@ const FormGenerator = ({
             type={type}
             placeholder={placeholder}
             form={form}
+            autoFocus={autoFocus}
             {...register(name)}
           />
           <ErrorMessage
