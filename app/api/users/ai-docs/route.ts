@@ -38,6 +38,7 @@ export async function GET(req: Request) {
       .sort({ createdAt: -1 })
       .limit(Number(limit) || 500)
       .skip(Number(skip) || 0);
+
     return Response.json({
       success: true,
       data: openAPIDocuments,

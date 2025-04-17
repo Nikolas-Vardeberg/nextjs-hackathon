@@ -93,6 +93,7 @@ export async function POST(req: Request) {
       customValue_3: data.customValue_3 || "",
     });
     const savedDocument = await userDoc.save();
+
     return Response.json({ success: true, data: savedDocument });
   } catch (e) {
     console.log(e);
@@ -164,7 +165,6 @@ export async function PUT(req: Request) {
       updateData, // Only update fields with defined values
       { new: true, runValidators: true }, // Return the updated document and run validators
     );
-
     if (!updatedDocument) {
       return Response.json(
         { success: false, message: "User not found" },

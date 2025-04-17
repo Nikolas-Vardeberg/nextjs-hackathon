@@ -93,6 +93,7 @@ export async function POST(req: Request) {
       customValue_3: data.customValue_3 || "",
     });
     const savedDocument = await openAPIDocument.save();
+
     return Response.json({ success: true, data: savedDocument });
   } catch (e) {
     console.log(e);

@@ -33,7 +33,6 @@ const getSavedRecommendations = async (
       customValue_2: doc.customValue_2,
       customValue_3: doc.customValue_3,
     }));
-
     return { success: true, data: serializedData };
   } catch (e) {
     console.log(e);

@@ -100,7 +100,7 @@ export async function fetchGoogleDetails(messageContent: string) {
           "Content-Type": "application/json",
           "X-Goog-Api-Key": `${process.env.GOOGLE_API_KEY}`, // Replace with your actual API key
           "X-Goog-FieldMask":
-            "places.businessStatus,places.currentOpeningHours,places.priceRange,places.rating,places.userRatingCount,places.websiteUri,places.allowsDogs,places.editorialSummary,places.goodForChildren,places.reservable,places.displayName,places.formattedAddress,places.priceLevel,places.googleMapsUri,places.photos,places.types,places.internationalPhoneNumber",
+            "places.id,places.businessStatus,places.currentOpeningHours,places.priceRange,places.rating,places.userRatingCount,places.websiteUri,places.allowsDogs,places.editorialSummary,places.goodForChildren,places.reservable,places.displayName,places.formattedAddress,places.priceLevel,places.googleMapsUri,places.photos,places.types,places.internationalPhoneNumber",
         },
         body: JSON.stringify({
           textQuery: query,

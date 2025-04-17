@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Heart } from "lucide-react";
 
 interface HeartButtonProps {
-  onClick: (isSelected: boolean) => boolean;
+  onClick: (isSelected: boolean) => Promise<boolean | undefined>;
+  defaultIsSelected?: boolean;
 }
 
-const HeartButton: React.FC<HeartButtonProps> = ({ onClick }) => {
-  const [isSelected, setIsSelected] = useState(false);
+const HeartButton: React.FC<HeartButtonProps> = ({
+  onClick,
+  defaultIsSelected = false,
+}) => {
+  const [isSelected, setIsSelected] = useState(defaultIsSelected);
 
-  const handleClick = () => {
-    const shouldSelect = onClick(!isSelected);
-    return setIsSelected(shouldSelect);
+  const handleClick = async () => {
+    const shouldSelect = await onClick(!isSelected);
+    return setIsSelected(!!shouldSelect);
   };
 
   return (
