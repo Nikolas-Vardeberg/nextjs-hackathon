@@ -6,8 +6,8 @@ import SavedPanel from "./saved-panel";
 import SearchHistory from "./search-history";
 import VacationSearchModal from "../vacation-search-modal";
 import useRecommendations from "@/common/providers/recommendations";
-import GridSection from "../home/grid-section";
 import Container from "../atoms/layouts/Container";
+import ScrollSection from "../home/scroll-section";
 
 const DashboardView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -68,7 +68,7 @@ const DashboardView: React.FC = () => {
           {Object.entries(recommendations?.vacation_destinations || {}).map(
             ([key, value]) => (
               <div key={key}>
-                <GridSection
+                <ScrollSection
                   title={key.replace(/_/g, " ")}
                   recommendations={value}
                 />
