@@ -6,7 +6,7 @@
     "dashboard": {
       "maxDuration": 300
     },
-    "": {
+    "src/pages/**/*": {
       "maxDuration": 300
     }
   }
