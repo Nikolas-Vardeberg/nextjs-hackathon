@@ -12,6 +12,7 @@ import Container from "../atoms/layouts/Container";
 const DashboardView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialQuery, setInitialQuery] = useState("");
+  const [searchTrigger, setSearchTrigger] = useState(0);
   const { loadRecommendations, recommendations, isLoading } =
     useRecommendations();
 
@@ -25,9 +26,14 @@ const DashboardView: React.FC = () => {
     setInitialQuery("");
   };
 
-  const onSearch = (answers: string[]) => {
+  const onSearch = async (answers: string[]) => {
     if (isLoading) return;
-    loadRecommendations?.(answers);
+    try {
+      await loadRecommendations?.(answers);
+      setSearchTrigger((prev) => prev + 1);
+    } catch (error) {
+      console.error("Error loading recommendations:", error);
+    }
   };
 
   return (
@@ -50,7 +56,7 @@ const DashboardView: React.FC = () => {
         />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <div className="lg:col-span-2">
-            <SearchHistory />
+            <SearchHistory searchTrigger={searchTrigger} />
           </div>
           <div className="space-y-4">
             {/* <ActivityPanel /> */}

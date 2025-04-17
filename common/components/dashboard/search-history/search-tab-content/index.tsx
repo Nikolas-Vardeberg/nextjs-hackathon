@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchCard from "../search-card";
 import { useSearchHistory } from "../context";
 import SearchResultsSkeleton from "../search-results-skeleton";
@@ -10,9 +10,21 @@ import { Button } from "@/common/components/ui/Button";
 const INITIAL_COUNT = 3;
 const INCREMENT_COUNT = 5;
 
-const SearchTabContent: React.FC = () => {
+interface SearchTabContentProps {
+  searchTrigger: number;
+}
+
+const SearchTabContent: React.FC<SearchTabContentProps> = ({
+  searchTrigger,
+}) => {
   const { searchHistory, isLoading, refetchSearchHistory } = useSearchHistory();
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+
+  useEffect(() => {
+    if (searchTrigger > 0 && refetchSearchHistory) {
+      refetchSearchHistory();
+    }
+  }, [searchTrigger, refetchSearchHistory]);
 
   if (isLoading) {
     return <SearchResultsSkeleton count={INITIAL_COUNT} />;

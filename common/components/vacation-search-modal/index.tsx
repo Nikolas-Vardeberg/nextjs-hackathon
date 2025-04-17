@@ -21,7 +21,14 @@ type VacationSearchModalProps = {
   scrollToId?: string;
 };
 
-export default function VacationSearchModal(props: VacationSearchModalProps) {
+export default function VacationSearchModal({
+  isOpen,
+  onClose,
+  onSearch,
+  initialQuery,
+  isLoading,
+  scrollToId,
+}: VacationSearchModalProps) {
   const {
     safeCurrentStep,
     totalSteps,
@@ -36,10 +43,17 @@ export default function VacationSearchModal(props: VacationSearchModalProps) {
     handleOpenChange,
     onSubmit,
     updateAnswer,
-  } = useVacationSearch(props);
+  } = useVacationSearch({
+    isOpen,
+    onClose,
+    onSearch,
+    initialQuery,
+    isLoading,
+    scrollToId,
+  });
 
   return (
-    <Dialog open={props.isOpen} onOpenChange={handleOpenChange}>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="text-xl text-nightocean">
